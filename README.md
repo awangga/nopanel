@@ -45,7 +45,7 @@ Web Hosting Panel for Advance User
 ``
 $ services sshd reload
 ``
-12. Enjoy
+12. install php ``$ yum install php php-mysql`` and reload.
 
 License
 ----
