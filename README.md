@@ -42,19 +42,18 @@ Match Group sftponly
         ForceCommand internal-sftp
         AllowTcpForwarding no
 ```   
-6. Reload sshd:
+11. Reload sshd:
 ```sh
 $ systemctl reload sshd.service
 ```
-7. Enjoy
+12. Enjoy
 
 License
 ----
 
-Afera GNU AGPL 3
-**mm**
+GNU Affero General Public License
 
-**Free Software, Hell Yeah!**
+
 
 [The Web Site People]:http://blog.thewebsitepeople.org/2012/10/virtualmin-sftp-chroot/
 [The Geek Stuff]:http://www.thegeekstuff.com/2012/03/chroot-sftp-setup/
