@@ -7,12 +7,11 @@ then
     if [ ! "$VIRTUALSERVER_CREATED" ]
     then
       mkdir -p /home/chroot/$VIRTUALSERVER_USER/home
-      chown -R $VIRTUALSERVER_USER:$VIRTUALSERVER_USER /home/chroot/$VIRTUALSERVER_USER/home
     else
       echo "Setting up $VIRTUALSERVER_DOM to chroot'ed environment for sftp"
-
+	  chown -R $VIRTUALSERVER_USER:$VIRTUALSERVER_USER /home/chroot/$VIRTUALSERVER_USER/home
       usermod -d /home/chroot/$VIRTUALSERVER_USER/home $VIRTUALSERVER_USER
-
+      
       #ln -s $VIRTUALSERVER_HOME /home/chroot/$VIRTUALSERVER_USER
 
       echo " .. done"
