@@ -37,9 +37,9 @@ Web Hosting Panel for Advance User
 10. Update /etc/ssh/sshd_config to set SFTP-only access for members of this group:
    - Subsystem       sftp    internal-sftp
    - Match Group sftponly
-   -     ChrootDirectory /home/chroot/%u
-   -     ForceCommand internal-sftp
-   -     AllowTcpForwarding no   
+   	 - ChrootDirectory /home/chroot/%u
+     - ForceCommand internal-sftp
+     - AllowTcpForwarding no   
 
 11. Reload sshd:
 ``
