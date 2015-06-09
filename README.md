@@ -25,8 +25,8 @@ Web Hosting Panel for Advance User
    - input your root password on webmin
 5. Taken from [The Web Site People]. Create file /home/chroot/chroot.sh with in the repo give executable permission
 6. Set the home directory template in Virtualmin accordingly:
-   - Virtualmin -> System Settings -> Virtualmin Configuration -> Defaults for new domains -> Home directory base: /home/chroot/${USER}/home
-   - Virtualmin -> System Settings -> Virtualmin Configuration -> Defaults for new domains -> Home subdirectory: ${DOM}
+   - Virtualmin -> System Settings -> Virtualmin Configuration -> Defaults for new domains -> Home directory base: /home/chroot/$USER/home
+   - Virtualmin -> System Settings -> Virtualmin Configuration -> Defaults for new domains -> Home subdirectory: $DOM
    - Note that both settings are required, even if ${DOM} is the default, as Virtualmin will not correctly interpolate the directory unless a manual template is set.
 7. Add a custom command to handle setting up and cleaning up the chroot:
    - Virtualmin -> System Settings -> Virtualmin Configuration ->Actions upon server and user creation -> Command to run before making changes to a server: /home/chroot/chroot.sh
