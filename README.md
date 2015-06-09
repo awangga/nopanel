@@ -43,7 +43,7 @@ Web Hosting Panel for Advance User
 
 11. Reload sshd:
 ``
-$ systemctl reload sshd.service
+$ services sshd reload
 ``
 12. Enjoy
 
