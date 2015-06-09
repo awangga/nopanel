@@ -14,5 +14,13 @@ Web Hosting Panel for Advance User
    - login to your webmin interface on webmin menu choose Change Language and Theme>Personal choice ..  
    - klik make changes
    - close browser and open your webmin user interface again
+4. Install MySQL
+   - yum install mysql-server
+   - service mysqld start
+   - /usr/bin/mysqladmin -u root password 'new-password'
+   - /usr/bin/mysqladmin -u root -h semar.passionit.net password 'new-password'
+   - /usr/bin/mysql_secure_installation
+   - service mysqld start
+   - chkconfig mysqld on
    
 
