@@ -43,9 +43,9 @@ Web Hosting Panel for Advance User
     AllowTcpForwarding no   
 
 11. Reload sshd:
-```sh
-    $ systemctl reload sshd.service
-```
+``sh
+$ systemctl reload sshd.service
+``
 12. Enjoy
 
 License
