@@ -42,9 +42,9 @@ Web Hosting Panel for Advance User
 >    ForceCommand internal-sftp
 >    AllowTcpForwarding no   
 11. Reload sshd:
-    ```sh
+```sh
     $ systemctl reload sshd.service
-    ```
+```
 12. Enjoy
 
 License
