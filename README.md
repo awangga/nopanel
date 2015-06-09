@@ -22,5 +22,6 @@ Web Hosting Panel for Advance User
    - /usr/bin/mysql_secure_installation
    - service mysqld start
    - chkconfig mysqld on
+   - input your root password on webmin
    
 
