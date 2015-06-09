@@ -35,15 +35,14 @@ Web Hosting Panel for Advance User
 9. Add Virtualmin users to a secondary group that sshd can identify for SFTP-only access:
    - Virtualmin -> System Settings -> Server Templates -> Default Settings -> Administration user -> Add domain owners to secondary group: sftponly
 10. Update /etc/ssh/sshd_config to set SFTP-only access for members of this group:
-
- Subsystem       sftp    internal-sftp
- Match Group sftponly
-    ChrootDirectory /home/chroot/%u
-    ForceCommand internal-sftp
-    AllowTcpForwarding no   
+    Subsystem       sftp    internal-sftp
+    Match Group sftponly
+        ChrootDirectory /home/chroot/%u
+        ForceCommand internal-sftp
+        AllowTcpForwarding no   
 
 11. Reload sshd:
-``sh
+``
 $ systemctl reload sshd.service
 ``
 12. Enjoy
