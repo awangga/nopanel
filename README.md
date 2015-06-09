@@ -23,5 +23,7 @@ Web Hosting Panel for Advance User
    - service mysqld start
    - chkconfig mysqld on
    - input your root password on webmin
+5. Create file /home/chroot/chroot.sh with in the repo give executable permission
+
    
 
