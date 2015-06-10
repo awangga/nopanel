@@ -81,10 +81,11 @@ $ services sshd reload
 
 ###mod-itk for running vhost as vhost user
 ```sh
-#yum install httpd-itk.x86_64
-#nano /etc/sysconfig/httpd
-#nano /etc/httpd/conf/httpd.conf
-#nano /etc/httpd/conf.d/php.conf
+# yum install httpd-itk.x86_64
+# nano /etc/sysconfig/httpd
+# nano /etc/httpd/conf/httpd.conf
+# nano /etc/httpd/conf.d/php.conf
+# service httpd restart
 ```
 
 License
