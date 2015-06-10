@@ -45,7 +45,47 @@ Web Hosting Panel for Advance User
 ``
 $ services sshd reload
 ``
-12. install php ``$ yum install php php-mysql`` and reload.
+
+###PHP
+```sh
+# yum install php php-mysql
+# service httpd reload
+```
+
+
+###ssl for https
+```sh
+# yum install mod_ssl openssl
+# openssl genrsa -des3 -out your-domain.com.key 4096
+# openssl req -new -key your-domain.com.key -out your-domain.com.csr
+# openssl x509 -req -days 700 -in your-domain.com.csr -signkey your-domain.com.key -out your-domain.com.crt
+# mkdir -p /etc/httpd/ssl/
+# cp your-domain.com.crt /etc/httpd/ssl/
+# cp your-domain.com.key /etc/httpd/ssl/
+# vi /etc/httpd/conf.d/your-domain.com.conf
+# service httpd restart
+```
+
+###add EPEL Repositories
+```sh
+# wget http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+# rpm -ivh epel-release-6-8.noarch.rpm
+```
+
+###phpmyadmin
+```sh
+# yum install phpmyadmin
+# vim /etc/httpd/conf.d/phpMyAdmin.conf
+# service httpd reload
+```
+
+###mod-itk for running vhost as vhost user
+```sh
+#yum install httpd-itk.x86_64
+#nano /etc/sysconfig/httpd
+#nano /etc/httpd/conf/httpd.conf
+#nano /etc/httpd/conf.d/php.conf
+```
 
 License
 ----
@@ -57,3 +97,5 @@ GNU Affero General Public License
 [The Web Site People]:http://blog.thewebsitepeople.org/2012/10/virtualmin-sftp-chroot/
 [The Geek Stuff]:http://www.thegeekstuff.com/2012/03/chroot-sftp-setup/
 [Virtualmin Manual]:http://www.virtualmin.com/documentation/developer/prepost
+[Rosehosting]https://www.rosehosting.com/blog/installing-and-securing-phpmyadmin-4-on-centos-6/
+[mpm-itk]http://itsol.biz/apache-virtual-hosts-with-different-users-centos-6-2-and-apache-2-2/
