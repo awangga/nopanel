@@ -88,6 +88,22 @@ $ services sshd reload
 # service httpd restart
 ```
 
+###Usermin
+```sh
+# rpm -Uvh http://www.webmin.com/download/rpm/usermin-current.rpm
+# service usermin restart
+```
+Login from web browser https://yourdomain:20000
+
+###Update Mysql
+```sh
+# rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+# yum --enablerepo=remi,remi-test install mysql mysql-server
+# service mysqld restart
+# chkconfig --levels 235 mysqld on
+# mysql_upgrade -u root -p
+```
+
 License
 ----
 
@@ -100,3 +116,4 @@ GNU Affero General Public License
 [Virtualmin Manual]:http://www.virtualmin.com/documentation/developer/prepost
 [Rosehosting]https://www.rosehosting.com/blog/installing-and-securing-phpmyadmin-4-on-centos-6/
 [mpm-itk]http://itsol.biz/apache-virtual-hosts-with-different-users-centos-6-2-and-apache-2-2/
+[Update MySQL]http://stackoverflow.com/questions/9361720/update-mysql-version-from-5-1-to-5-5-in-centos-6-2
