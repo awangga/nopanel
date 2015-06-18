@@ -81,12 +81,42 @@ $ services sshd reload
 
 ###mod-itk for running vhost as vhost user
 ```sh
-# yum install httpd-itk.x86_64
+# yum install httpd-itk
 # nano /etc/sysconfig/httpd
-# nano /etc/httpd/conf/httpd.conf
+add this:
+HTTPD=/usr/sbin/httpd.itk
 # nano /etc/httpd/conf.d/php.conf
+add this :
+<IfModule itk.c>
+   LoadModule php5_module modules/libphp5.so
+</IfModule>
+# nano /etc/httpd/conf/httpd.conf
+add this in virtual host:
+AssignUserId user group
 # service httpd restart
 ```
+login to virtualmin, goto  System Settings>Server Templates>Default Settings>Apache website
+Directives and settings for new websites:
+```
+ServerName ${DOM}
+ServerAlias www.${DOM}
+DocumentRoot ${HOME}/public_html
+AssignUserId ${USER} ${USER}
+ErrorLog /var/log/virtualmin/${DOM}_error_log
+CustomLog /var/log/virtualmin/${DOM}_access_log combined
+ScriptAlias /cgi-bin/ ${HOME}/cgi-bin/
+DirectoryIndex index.html index.htm index.php index.php4 index.php5
+<Directory ${HOME}/public_html>
+Options -Indexes +IncludesNOEXEC +SymLinksIfOwnerMatch
+allow from all
+AllowOverride All Options=ExecCGI,Includes,IncludesNOEXEC,Indexes,MultiViews,SymLinksIfOwnerMatch
+</Directory>
+<Directory ${HOME}/cgi-bin>
+allow from all
+AllowOverride All Options=ExecCGI,Includes,IncludesNOEXEC,Indexes,MultiViews,SymLinksIfOwnerMatch
+</Directory>
+```
+
 
 ###Usermin
 ```sh
