@@ -133,6 +133,16 @@ Login from web browser https://yourdomain:20000
 # chkconfig --levels 235 mysqld on
 # mysql_upgrade -u root -p
 ```
+###MySQL migration 
+On Source Server
+```sh
+mysqldump -u root -p --opt [database name] > [database name].sql
+scp [database name].sql [username]@[servername]:path/to/database/
+```
+On Destination Server
+```sh
+mysql -u root -p newdatabase < /path/to/newdatabase.sql
+```
 
 License
 ----
@@ -147,3 +157,4 @@ GNU Affero General Public License
 [Rosehosting]https://www.rosehosting.com/blog/installing-and-securing-phpmyadmin-4-on-centos-6/
 [mpm-itk]http://itsol.biz/apache-virtual-hosts-with-different-users-centos-6-2-and-apache-2-2/
 [Update MySQL]http://stackoverflow.com/questions/9361720/update-mysql-version-from-5-1-to-5-5-in-centos-6-2
+[My SQL Migration]https://www.digitalocean.com/community/tutorials/how-to-migrate-a-mysql-database-between-two-servers
