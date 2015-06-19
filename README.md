@@ -138,6 +138,7 @@ On Source Server
 ```sh
 mysqldump -u root -p --opt [database name] > [database name].sql
 scp [database name].sql [username]@[servername]:path/to/database/
+scp newdatabase.sql user@example.com:~/
 ```
 On Destination Server
 ```sh
