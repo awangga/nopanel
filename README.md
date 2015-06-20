@@ -85,6 +85,16 @@ $ services sshd reload
 # nano /etc/sysconfig/httpd
 add this:
 HTTPD=/usr/sbin/httpd.itk
+# nano /etc/httpd/conf.d/mpm-itk.conf
+add this:
+<IfModule itk.c>  
+  StartServers 8  
+  MinSpareServers 5  
+  MaxSpareServers 20  
+  ServerLimit 256  
+  MaxClients 256  
+  MaxRequestsPerChild 4000  
+  </IfModule> 
 # nano /etc/httpd/conf.d/php.conf
 add this :
 <IfModule itk.c>
