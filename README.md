@@ -88,13 +88,13 @@ HTTPD=/usr/sbin/httpd.itk
 # nano /etc/httpd/conf.d/mpm-itk.conf
 add this:
 <IfModule itk.c>  
-  StartServers 8  
-  MinSpareServers 5  
+  StartServers 5  
+  MinSpareServers 10  
   MaxSpareServers 20  
-  ServerLimit 256  
-  MaxClients 256  
-  MaxRequestsPerChild 4000  
-  </IfModule> 
+  ServerLimit 812
+  MaxClients 812 
+  MaxRequestsPerChild 20
+</IfModule>
 # nano /etc/httpd/conf.d/php.conf
 add this :
 <IfModule itk.c>
