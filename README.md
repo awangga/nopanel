@@ -154,6 +154,13 @@ On Destination Server
 ```sh
 mysql -u root -p newdatabase < /path/to/newdatabase.sql
 ```
+###Mysql CPU Limit
+Limiting MySQL proses prevent CPU High Load
+```sh
+# cpulimit -l 150 -p 1409 & 
+```
+Where 150 is % of CPU usage(percentage is multiply by core in your server) and 1409 id PID get from top command use kill command to stop
+
 ###set time in OpenVZ VPS to Asia/Jakarta
 ```sh
 # mv /etc/localtime /etc/localtime.bak
