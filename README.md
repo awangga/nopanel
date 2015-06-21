@@ -155,7 +155,7 @@ On Destination Server
 mysql -u root -p newdatabase < /path/to/newdatabase.sql
 ```
 ###Mysql CPU Limit
-Limiting MySQL proses prevent CPU High Load
+Limiting MySQL proses prevent CPU High Load, install by command: yum install cpulimit
 ```sh
 # cpulimit -l 150 -p 1409 & 
 ```
