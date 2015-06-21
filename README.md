@@ -182,3 +182,4 @@ GNU Affero General Public License
 [Update MySQL]http://stackoverflow.com/questions/9361720/update-mysql-version-from-5-1-to-5-5-in-centos-6-2
 [My SQL Migration]https://www.digitalocean.com/community/tutorials/how-to-migrate-a-mysql-database-between-two-servers
 [Openvz Change Time]http://forum.openvz.org/index.php?t=msg&goto=37402&
+[CPULimit]http://www.server-world.info/en/note?os=CentOS_6&p=cpulimit
