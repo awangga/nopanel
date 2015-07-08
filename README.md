@@ -23,25 +23,32 @@ Web Hosting Panel for Advance User
    - service mysqld start
    - chkconfig mysqld on
    - input your root password on webmin
-5. Taken from [The Web Site People]. Create file /home/chroot/chroot.sh with in the repo give executable permission
-6. Set the home directory template in Virtualmin accordingly:
+5. Install Postgresql
+   - yum install postgresql-server postgresql postgresql-contrib
+   - chkconfig postgresql on
+   - service postgresql initdb
+   - service postgresql start
+   - su postgres
+   - psql
+6. Taken from [The Web Site People]. Create file /home/chroot/chroot.sh with in the repo give executable permission
+7. Set the home directory template in Virtualmin accordingly:
    - Virtualmin -> System Settings -> Virtualmin Configuration -> Defaults for new domains -> Home directory base: /home/chroot/$USER/home
    - Virtualmin -> System Settings -> Virtualmin Configuration -> Defaults for new domains -> Home subdirectory: $DOM
    - Note that both settings are required, even if ${DOM} is the default, as Virtualmin will not correctly interpolate the directory unless a manual template is set.
-7. Add a custom command to handle setting up and cleaning up the chroot:
+8. Add a custom command to handle setting up and cleaning up the chroot:
    - Virtualmin -> System Settings -> Virtualmin Configuration ->Actions upon server and user creation -> Command to run before making changes to a server: /home/chroot/chroot.sh
    - Virtualmin -> System Settings -> Virtualmin Configuration ->Actions upon server and user creation -> Command to run after making changes to a server: /home/chroot/chroot.sh
-8. Create Group : sftponly
-9. Add Virtualmin users to a secondary group that sshd can identify for SFTP-only access:
+9. Create Group : sftponly
+10. Add Virtualmin users to a secondary group that sshd can identify for SFTP-only access:
    - Virtualmin -> System Settings -> Server Templates -> Default Settings -> Administration user -> Add domain owners to secondary group: sftponly
-10. Update /etc/ssh/sshd_config to set SFTP-only access for members of this group:
+11. Update /etc/ssh/sshd_config to set SFTP-only access for members of this group:
    - Subsystem       sftp    internal-sftp
    - Match Group sftponly
    	 - ChrootDirectory /home/chroot/%u
      - ForceCommand internal-sftp
      - AllowTcpForwarding no   
 
-11. Reload sshd:
+12. Reload sshd:
 ``
 $ services sshd reload
 ``
