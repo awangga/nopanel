@@ -30,6 +30,7 @@ Web Hosting Panel for Advance User
    - service postgresql start
    - su postgres
    - psql
+   - nano /var/lib/pgsql/data/pg_hba.conf change ident to md5
 6. Taken from [The Web Site People]. Create file /home/chroot/chroot.sh with in the repo give executable permission
 7. Set the home directory template in Virtualmin accordingly:
    - Virtualmin -> System Settings -> Virtualmin Configuration -> Defaults for new domains -> Home directory base: /home/chroot/$USER/home
@@ -55,7 +56,7 @@ $ services sshd reload
 
 ###PHP
 ```sh
-# yum install php php-mysql
+# yum install php php-mysql php-pgsql
 # service httpd reload
 ```
 
