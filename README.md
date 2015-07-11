@@ -24,13 +24,16 @@ Web Hosting Panel for Advance User
    - chkconfig mysqld on
    - input your root password on webmin
 5. Install Postgresql
-   - yum install postgresql-server postgresql postgresql-contrib
+   - yum install postgresql-server postgresql postgresql-contrib php-pgsql
    - chkconfig postgresql on
    - service postgresql initdb
    - service postgresql start
    - su postgres
-   - psql
-   - nano /var/lib/pgsql/data/pg_hba.conf change ident to md5
+   - psql template1
+   - ALTER USER postgres with password 'passwordku';\q
+   - nano /var/lib/pgsql/data/pg_hba.conf change ident to password or md5
+   - nano /var/lib/pgsql/data/postgresql.conf
+   - listen_addreses="localhost"
 6. Taken from [The Web Site People]. Create file /home/chroot/chroot.sh with in the repo give executable permission
 7. Set the home directory template in Virtualmin accordingly:
    - Virtualmin -> System Settings -> Virtualmin Configuration -> Defaults for new domains -> Home directory base: /home/chroot/$USER/home
@@ -174,6 +177,35 @@ Where 150 is % of CPU usage(percentage is multiply by core in your server) and 1
 # mv /etc/localtime /etc/localtime.bak
 # ln -s /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 ```
+
+### Install Varnish
+```sh
+# nano /etc/httpd/conf/httpd.conf
+edit to : Listen 8080 and ServerName domain:8080 and <VirtualHost *:8080>
+# yum install varnish
+# nano /etc/sysconfig/varnish
+edit:
+VARNISH_VCL_CONF=/etc/varnish/default.vcl
+VARNISH_LISTEN_ADDRESS=
+VARNISH_LISTEN_PORT=80
+VARNISH_MIN_THREADS=1
+VARNISH_MAX_THREADS=1000
+VARNISH_THREAD_TIMEOUT=120
+VARNISH_STORAGE_SIZE=512M
+#u can leave varnish storage
+#VARNISH_STORAGE=”malloc,${VARNISH_STORAGE_SIZE}”
+VARNISH_SECRET_FILE=/etc/varnish/secret
+VARNISH_TTL=120
+Uncomment the DAEMON_OPTS line following the above lines.
+# nano /etc/varnish/default.vcl 
+backend default {
+  .host = "127.0.0.1";
+  .port = "8080";
+}
+# service varnish restart
+# chkconfig varnish on
+```
+
 
 License
 ----
