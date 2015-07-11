@@ -212,14 +212,20 @@ License
 
 GNU Affero General Public License
 
-
-
 [The Web Site People]:http://blog.thewebsitepeople.org/2012/10/virtualmin-sftp-chroot/
+
 [The Geek Stuff]:http://www.thegeekstuff.com/2012/03/chroot-sftp-setup/
+
 [Virtualmin Manual]:http://www.virtualmin.com/documentation/developer/prepost
+
 [Rosehosting]https://www.rosehosting.com/blog/installing-and-securing-phpmyadmin-4-on-centos-6/
+
 [mpm-itk]http://itsol.biz/apache-virtual-hosts-with-different-users-centos-6-2-and-apache-2-2/
+
 [Update MySQL]http://stackoverflow.com/questions/9361720/update-mysql-version-from-5-1-to-5-5-in-centos-6-2
+
 [My SQL Migration]https://www.digitalocean.com/community/tutorials/how-to-migrate-a-mysql-database-between-two-servers
+
 [Openvz Change Time]http://forum.openvz.org/index.php?t=msg&goto=37402&
+
 [CPULimit]http://www.server-world.info/en/note?os=CentOS_6&p=cpulimit
