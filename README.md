@@ -205,7 +205,32 @@ backend default {
 # service varnish restart
 # chkconfig varnish on
 ```
+### SSL Termination with Varnish and Nginx
+```sh
+# yum install nginx
+# mkdir /etc/nginx/ssl
+# openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
+# vi /etc/nginx/sites-enabled/default
+server {
+        listen 443 ssl;
 
+        server_name example.com;
+        ssl_certificate /etc/nginx/ssl/nginx.crt;
+        ssl_certificate_key /etc/nginx/ssl/nginx.key;
+
+        location / {
+            proxy_pass http://127.0.0.1:80;
+            proxy_set_header X-Real-IP  $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto https;
+            proxy_set_header X-Forwarded-Port 443;
+            proxy_set_header Host $host;
+        }
+}
+# service nginx start
+# chkconfig nginx on
+```
+Access to your https server : https://varnish_VPS_public_IP and then ok.
 
 License
 ----
@@ -229,3 +254,5 @@ GNU Affero General Public License
 [Openvz Change Time]http://forum.openvz.org/index.php?t=msg&goto=37402&
 
 [CPULimit]http://www.server-world.info/en/note?os=CentOS_6&p=cpulimit
+
+[Varnish HTTPS]https://www.digitalocean.com/community/tutorials/how-to-configure-varnish-cache-4-0-with-ssl-termination-on-ubuntu-14-04
