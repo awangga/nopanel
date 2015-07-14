@@ -205,6 +205,32 @@ backend default {
 # service varnish restart
 # chkconfig varnish on
 ```
+for multiple domain
+```sh
+backend example1 {
+     .host = "backend.example1.com";
+     .port = "8080";
+ }
+ backend example2 {
+      .host = "backend.example2.com";
+      .port = "8080";
+ }
+ sub vcl_recv {
+    if (req.http.host == "example1.com") {
+        #You will need the following line only if your backend has multiple virtual host names
+        set req.http.host = "backend.example1.com";
+        set req.backend = example1;
+        return (lookup);
+    }
+    if (req.http.host == "example2.com") {
+        #You will need the following line only if your backend has multiple virtual host names
+        set req.http.host = "backend.example2.com";
+        set req.backend = example2;
+        return (lookup);
+    }
+ }
+```
+
 
 ### SSL Termination with Varnish and Nginx
 ```sh
