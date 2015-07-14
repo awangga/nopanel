@@ -205,9 +205,12 @@ backend default {
 # service varnish restart
 # chkconfig varnish on
 ```
+
 ### SSL Termination with Varnish and Nginx
 ```sh
 # yum install nginx
+# vi /etc/nginx/conf.d/default.conf 
+listen       8000 default_server;
 # mkdir /etc/nginx/ssl
 # openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
 # vi /etc/nginx/sites-enabled/default
@@ -231,6 +234,47 @@ server {
 # chkconfig nginx on
 ```
 Access to your https server : https://varnish_VPS_public_IP and then ok.
+
+### Install Gitlab
+```sh
+# vi /etc/gitlab/gitlab.rb
+# Disable the built-in Postgres
+postgresql['enable'] = false
+
+gitlab_rails['db_adapter'] = 'postgresql'
+gitlab_rails['db_encoding'] = 'utf8'
+# Create database manually and place its name here.
+gitlab_rails['db_database'] = 'gitlabhq_production'
+gitlab_rails['db_host'] = 'localhost'
+gitlab_rails['db_port'] = '5432'
+gitlab_rails['db_username'] = 'git' # Database owner.
+gitlab_rails['db_password'] = 'git' # Database owner's password.
+# gitlab-ctl reconfigure
+# gitlab-rake gitlab:setup
+
+```
+
+### IPTables Knowing open port
+```sh
+# iptables -nL | grep 8999
+# iptables -L -n
+# netstat -tulpn
+```
+####Open port XY
+Open flle /etc/sysconfig/iptables:
+
+# vi /etc/sysconfig/iptables
+
+Append rule as follows:
+
+-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport XY -j ACCEPT
+
+Save and close the file. Restart iptables:
+
+# /etc/init.d/iptables restart
+
+
+
 
 License
 ----
