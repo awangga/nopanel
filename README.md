@@ -161,6 +161,27 @@ mysqldump -u root -p --opt [database name] > [database name].sql
 scp [database name].sql [username]@[servername]:path/to/database/
 scp newdatabase.sql user@example.com:~/
 ```
+
+Or dump all databases into separate file
+```sh
+#! /bin/bash
+ 
+TIMESTAMP=$(date +"%F")
+BACKUP_DIR="/backup/$TIMESTAMP"
+MYSQL_USER="backup"
+MYSQL=/usr/bin/mysql
+MYSQL_PASSWORD="password"
+MYSQLDUMP=/usr/bin/mysqldump
+ 
+mkdir -p "$BACKUP_DIR/mysql"
+ 
+databases=`$MYSQL --user=$MYSQL_USER -p$MYSQL_PASSWORD -e "SHOW DATABASES;" | grep -Ev "(Database|information_schema|performance_schema)"`
+ 
+for db in $databases; do
+  $MYSQLDUMP --force --opt --user=$MYSQL_USER -p$MYSQL_PASSWORD --databases $db | gzip > "$BACKUP_DIR/mysql/$db.gz"
+done
+```
+
 On Destination Server
 ```sh
 mysql -u root -p newdatabase < /path/to/newdatabase.sql
@@ -326,3 +347,5 @@ GNU Affero General Public License
 [CPULimit]http://www.server-world.info/en/note?os=CentOS_6&p=cpulimit
 
 [Varnish HTTPS]https://www.digitalocean.com/community/tutorials/how-to-configure-varnish-cache-4-0-with-ssl-termination-on-ubuntu-14-04
+
+[SQL Dump]http://dev.mensfeld.pl/2013/04/backup-mysql-dump-all-your-mysql-databases-in-separate-files/
