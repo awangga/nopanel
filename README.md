@@ -309,19 +309,34 @@ gitlab_rails['db_password'] = 'git' # Database owner's password.
 ```
 ####Open port XY
 Open flle /etc/sysconfig/iptables:
+```sh
 
 # vi /etc/sysconfig/iptables
+```
 
 Append rule as follows:
 
 -A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport XY -j ACCEPT
 
 Save and close the file. Restart iptables:
-
+```sh
 # /etc/init.d/iptables restart
+```
+
+### OCI8 PHP Extention
 
 
-
+### Upgrade PHP
+```sh
+# yum list installed | grep php
+# yum remove php.x86_64 php-cli.x86_64 php-common.x86_64 php-gd.x86_64 php-ldap.x86_64 php-mbstring.x86_64 php-mcrypt.x86_64 php-mysql.x86_64 php-pdo.x86_64
+# rpm -Uvh http://mirror.webtatic.com/yum/el6/latest.rpm
+# yum list available | grep php
+# yum list available | grep php54
+# yum install php54w.x86_64 php54w-cli.x86_64 php54w-common.x86_64 php54w-gd.x86_64 php54w-ldap.x86_64 php54w-mbstring.x86_64 php54w-mcrypt.x86_64 php54w-mysql.x86_64 php54w-pdo.x86_64
+# php -v 
+# service httpd restart
+```
 
 License
 ----
@@ -349,3 +364,9 @@ GNU Affero General Public License
 [Varnish HTTPS]https://www.digitalocean.com/community/tutorials/how-to-configure-varnish-cache-4-0-with-ssl-termination-on-ubuntu-14-04
 
 [SQL Dump]http://dev.mensfeld.pl/2013/04/backup-mysql-dump-all-your-mysql-databases-in-separate-files/
+
+[OCI8 Install]http://shiki.me/blog/installing-pdo_oci-and-oci8-php-extensions-on-centos-6-4-64bit/
+
+[Install Oracle]http://www.davidghedini.com/pg/entry/install_oracle_11g_xe_on
+
+[Upgrade PHP]
