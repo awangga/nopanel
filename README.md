@@ -323,7 +323,7 @@ Save and close the file. Restart iptables:
 # /etc/init.d/iptables restart
 ```
 
-### OCI8 PHP Extention
+
 
 
 ### Upgrade PHP
@@ -337,6 +337,42 @@ Save and close the file. Restart iptables:
 # php -v 
 # service httpd restart
 ```
+
+### OCI8 PHP Extension
+```sh
+# sudo yum install php54w-pear.noarch php54w-devel.x86_64 zlib zlib-devel bc libaio glibc
+# sudo yum groupinstall "Development Tools"
+# wget http://www.oracle.com/technetwork/topics/linuxx86-64soft-092277.html
+# rpm -ivh oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm
+# rpm -ivh oracle-instantclient12.1-devel-12.1.0.2.0-1.x86_64.rpm 
+# vim /etc/profile.d/oracle.sh
+export LD_LIBRARY_PATH=/usr/lib/oracle/12.1/client64/lib
+# source /etc/profile.d/oracle.sh
+# pear download pecl/oci8
+# tar -xvf oci8-2.0.8.tgz 
+# cd oci8-2.0.8
+# phpize
+# ./configure --with-oci8=shared,instantclient,/usr/lib/oracle/12.1/client64/lib
+# make
+# make install
+# vim /etc/php.d/oci8.ini
+extension=oci8.so
+# service httpd restart
+```
+
+### Set PHP Time Zone
+TO avoid timezone warning in PHP 
+```sh
+PHP Warning:  Unknown: It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function.
+```
+please set in /etc/php.ini
+```sh
+[Date]
+; Defines the default timezone used by the date functions
+; http://php.net/date.timezone
+date.timezone = "Asia/Jakarta"
+```
+
 
 License
 ----
