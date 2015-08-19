@@ -352,8 +352,26 @@ export LD_LIBRARY_PATH=/usr/lib/oracle/12.1/client64/lib
 instantclient,/usr/lib/oracle/12.1/client64/lib
 # vim /etc/php-zts.d/oci8.ini
 extension=oci8.so
+# vim /etc/httpd/conf.d/php.conf
+
+<IfModule prefork.c>
+  LoadModule php5_module modules/libphp5.so
+</IfModule>
+<IfModule worker.c>
+  LoadModule php5_module modules/libphp5-zts.so
+</IfModule>
+<IfModule itk.c>
+   LoadModule php5_module modules/libphp5.so
+</IfModule>
+
+
+AddHandler php5-script .php
+AddType text/html .php
+
+DirectoryIndex index.php
 
 # service httpd restart
+
 ```
 
 ### Set PHP Time Zone
