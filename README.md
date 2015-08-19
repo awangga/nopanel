@@ -348,15 +348,11 @@ Save and close the file. Restart iptables:
 # vim /etc/profile.d/oracle.sh
 export LD_LIBRARY_PATH=/usr/lib/oracle/12.1/client64/lib
 # source /etc/profile.d/oracle.sh
-# pear download pecl/oci8
-# tar -xvf oci8-2.0.8.tgz 
-# cd oci8-2.0.8
-# phpize
-# ./configure --with-oci8=shared,instantclient,/usr/lib/oracle/12.1/client64/lib
-# make
-# make install
-# vim /etc/php.d/oci8.ini
+# pecl install -f oci8-1.4.10
+instantclient,/usr/lib/oracle/12.1/client64/lib
+# vim /etc/php-zts.d/oci8.ini
 extension=oci8.so
+
 # service httpd restart
 ```
 
@@ -364,6 +360,7 @@ extension=oci8.so
 TO avoid timezone warning in PHP 
 ```sh
 PHP Warning:  Unknown: It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function.
+# php -i | grep "Loaded Configuration File"
 ```
 please set in /etc/php.ini
 ```sh
@@ -405,4 +402,5 @@ GNU Affero General Public License
 
 [Install Oracle]http://www.davidghedini.com/pg/entry/install_oracle_11g_xe_on
 
-[Upgrade PHP]
+[Upgrade PHP]http://pkgs.org/centos-6/remi-testing-x86_64/php56-php-oci8-5.6.12-0.1.RC1.el6.remi.x86_64.rpm.html
+[Upgrade with remi]http://serverfault.com/questions/638893/upgrading-to-php-5-6-using-yum-remi-repo
