@@ -421,4 +421,7 @@ GNU Affero General Public License
 [Install Oracle]http://www.davidghedini.com/pg/entry/install_oracle_11g_xe_on
 
 [Upgrade PHP]http://pkgs.org/centos-6/remi-testing-x86_64/php56-php-oci8-5.6.12-0.1.RC1.el6.remi.x86_64.rpm.html
+
 [Upgrade with remi]http://serverfault.com/questions/638893/upgrading-to-php-5-6-using-yum-remi-repo
+
+[Jboss Instalation]http://opensourcearchitect.co/tutorials/installing-jboss-7-1-on-centos-6
