@@ -388,6 +388,45 @@ please set in /etc/php.ini
 date.timezone = "Asia/Jakarta"
 ```
 
+### Jboss Instalation
+```sh
+# yum install java-1.6.0-openjdk-devel
+# java -version
+# wget http://download.jboss.org/jbossas/7.1/jboss-as-7.1.1.Final/jboss-as-7.1.1.Final.zip
+# unzip jboss-as-7.1.1.Final.zip -d /usr/share
+# adduser jboss
+# chown -fR jboss.jboss /usr/share/jboss-as-7.1.1.Final/
+# su jboss
+$ cd /usr/share/jboss-as-7.1.1.Final/bin/
+$ ./add-user.sh
+What type of user do you wish to add?
+a) Management User (mgmt-users.properties)
+b) Application User (application-users.properties)
+(a): a
+Enter the details of the new user to add.
+Realm (ManagementRealm) :
+Username : jboss
+Password :
+Re-enter Password :
+$ vim /usr/share/jboss-as-7.1.1.Final/standalone/configuration/standalone.xml
+<socket-binding-group name="standard-sockets" default-interface="public" port-offset="${jboss.socket.binding.port-offset:0}">
+        <socket-binding name="management-native" interface="management" port="${jboss.management.native.port:1999}"/>
+        <socket-binding name="management-http" interface="management" port="${jboss.management.http.port:1990}"/>
+        <socket-binding name="management-https" interface="management" port="${jboss.management.https.port:1443}"/>
+        <socket-binding name="ajp" port="2009"/>
+        <socket-binding name="http" port="2080"/>
+        <socket-binding name="https" port="2443"/>
+        <socket-binding name="osgi-http" interface="management" port="2090"/>
+        <socket-binding name="remoting" port="34471"/>
+        <socket-binding name="txn-recovery-environment" port="3712"/>
+        <socket-binding name="txn-status-manager" port="3713"/>
+        <outbound-socket-binding name="mail-smtp">
+            <remote-destination host="localhost" port="425"/>
+        </outbound-socket-binding>
+    </socket-binding-group>
+$ ./standalone.sh &
+$ ./jboss-cli.sh --connect command=:shutdown
+```
 
 License
 ----
