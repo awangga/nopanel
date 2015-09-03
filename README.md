@@ -329,11 +329,13 @@ Save and close the file. Restart iptables:
 ### Upgrade PHP
 ```sh
 # yum list installed | grep php
-# yum remove php.x86_64 php-cli.x86_64 php-common.x86_64 php-gd.x86_64 php-ldap.x86_64 php-mbstring.x86_64 php-mcrypt.x86_64 php-mysql.x86_64 php-pdo.x86_64
-# rpm -Uvh http://mirror.webtatic.com/yum/el6/latest.rpm
-# yum list available | grep php
-# yum list available | grep php54
-# yum install php54w.x86_64 php54w-cli.x86_64 php54w-common.x86_64 php54w-gd.x86_64 php54w-ldap.x86_64 php54w-mbstring.x86_64 php54w-mcrypt.x86_64 php54w-mysql.x86_64 php54w-pdo.x86_64
+# rpm -Uvh http://rpms.famillecollet.com/enterprise/6/remi/x86_64/remi-release-6.6-1.el6.remi.noarch.rpm
+# vim /etc/yum.repos.d/remi.repo
+[remi]
+enabled=1
+[remi-php56]
+enabled=1
+# yum update php php-cli php-common php-mysql php-pear php-pdo php-xml
 # php -v 
 # service httpd restart
 ```
