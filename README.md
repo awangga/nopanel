@@ -447,6 +447,8 @@ GATEWAY=172.16.16.100
 HWADDR=00:0C:29:28:FD:4C
 # /etc/init.d/network restart
 ```
+
+```sh
 ifcfg-eth0:0
 
 DEVICE="eth0:0"
@@ -477,7 +479,7 @@ IPADDR=172.16.16.128
 NETMASK=255.255.255.224
 GATEWAY=172.16.16.100
 HWADDR=00:0C:29:28:FD:4C
-
+```
 
 
 License
