@@ -430,6 +430,56 @@ $ ./standalone.sh &
 $ ./jboss-cli.sh --connect command=:shutdown
 ```
 
+### Multiple IP Address Setting
+```sh
+# cd /etc/sysconfig/network-scripts/
+# ls -l
+# cp ifcfg-eth0 ifcfg-eth0:0
+# vi ifcfg-eth0
+
+DEVICE="eth0"
+BOOTPROTO=static
+ONBOOT=yes
+TYPE="Ethernet"
+IPADDR=172.16.16.125
+NETMASK=255.255.255.224
+GATEWAY=172.16.16.100
+HWADDR=00:0C:29:28:FD:4C
+# /etc/init.d/network restart
+```
+ifcfg-eth0:0
+
+DEVICE="eth0:0"
+BOOTPROTO=static
+ONBOOT=yes
+TYPE="Ethernet"
+IPADDR=172.16.16.126
+NETMASK=255.255.255.224
+GATEWAY=172.16.16.100
+HWADDR=00:0C:29:28:FD:4C
+ifcfg-eth0:1
+
+DEVICE="eth0:1"
+BOOTPROTO=static
+ONBOOT=yes
+TYPE="Ethernet"
+IPADDR=172.16.16.127
+NETMASK=255.255.255.224
+GATEWAY=172.16.16.100
+HWADDR=00:0C:29:28:FD:4C
+ifcfg-eth0:2
+
+DEVICE="eth0:2"
+BOOTPROTO=static
+ONBOOT=yes
+TYPE="Ethernet"
+IPADDR=172.16.16.128
+NETMASK=255.255.255.224
+GATEWAY=172.16.16.100
+HWADDR=00:0C:29:28:FD:4C
+
+
+
 License
 ----
 
@@ -466,3 +516,5 @@ GNU Affero General Public License
 [Upgrade with remi]http://serverfault.com/questions/638893/upgrading-to-php-5-6-using-yum-remi-repo
 
 [Jboss Instalation]http://opensourcearchitect.co/tutorials/installing-jboss-7-1-on-centos-6
+
+[Multiple IP Adrress Setting]http://www.tecmint.com/create-multiple-ip-addresses-to-one-single-network-interface/
