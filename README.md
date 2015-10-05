@@ -449,7 +449,7 @@ HWADDR=00:0C:29:28:FD:4C
 ```
 
 ```sh
-ifcfg-eth0:0
+#ifcfg-eth0:0
 
 DEVICE="eth0:0"
 BOOTPROTO=static
@@ -459,7 +459,8 @@ IPADDR=172.16.16.126
 NETMASK=255.255.255.224
 GATEWAY=172.16.16.100
 HWADDR=00:0C:29:28:FD:4C
-ifcfg-eth0:1
+
+#ifcfg-eth0:1
 
 DEVICE="eth0:1"
 BOOTPROTO=static
@@ -469,7 +470,8 @@ IPADDR=172.16.16.127
 NETMASK=255.255.255.224
 GATEWAY=172.16.16.100
 HWADDR=00:0C:29:28:FD:4C
-ifcfg-eth0:2
+
+#ifcfg-eth0:2
 
 DEVICE="eth0:2"
 BOOTPROTO=static
