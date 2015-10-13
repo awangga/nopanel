@@ -483,11 +483,25 @@ GATEWAY=172.16.16.100
 HWADDR=00:0C:29:28:FD:4C
 ```
 
+### Create User can create database by prefix
+GRANT ALL PRIVILEGES ON `gtmglobalsistem\_%` .  * TO 'gtmglobalsistem'@'localhost';
+
+### .htaccess for codeigniter framework
+```sh
+RewriteEngine on
+RewriteCond $1 !^(index\.php|images|robots\.txt)
+RewriteRule ^(.*)$ /index.php/$1 [L]
+</VirtualHost>
+```
+
+
 
 License
 ----
 
 GNU Affero General Public License
+
+Reference
 
 [The Web Site People]:http://blog.thewebsitepeople.org/2012/10/virtualmin-sftp-chroot/
 
