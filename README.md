@@ -431,6 +431,15 @@ $ ./jboss-cli.sh --connect command=:shutdown
 ```
 
 ### Multiple IP Address Setting
+First thing be sure NetworkManager is disable by this command
+```sh
+# chkconfig --list NetworkManager
+# service NetworkManager stop
+# chkconfig NetworkManager off
+# service network start
+# chkconfig network on
+```
+
 ```sh
 # cd /etc/sysconfig/network-scripts/
 # ls -l
@@ -536,3 +545,4 @@ Reference
 [Jboss Instalation]http://opensourcearchitect.co/tutorials/installing-jboss-7-1-on-centos-6
 
 [Multiple IP Adrress Setting]http://www.tecmint.com/create-multiple-ip-addresses-to-one-single-network-interface/
+[Disable Network Manager]https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux_OpenStack_Platform/3/html/Installation_and_Configuration_Guide/Disabling_Network_Manager.html
