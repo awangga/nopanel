@@ -157,8 +157,32 @@ vi /etc/nginx/conf.d/default.conf
 ```
 systemctl restart nginx.service
 
+## Varnish
+vi /etc/yum.repos.d/varnish.repo
+```sh
+[varnish-4.0]
+name=Varnish 4.0 for Enterprise Linux
+baseurl=https://repo.varnish-cache.org/redhat/varnish-4.0/el7/$basearch
+enabled=1
+gpgcheck=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-VARNISH
+```
+Config Varnish
+```sh
+yum install varnish
+vi /etc/varnish/varnish.params
+vi /etc/varnish/default.vcl
+
+systemctl enable varnish
+systemctl enable httpd
+systemctl start varnish
+systemctl start httpd
+```
+
 # Reference
  1. https://www.howtoforge.com/how-to-install-nginx-with-php-and-mysql-lemp-stack-on-centos-7
-
+ 2. http://www.unixmen.com/install-varnish-cache-4-0-centos-7/
+ 3. http://www.liquidweb.com/kb/how-to-stop-and-disable-firewalld-on-centos-7/
+ 4. http://www.tecmint.com/install-varnish-cache-web-accelerator/2/
 
 
