@@ -15,8 +15,17 @@
  unzip esb.zip
  5. Change directory to container bin 
  cd Runtime_ESBSE/container/bin
- 
- 
- 
+ 6. Open port on firewalld
+ firewall-cmd --permanent --zone=public --add-port=8040/tcp
+ firewall-cmd --permanent --zone=public --add-port=9001/tcp
+ firewall-cmd --reload
+ firewall-cmd --zone=public --list-all
+
+## Run
+```sh
+$ cd Runtime_ESBSE/container/bin
+$ ./start
+```
+
 ## Reference 
  1. https://www.digitalocean.com/community/tutorials/how-to-install-java-on-centos-and-fedora
