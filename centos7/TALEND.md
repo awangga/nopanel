@@ -27,5 +27,24 @@ $ cd Runtime_ESBSE/container/bin
 $ ./start
 ```
 
+## Install as service
+```sh
+$ ./trun
+karaf@trun()> feature:install wrapper
+karaf@trun()> wrapper:install
+ctrl+d
+$ su
+# ln -s /home/talend/Runtime_ESBSE/container/bin/karaf-service /etc/init.d/
+# chkconfig karaf-service --add
+# chkconfig karaf-service on
+# exit
+$ service karaf-service start
+```
+
+## Running worker with nohup
+```sh
+nohup sh /home/talend/Runtime_ESBSE/container/deploy/standalone/sms_worker/pon_02w_sms/pon_02w_sms_run.sh &
+```
+
 ## Reference 
  1. https://www.digitalocean.com/community/tutorials/how-to-install-java-on-centos-and-fedora
