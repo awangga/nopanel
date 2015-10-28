@@ -31,6 +31,7 @@
  $ cd Runtime_ESBSE/container/bin
  ```
  6. Open port on firewalld
+
  ```sh
  firewall-cmd --permanent --zone=public --add-port=8040/tcp
  firewall-cmd --permanent --zone=public --add-port=9001/tcp
