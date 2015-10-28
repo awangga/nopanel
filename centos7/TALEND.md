@@ -14,20 +14,21 @@
  3. set environment
 
  ```sh
- echo export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.91-2.6.2.1.el7_1.x86_64 >> /etc/environment
- echo export JDK_HOME=/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.91-2.6.2.1.el7_1.x86_64 >> /etc/environment
- echo export PATH=$JDK_HOME/bin:$PATH >> /etc/environment
- echo export PATH=$JAVA_HOME/bin:$PATH >> /etc/environment
+ # echo export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.91-2.6.2.1.el7_1.x86_64 >> /etc/environment
+ # echo export JDK_HOME=/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.91-2.6.2.1.el7_1.x86_64 >> /etc/environment
+ # echo export PATH=$JDK_HOME/bin:$PATH >> /etc/environment
+ # echo export PATH=$JAVA_HOME/bin:$PATH >> /etc/environment
  ```
- 4. unzip esb
+ 4. download and unzip esb
 
  ```sh
- unzip esb.zip
+ $ wget http://sourceforge.net/projects/talendesb/files/latest/download
+ $ unzip esb.zip
  ```
  5. Change directory to container bin
 
  ```sh 
- cd Runtime_ESBSE/container/bin
+ $ cd Runtime_ESBSE/container/bin
  ```
  6. Open port on firewalld
  ```sh
