@@ -159,6 +159,7 @@ systemctl restart nginx.service
 
 ## Varnish
 vi /etc/yum.repos.d/varnish.repo
+
 ```sh
 [varnish-4.0]
 name=Varnish 4.0 for Enterprise Linux
@@ -168,6 +169,7 @@ gpgcheck=0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-VARNISH
 ```
 Config Varnish
+
 ```sh
 yum install http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
 yum install varnish
@@ -178,6 +180,15 @@ systemctl enable varnish
 systemctl enable httpd
 systemctl start varnish
 systemctl start httpd
+```
+
+### SSL
+
+```sh
+# mkdir /etc/nginx/ssl
+# cd /etc/nginx/ssl
+# openssl req -new -newkey rsa:2048 -nodes -keyout server.key -out server.csr
+# cat server.csr
 ```
 
 # Reference
