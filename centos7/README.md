@@ -12,6 +12,7 @@ mysql_secure_installation
 
 ### Nginx
 
+```sh
 vi /etc/yum.repos.d/nginx.repo
 [nginx]
 name=nginx repo
@@ -21,6 +22,7 @@ enabled=1
 yum install nginx
 systemctl enable nginx.service
 systemctl start nginx.service
+```
 
 ### Open Port on Firewall
 
