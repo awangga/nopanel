@@ -13,34 +13,39 @@ mysql_secure_installation
 ### Nginx
 
 ```sh
-vi /etc/yum.repos.d/nginx.repo
+# vi /etc/yum.repos.d/nginx.repo
 [nginx]
 name=nginx repo
 baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
 gpgcheck=0
 enabled=1
-yum install nginx
-systemctl enable nginx.service
-systemctl start nginx.service
+# yum install nginx
+# systemctl enable nginx.service
+# systemctl start nginx.service
 ```
 
 ### Open Port on Firewall
 
-firewall-cmd --permanent --zone=public --add-service=http
-firewall-cmd --permanent --zone=public --add-service=https
-firewall-cmd --reload
+```sh
+# firewall-cmd --permanent --zone=public --add-service=http
+# firewall-cmd --permanent --zone=public --add-service=https
+# firewall-cmd --reload
+```
 
 ### PHP 5
 
-yum install php-fpm php-cli php-mysql php-gd php-ldap php-odbc php-pdo php-pecl-memcache php-pear php-mbstring php-xml php-xmlrpc php-mbstring php-snmp php-soap
+```sh
+# yum install php-fpm php-cli php-mysql php-gd php-ldap php-odbc php-pdo php-pecl-memcache php-pear php-mbstring php-xml php-xmlrpc php-mbstring php-snmp php-soap
+# yum install php php-mysql php-fpm
+```
 
 ### APC
 
-yum install php-devel
-yum groupinstall 'Development Tools'
-pecl install apc
 ```sh
-[root@example ~]# pecl install apc
+# yum install php-devel
+# yum groupinstall 'Development Tools'
+# pecl install apc
+# pecl install apc
 downloading APC-3.1.13.tgz ...
 Starting to download APC-3.1.13.tgz (171,591 bytes)
 .................done: 171,591 bytes
@@ -59,18 +64,30 @@ Enable pthread read/write locks (EXPERIMENTAL) [yes] : <-- ENTER
 building in /var/tmp/pear-build-rootVrjsuq/APC-3.1.13
 ......
 ```
-vi /etc/php.ini
+
+
 ```sh
+# vi /etc/php.ini
 cgi.fix_pathinfo=0:
 extension=apc.so
 [Date]
 date.timezone = "Asia/Jakarta"
+# cat /etc/sysconfig/clock
 ```
-cat /etc/sysconfig/clock
 
 ### Enable php-fpm
-systemctl enable php-fpm.service
-systemctl start php-fpm.service
+
+```sh
+# vi /etc/php-fpm.d/www.conf
+listen = /var/run/php-fpm/php-fpm.sock
+listen.owner = nobody
+listen.group = nobody
+user = app
+group = app
+
+# systemctl enable php-fpm.service
+# systemctl start php-fpm.service
+```
 
 ### Increase Worker
 vi /etc/nginx/nginx.conf
@@ -82,82 +99,33 @@ worker_processes  4;
 [...]
 ```
 
-### Virtual Host
-vi /etc/nginx/conf.d/default.conf
+### Nginx Config PHP
+
 ```sh
-[...]
+# vi /etc/nginx/conf.d/default.conf
 server {
     listen       80;
     server_name  localhost;
 
-    #charset koi8-r;
-    #access_log  /var/log/nginx/log/host.access.log  main;
+	root   /usr/share/nginx/html;
+	index  index.php index.html index.htm;
 
-    location / {
-        root   /usr/share/nginx/html;
-        index  index.html index.htm;
-    }
-
-    #error_page  404              /404.html;
-
-    # redirect server error pages to the static page /50x.html
-    #
-    error_page   500 502 503 504  /50x.html;
-    location = /50x.html {
-        root   /usr/share/nginx/html;
-    }
-
-    # proxy the PHP scripts to Apache listening on 127.0.0.1:80
-    #
-    #location ~ \.php$ {
-    #    proxy_pass   http://127.0.0.1;
-    #}
-
-    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
-    #
-
-    location ~ \.php$ {
-        root           /usr/share/nginx/html;
-        try_files $uri =404;
-        fastcgi_pass   127.0.0.1:9000;
-        fastcgi_index  index.php;
+   location ~ \.php$ {
+        fastcgi_pass   unix:/var/run/php-fpm/php-fpm.sock;
         fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
         include        fastcgi_params;
-    }
-	
-	# deny access to .htaccess files, if Apache's document root
-    # concurs with nginx's one
-    #
-    location ~ /\.ht {
-        deny  all;
     }
 }
-```
-systemctl restart nginx.service
 
-### PHP-FPM Use A Unix Socket
-vi /etc/php-fpm.d/www.conf
-```sh
-[...]
-;listen = 127.0.0.1:9000
-listen = /var/run/php-fpm/php5-fpm.sock
-[...]
+# systemctl restart nginx.service
 ```
-systemctl restart php-fpm.service
-vi /etc/nginx/conf.d/default.conf
+
+## Selinux enable httpd
+
 ```sh
-[...]
-    location ~ \.php$ {
-        root           /usr/share/nginx/html;
-        try_files $uri =404;
-        fastcgi_pass   unix:/var/run/php-fpm/php5-fpm.sock;
-        fastcgi_index  index.php;
-        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
-        include        fastcgi_params;
-    }
-[...]
+# getsebool -a
+# setsebool -P httpd_can_network_connect on
 ```
-systemctl restart nginx.service
 
 ## Varnish
 vi /etc/yum.repos.d/varnish.repo
@@ -198,5 +166,6 @@ systemctl start httpd
  2. http://www.unixmen.com/install-varnish-cache-4-0-centos-7/
  3. http://www.liquidweb.com/kb/how-to-stop-and-disable-firewalld-on-centos-7/
  4. http://www.tecmint.com/install-varnish-cache-web-accelerator/2/
+ 5. https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-centos-7
 
 
