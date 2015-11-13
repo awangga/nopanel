@@ -125,6 +125,7 @@ server {
 ```sh
 # getsebool -a
 # setsebool -P httpd_can_network_connect on
+# setsebool -P httpd_read_user_content 1
 ```
 
 ## Varnish
@@ -138,7 +139,7 @@ enabled=1
 gpgcheck=0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-VARNISH
 ```
-Config Varnish
+###Config Varnish
 
 ```sh
 yum install http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
