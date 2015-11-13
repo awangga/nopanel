@@ -161,6 +161,12 @@ systemctl start httpd
 # openssl req -new -newkey rsa:2048 -nodes -keyout server.key -out server.csr
 # cat server.csr
 ```
+## Tracing error
+
+```sh
+# tail -f /var/log/messages
+```
+
 
 # Reference
  1. https://www.howtoforge.com/how-to-install-nginx-with-php-and-mysql-lemp-stack-on-centos-7
