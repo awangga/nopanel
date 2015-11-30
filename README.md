@@ -352,7 +352,7 @@ export LD_LIBRARY_PATH=/usr/lib/oracle/12.1/client64/lib
 # source /etc/profile.d/oracle.sh
 # pecl install -f oci8-1.4.10
 instantclient,/usr/lib/oracle/12.1/client64/lib
-# vim /etc/php-zts.d/oci8.ini
+# vi /etc/php.d/20-oci8.ini 
 extension=oci8.so
 # vim /etc/httpd/conf.d/php.conf
 
@@ -371,8 +371,19 @@ AddHandler php5-script .php
 AddType text/html .php
 
 DirectoryIndex index.php
-
 # service httpd restart
+# php -i | grep oci8
+/etc/php.d/20-oci8.ini,
+oci8
+oci8.connection_class => no value => no value
+oci8.default_prefetch => 100 => 100
+oci8.events => Off => Off
+oci8.max_persistent => -1 => -1
+oci8.old_oci_close_semantics => Off => Off
+oci8.persistent_timeout => -1 => -1
+oci8.ping_interval => 60 => 60
+oci8.privileged_connect => Off => Off
+oci8.statement_cache_size => 20 => 20
 
 ```
 
