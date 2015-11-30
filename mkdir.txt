@@ -1,0 +1,35 @@
+#!/bin/sh
+mkdir /home/akomodasi/public_html
+chown -R akomodasi:akomodasi /home/akomodasi/
+mkdir /home/auth/public_html
+chown -R auth:auth /home/akomodasi/
+mkdir /home/core/public_html
+chown -R core:core /home/akomodasi/
+mkdir /home/dashboard/public_html
+chown -R dashboard:dashboard /home/akomodasi/
+mkdir /home/demo/public_html
+chown -R demo:demo /home/akomodasi/
+mkdir /home/gms/public_html
+chown -R gms:gms /home/akomodasi/
+mkdir /home/helpdesk/public_html
+chown -R helpdesk:helpdesk /home/akomodasi/
+mkdir /home/hubda/public_html
+chown -R hubda:hubda /home/akomodasi/
+mkdir /home/kesehatan/public_html
+chown -R kesehatan:kesehatan /home/akomodasi/
+mkdir /home/konsumsi/public_html
+chown -R konsumsi:konsumsi /home/akomodasi/
+mkdir /home/office/public_html
+chown -R office:office /home/akomodasi/
+mkdir /home/perlengkapan/public_html
+chown -R perlengkapan:perlengkapan /home/akomodasi/
+mkdir /home/ppm/public_html
+chown -R ppm:ppm /home/akomodasi/
+mkdir /home/reg-akre/public_html
+chown -R reg-akre:reg-akre /home/akomodasi/
+mkdir /home/sdm/public_html
+chown -R sdm:sdm /home/akomodasi/
+mkdir /home/transportasi/public_html
+chown -R transportasi:transportasi /home/akomodasi/
+mkdir /home/user-ref/public_html
+chown -R user-ref:user-ref /home/akomodasi/
