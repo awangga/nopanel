@@ -1,5 +1,5 @@
 # Phalcon And Mongo DB Install
-## Open terminal
+## Phalcon
 
 ```sh
 # yum install php-devel pcre-devel gcc make
@@ -28,4 +28,12 @@ phalcon.orm.not_null_validations => On => On
 phalcon.orm.virtual_foreign_keys => On => On
 OLDPWD => /root/cphalcon/build
 _SERVER["OLDPWD"] => /root/cphalcon/build
+```
+
+## MongoDB
+
+```sh
+# vi /etc/yum.repos.d/mongodb-org-3.0.repo
+# yum install -y mongodb-org
+# service mongod start
 ```
