@@ -29,6 +29,38 @@ phalcon.orm.virtual_foreign_keys => On => On
 OLDPWD => /root/cphalcon/build
 _SERVER["OLDPWD"] => /root/cphalcon/build
 ```
+### zts-php version
+
+```sh
+# mkdir zts
+# cd zts
+# git clone --depth=1 git://github.com/phalcon/cphalcon.git
+# vi /cphalcon/build/install
+########## on line 69
+########## Perform the compilation
+zts-phpize && ./configure --enable-phalcon --with-php-config=zts-php-config && make && make install && echo -e "\nThanks for compiling Phalcon!\nBuild succeed: Please restart your web server to complete the installation" 
+# ./install
+# service httpd reload
+# zts-php -i | grep phalcon
+/etc/php-zts.d/phalcon.ini,
+phalcon
+phalcon => enabled
+phalcon.db.escape_identifiers => On => On
+phalcon.db.force_casting => Off => Off
+phalcon.orm.cast_on_hydrate => Off => Off
+phalcon.orm.column_renaming => On => On
+phalcon.orm.enable_implicit_joins => On => On
+phalcon.orm.enable_literals => On => On
+phalcon.orm.events => On => On
+phalcon.orm.exception_on_failed_save => Off => Off
+phalcon.orm.ignore_unknown_columns => Off => Off
+phalcon.orm.late_state_binding => Off => Off
+phalcon.orm.not_null_validations => On => On
+phalcon.orm.virtual_foreign_keys => On => On
+PWD => /root/zts/cphalcon/build
+_SERVER["PWD"] => /root/zts/cphalcon/build
+```
+
 
 ## MongoDB
 
