@@ -37,3 +37,26 @@ _SERVER["OLDPWD"] => /root/cphalcon/build
 # yum install -y mongodb-org
 # service mongod start
 ```
+
+## MongoDB driver
+
+```sh
+# yum install re2c
+# yum install openssl-devel
+# pecl install mongo
+# vi /etc/php.d/mongo.ini
+extension=mongo.so
+# service httpd reload
+# php -i | grep mongo
+/etc/php.d/mongo.ini,
+mongo
+mongo.allow_empty_keys => 0 => 0
+mongo.chunk_size => 261120 => 261120
+mongo.cmd => $ => $
+mongo.default_host => localhost => localhost
+mongo.default_port => 27017 => 27017
+mongo.is_master_interval => 15 => 15
+mongo.long_as_object => 0 => 0
+mongo.native_long => 1 => 1
+mongo.ping_interval => 5 => 5
+```
