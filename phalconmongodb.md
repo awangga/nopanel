@@ -92,3 +92,33 @@ mongo.long_as_object => 0 => 0
 mongo.native_long => 1 => 1
 mongo.ping_interval => 5 => 5
 ```
+### zts-php version
+
+```sh
+# pecl config-show
+PHP extension directory        ext_dir          /usr/lib64/php/modules
+PHP CLI/CGI binary             php_bin          /usr/bin/php
+--program-prefix passed to     php_prefix       <not set>
+PHP's ./configure
+--program-suffix passed to     php_suffix       <not set>
+PHP's ./configure
+/usr/bin/zts-php
+/usr/lib64/php-zts/modules/
+# pecl config-set php_bin /usr/bin/zts-php
+# pecl config-set ext_dir /usr/lib64/php-zts/modules/
+# pecl config php_prefix zts-    
+# pecl install mongo
+# service httpd reload
+# zts-php -i | grep mongo
+/etc/php-zts.d/mongo.ini,
+mongo
+mongo.allow_empty_keys => 0 => 0
+mongo.chunk_size => 261120 => 261120
+mongo.cmd => $ => $
+mongo.default_host => localhost => localhost
+mongo.default_port => 27017 => 27017
+mongo.is_master_interval => 15 => 15
+mongo.long_as_object => 0 => 0
+mongo.native_long => 1 => 1
+mongo.ping_interval => 5 => 5
+```
