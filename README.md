@@ -384,7 +384,11 @@ oci8.persistent_timeout => -1 => -1
 oci8.ping_interval => 60 => 60
 oci8.privileged_connect => Off => Off
 oci8.statement_cache_size => 20 => 20
-
+# setsebool -P httpd_can_network_connect_db 1
+# setsebool -P httpd_execmem 1
+# setsebool -P httpd_unified 1
+# setsebool -P httpd_sys_script_anon_write 1
+# chcon system_u:object_r:textrel_shlib_t:s0 /usr/lib64/php/modules/oci8.so
 ```
 
 ### Set PHP Time Zone
@@ -557,3 +561,4 @@ Reference
 
 [Multiple IP Adrress Setting]http://www.tecmint.com/create-multiple-ip-addresses-to-one-single-network-interface/
 [Disable Network Manager]https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux_OpenStack_Platform/3/html/Installation_and_Configuration_Guide/Disabling_Network_Manager.html
+[Selinux oci8]http://codingsimply.com/blog/install-oci8-on-redhat-7
