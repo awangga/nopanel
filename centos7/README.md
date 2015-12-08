@@ -142,7 +142,8 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-VARNISH
 ###Config Varnish
 
 ```sh
-yum install http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+rpm -ivh epel-release-7-5.noarch.rpm
 yum install varnish
 vi /etc/varnish/varnish.params
 vi /etc/varnish/default.vcl
