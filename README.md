@@ -384,6 +384,7 @@ oci8.persistent_timeout => -1 => -1
 oci8.ping_interval => 60 => 60
 oci8.privileged_connect => Off => Off
 oci8.statement_cache_size => 20 => 20
+# execstack -c /usr/lib64/php/modules/oci8.so
 # setsebool -P httpd_can_network_connect 1
 # setsebool -P httpd_can_network_connect_db 1
 # setsebool -P httpd_execmem 1
