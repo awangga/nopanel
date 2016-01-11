@@ -342,8 +342,10 @@ enabled=1
 
 ### OCI8 PHP Extension
 ```sh
-# sudo yum install php54w-pear.noarch php54w-devel.x86_64 zlib zlib-devel bc libaio glibc
-# sudo yum groupinstall "Development Tools"
+# sudo yum install php-pear
+# sudo yum zlib zlib-devel bc libaio glibc
+# yum install pcre-devel
+# yum install prelink
 # wget http://www.oracle.com/technetwork/topics/linuxx86-64soft-092277.html
 # rpm -ivh oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm
 # rpm -ivh oracle-instantclient12.1-devel-12.1.0.2.0-1.x86_64.rpm 
@@ -354,23 +356,7 @@ export LD_LIBRARY_PATH=/usr/lib/oracle/12.1/client64/lib
 instantclient,/usr/lib/oracle/12.1/client64/lib
 # vi /etc/php.d/20-oci8.ini 
 extension=oci8.so
-# vim /etc/httpd/conf.d/php.conf
 
-<IfModule prefork.c>
-  LoadModule php5_module modules/libphp5.so
-</IfModule>
-<IfModule worker.c>
-  LoadModule php5_module modules/libphp5-zts.so
-</IfModule>
-<IfModule itk.c>
-   LoadModule php5_module modules/libphp5.so
-</IfModule>
-
-
-AddHandler php5-script .php
-AddType text/html .php
-
-DirectoryIndex index.php
 # service httpd restart
 # php -i | grep oci8
 /etc/php.d/20-oci8.ini,
