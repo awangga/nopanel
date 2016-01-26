@@ -318,12 +318,18 @@ Append rule as follows:
 
 -A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport XY -j ACCEPT
 
+On Centos 6
+
+```sh
+on Centos 6
+# sudo iptables -I INPUT -p tcp --dport 80 -j ACCEPT 
+# sudo service iptables save
+```
+
 Save and close the file. Restart iptables:
 ```sh
 # /etc/init.d/iptables restart
 ```
-
-
 
 
 ### Upgrade PHP
