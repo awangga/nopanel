@@ -501,7 +501,16 @@ GATEWAY=172.16.16.100
 HWADDR=00:0C:29:28:FD:4C
 ```
 
-### Create User can create database by prefix
+### Create User and link
+
+```sh
+# useradd gitlab
+# passwd gitlab
+# ln -s target shortcut
+```
+
+
+### Create DB User can create database by prefix
 GRANT ALL PRIVILEGES ON `gtmglobalsistem\_%` .  * TO 'gtmglobalsistem'@'localhost';
 
 ### .htaccess for codeigniter framework
@@ -513,6 +522,12 @@ RewriteRule ^(.*)$ /index.php/$1 [L]
 ```
 
 
+### Looking disk usage and top ten big files
+
+```sh
+# df -kh
+# du -a /var | sort -n -r | head -n 10
+```
 
 License
 ----
