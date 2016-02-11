@@ -120,6 +120,15 @@ server {
 # systemctl restart nginx.service
 ```
 
+### install php-mcrypt
+
+```sh
+# install EPEL with yum
+yum -y install epel-release
+# install php-mcrypt
+yum -y install php-mcrypt
+```
+
 ## Selinux enable httpd
 
 ```sh

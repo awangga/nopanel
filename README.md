@@ -385,6 +385,17 @@ oci8.statement_cache_size => 20 => 20
 # chcon system_u:object_r:textrel_shlib_t:s0 /usr/lib64/php/modules/oci8.so
 ```
 
+### install php-mcrypt
+
+```sh
+# wget http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+# wget http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+# sudo rpm -Uvh remi-release-6*.rpm epel-release-6*.rpm
+# yum update
+# yum install php-mcrypt*
+# service httpd restart
+```
+
 ### Set PHP Time Zone
 TO avoid timezone warning in PHP 
 ```sh
