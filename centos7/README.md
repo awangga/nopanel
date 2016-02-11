@@ -123,10 +123,10 @@ server {
 ### install php-mcrypt
 
 ```sh
-# install EPEL with yum
-yum -y install epel-release
-# install php-mcrypt
-yum -y install php-mcrypt
+# yum -y install epel-release
+# yum -y install php-mcrypt
+# chcon system_u:object_r:textrel_shlib_t:s0 /usr/lib64/php/modules/mcrypt.so
+# systemctl restart php-fpm
 ```
 
 ## Selinux enable httpd
