@@ -84,11 +84,21 @@ $ services sshd reload
 ```
 
 ###phpmyadmin
+
 ```sh
 # yum install phpmyadmin
 # vim /etc/httpd/conf.d/phpMyAdmin.conf
 # service httpd reload
 ```
+
+```sh
+phpMyAdmin - Error
+Error during session start; please check your PHP and/or webserver log file and configure your PHP installation properly. Also ensure that cookies are enabled in your browser.
+```
+chmod 777 -R /var/lib/php/session/
+or
+usermod -a -G apache pasnet
+
 
 ###mod-itk for running vhost as vhost user
 ```sh
