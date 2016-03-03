@@ -2,21 +2,21 @@
 ## Open terminal
 
 ```sh
-root@api [/var/www/html]# groupadd sftponly
-root@api [/var/www/html]# useradd gameapi
-root@api [/var/www/html]# usermod gameapi -g sftponly
+# groupadd sftponly
+# useradd gameapi
+# usermod gameapi -g sftponly
 usermod: user 'sftponly' does not exist
-root@api [/var/www/html]# usermod -g sftponly gameapi
-root@api [/var/www/html]# usermod -s /usr/lib/openssh/sftp-server gameapi
-root@api [/var/www/html]# usermod -d /var/www/html/shark/ gameapi
-root@api [/var/www/html]# id gameapi
+# usermod -g sftponly gameapi
+# usermod -s /bin/false gameapi
+# usermod -d /var/www/html/shark/ gameapi
+# id gameapi
 uid=500(gameapi) gid=500(sftponly) groups=500(sftponly)
-root@api [/var/www/html]# vi /etc/ssh/sshd_config 
+# vi /etc/ssh/sshd_config 
 ```
 
 ```sh
 # override default of no subsystems
-Subsystem	sftp	/usr/libexec/openssh/sftp-server
+Subsystem	sftp	internal-sftp
 
 # Example of overriding settings on a per-user basis
 #Match User anoncvs
@@ -26,7 +26,7 @@ Subsystem	sftp	/usr/libexec/openssh/sftp-server
 
 Match User gameapi
 	ChrootDirectory /var/www/html/shark/
-	ForceCommand /usr/libexec/openssh/sftp-server
+	ForceCommand internal-sftp
 	AllowTcpForwarding no
 ```
 
