@@ -278,6 +278,15 @@ sub vcl_recv {
      return(lookup);
    }
 }
+
+sub vcl_deliver {
+    # You can optionally set a reponse header so it's easier for you to debug if Varnish really didn't cache objects for the host
+
+    # Don't cache domain1.com or domain2.org - optional www
+    if (req.http.host ~ "(www\.)?(domain1.com|domain2.org)\.(com|nl|org|dev|local)") {
+        set resp.http.X-Cache = "EXCLUDED";
+    }
+}
 ```
 
 ### SSL Termination with Varnish and Nginx
