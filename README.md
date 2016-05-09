@@ -210,6 +210,7 @@ Where 150 is % of CPU usage(percentage is multiply by core in your server) and 1
 ```
 
 ### Install Varnish
+
 ```sh
 # nano /etc/httpd/conf/httpd.conf
 edit to : Listen 8080 and ServerName domain:8080 and <VirtualHost *:8080>
@@ -236,7 +237,9 @@ backend default {
 # service varnish restart
 # chkconfig varnish on
 ```
+
 for multiple domain
+
 ```sh
 backend example1 {
      .host = "backend.example1.com";
@@ -262,6 +265,20 @@ backend example1 {
  }
 ```
 
+ByPass not caching
+
+```
+sub vcl_recv {
+  # dont cache foo.com or bar.com - optional www
+   if (req.http.host ~ "(www\.)?(foo|bar)\.com") {
+     return(pass);
+   }
+  # cache foobar.com - optional www
+   if (req.http.host ~ "(www\.)?foobar\.com") {
+     return(lookup);
+   }
+}
+```
 
 ### SSL Termination with Varnish and Nginx
 ```sh

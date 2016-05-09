@@ -38,3 +38,17 @@ Retype new password:
 root@api # echo '/usr/lib/openssh/sftp-server' >> /etc/shells
 root@api [/var/www/html]# sudo service sshd reload
 ```
+
+
+error
+
+```sh
+[root@satria ~]# sftp barudak123@localhost
+barudak123@localhost's password: 
+Write failed: Broken pipe
+Couldn't read packet: Connection reset by peer
+```
+
+please check in /etc/ssh/sshd_config comment out ChrootDirectory
+
+# ChrootDirectory /var/www/html/shark/
