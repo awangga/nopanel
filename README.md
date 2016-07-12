@@ -421,6 +421,43 @@ oci8.statement_cache_size => 20 => 20
 # chcon system_u:object_r:textrel_shlib_t:s0 /usr/lib64/php/modules/oci8.so
 ```
 
+### pdo_oci Installation
+cd /usr/lib/oracle/12.1/client64/
+
+mkdir sdk
+cd sdk
+ln -s /usr/include/oracle/12.1/client64/ include
+ln -s /usr/lib/oracle/12.1/client64/sdk/include/ /usr/lib/oracle/12.1/client64/include
+ln -s /usr/lib/oracle/12.1/client64/ /usr/lib/oracle/12.1/client
+ln -s /usr/include/oracle/12.1/client64/ /usr/include/oracle/12.1/client
+
+
+pecl download pdo_oci
+tar -xvf PDO_OCI-1.0.tgz
+cd PDO_OCI-1.0
+vi config.m4
+
+add this after line 10 :
+
+elif test -f $PDO_OCI_DIR/lib/libclntsh.$SHLIB_SUFFIX_NAME.11.2; then
+  PDO_OCI_VERSION=12.1
+
+search 10.2) add below
+
+12.1)
+  PHP_ADD_LIBRARY(clntsh, 1, PDO_OCI_SHARED_LIBADD)
+  ;;
+
+
+sed -i -e 's/function_entry pdo_oci_functions/zend_function_entry pdo_oci_functions/' pdo_oci.c
+mkdir include
+ln -s /usr/include/php include/php
+phpize
+cp /usr/include/oracle/12.1/client64/* ./include
+./configure --with-pdo-oci=instantclient,/usr,12.1
+make && make install
+
+
 ### install php-mcrypt
 
 ```sh
