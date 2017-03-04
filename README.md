@@ -69,12 +69,22 @@ $ services sshd reload
 # yum install mod_ssl openssl
 # openssl genrsa -des3 -out your-domain.com.key 4096
 # openssl req -new -key your-domain.com.key -out your-domain.com.csr
+#
 # openssl x509 -req -days 700 -in your-domain.com.csr -signkey your-domain.com.key -out your-domain.com.crt
 # mkdir -p /etc/httpd/ssl/
 # cp your-domain.com.crt /etc/httpd/ssl/
 # cp your-domain.com.key /etc/httpd/ssl/
 # vi /etc/httpd/conf.d/your-domain.com.conf
 # service httpd restart
+```
+remove passphrase on key
+```sh
+# mv your-domain.com.key your-domain.com.key.orig
+# openssl rsa -in your-domain.com.key.orig -out your-domain.com.key
+```
+create dhparam for secure encryption to client
+```sh
+# openssl dhparam -out dhparams.pem 2048
 ```
 
 ###add EPEL Repositories
