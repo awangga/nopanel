@@ -1,3 +1,5 @@
+# Looking open port
+sockstat -4 -l
 # Instalation
 portsnap fetch update
 cd /usr/ports/www/nginx/
