@@ -3,15 +3,17 @@
 ## Oracle 11g
 ### Desktop GUI
 ```sh
+$ sudo apt-get update
 $ sudo apt-get install xfce4 xfce4-goodies tightvncserver
 ```
-### Pre Requisit
+### Environtment
 Please Download oracle 11gR2 from oracle website
 http://www.oracle.com/technetwork/database/enterprise-edition/downloads/index.html?ssSourceSiteId=ocomen
 
 ```sh
-$ sudo echo 'deb http://buaya.klas.or.id/ubuntu/ trusty main restricted universe multiverse' >> /etc/apt/sources.list.d/extra.list
-$ sudo echo 'deb http://kambing.ui.ac.id/ubuntu/ precise main restricted universe multiverse' >> /etc/apt/sources.list.d/extra.list
+$ sudo su
+# echo 'deb http://buaya.klas.or.id/ubuntu/ trusty main restricted universe multiverse' >> /etc/apt/sources.list.d/extra.list
+# echo 'deb http://kambing.ui.ac.id/ubuntu/ precise main restricted universe multiverse' >> /etc/apt/sources.list.d/extra.list
 $ sudo rm -rf /var/lib/apt/lists/*
 $ sudo apt-get update
 $ sudo apt-get install alien autoconf automake autotools-dev binutils doxygen \
