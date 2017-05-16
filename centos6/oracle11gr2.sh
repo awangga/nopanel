@@ -43,14 +43,14 @@ echo "session required pam_limits.so" >> /etc/pam.d/login
 
 
 echo "#!/bin/bash" >> /etc/profile.d/custom.sh
-"if [ $USER = "oracle" ]; then" >> /etc/profile.d/custom.sh
-"  if [ $SHELL = "/bin/ksh" ]; then" >> /etc/profile.d/custom.sh
-"    ulimit -p 16384" >> /etc/profile.d/custom.sh
-"    ulimit -n 65536" >> /etc/profile.d/custom.sh
-"  else" >> /etc/profile.d/custom.sh
-"    ulimit -u 16384 -n 65536" >> /etc/profile.d/custom.sh
-"  fi" >> /etc/profile.d/custom.sh
-"fi" >> /etc/profile.d/custom.sh
+echo "if [ $USER = "oracle" ]; then" >> /etc/profile.d/custom.sh
+echo "  if [ $SHELL = "/bin/ksh" ]; then" >> /etc/profile.d/custom.sh
+echo "    ulimit -p 16384" >> /etc/profile.d/custom.sh
+echo "    ulimit -n 65536" >> /etc/profile.d/custom.sh
+echo "  else" >> /etc/profile.d/custom.sh
+echo "    ulimit -u 16384 -n 65536" >> /etc/profile.d/custom.sh
+echo "  fi" >> /etc/profile.d/custom.sh
+echo "fi" >> /etc/profile.d/custom.sh
 chmod +x /etc/profile.d/custom.sh
 mkdir -p /opt/app/oracle/product/11.2.0
 chown -R oracle:oinstall /opt/app
