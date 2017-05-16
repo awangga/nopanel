@@ -7,13 +7,13 @@ passwd admin
 echo '%admin   ALL=(ALL)   ALL' > /etc/sudoers.d/admin
 
 ## run vncserver
-yum groupinstall Desktop
-yum install tigervnc-server
+yum -y groupinstall Desktop
+yum -y install tigervnc-server
 ## Install Dependencies
-yum install compat-libstdc++-33.x86_64 binutils elfutils-libelf elfutils-libelf-devel
-yum install glibc glibc-common glibc-devel glibc-headers gcc gcc-c++ libaio-devel
-yum install libaio libgcc libstdc++ libstdc++ make sysstat unixODBC unixODBC-devel
-yum install unzip
+yum -y install compat-libstdc++-33.x86_64 binutils elfutils-libelf elfutils-libelf-devel
+yum -y install glibc glibc-common glibc-devel glibc-headers gcc gcc-c++ libaio-devel
+yum -y install libaio libgcc libstdc++ libstdc++ make sysstat unixODBC unixODBC-devel
+yum -y install unzip
 
 ## Create user and config profile
 groupadd oinstall
