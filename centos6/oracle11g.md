@@ -85,12 +85,17 @@ $ sudo chmod -R 775 /opt/app
 $ su oracle
 $ vi ~/.bash_profile
 umask 022
-
+TMP=/tmp; export TMP
 export TMPDIR=$TMP
+ORACLE_HOSTNAME=localhost; export ORACLE_HOSTNAME
+ORACLE_UNQNAME=DB11G; export ORACLE_UNQNAME
 export ORACLE_BASE=/opt/app/oracle
 export ORACLE_HOME=$ORACLE_BASE/product/11.2.0/db_1
+ORACLE_SID=DB11G; export ORACLE_SID
+PATH=/usr/sbin:$PATH; export PATH
 export LD_LIBRARY_PATH=$ORACLE_HOME/lib:/lib:/usr/lib
 export PATH=$ORACLE_HOME/bin:$PATH
+CLASSPATH=$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib; export CLASSPATH export PATH
 $ source ~/.bash_profile
 $ exit
 ```
