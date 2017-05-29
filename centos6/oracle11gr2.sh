@@ -43,8 +43,8 @@ echo "session required pam_limits.so" >> /etc/pam.d/login
 
 
 echo "#!/bin/bash" >> /etc/profile.d/custom.sh
-echo "if [ $USER = "oracle" ]; then" >> /etc/profile.d/custom.sh
-echo "  if [ $SHELL = "/bin/ksh" ]; then" >> /etc/profile.d/custom.sh
+echo "if [ \$USER = \"oracle\" ]; then" >> /etc/profile.d/custom.sh
+echo "  if [ \$SHELL = \"/bin/ksh\" ]; then" >> /etc/profile.d/custom.sh
 echo "    ulimit -p 16384" >> /etc/profile.d/custom.sh
 echo "    ulimit -n 65536" >> /etc/profile.d/custom.sh
 echo "  else" >> /etc/profile.d/custom.sh
@@ -55,11 +55,20 @@ chmod +x /etc/profile.d/custom.sh
 mkdir -p /opt/app/oracle/product/11.2.0
 chown -R oracle:oinstall /opt/app
 chmod -R 775 /opt/app
-su oracle
-echo "umask 022" >> ~/.bash_profile
+echo "umask 022" >> /home/oracle/.bash_profile
 
-echo "export TMPDIR=$TMP" >> ~/.bash_profile
-echo "export ORACLE_BASE=/opt/app/oracle" >> ~/.bash_profile
-echo "export ORACLE_HOME=$ORACLE_BASE/product/11.2.0/db_1" >> ~/.bash_profile
-echo "export LD_LIBRARY_PATH=$ORACLE_HOME/lib:/lib:/usr/lib" >> ~/.bash_profile
-echo "export PATH=$ORACLE_HOME/bin:$PATH" >> ~/.bash_profile
+echo "export TMPDIR=\$TMP" >> /home/oracle/.bash_profile
+echo "ORACLE_HOSTNAME=localhost; export ORACLE_HOSTNAME" >> /home/oracle/.bash_profile
+echo "ORACLE_UNQNAME=DB11G; export ORACLE_UNQNAME" >> /home/oracle/.bash_profile
+echo "export ORACLE_BASE=/opt/app/oracle" >> /home/oracle/.bash_profile
+echo "export ORACLE_HOME=\$ORACLE_BASE/product/11.2.0/db_1" >> /home/oracle/.bash_profile
+echo "ORACLE_SID=DB11G; export ORACLE_SID" >> /home/oracle/.bash_profile
+echo "PATH=/usr/sbin:\$PATH; export PATH" >> /home/oracle/.bash_profile
+echo "export LD_LIBRARY_PATH=\$ORACLE_HOME/lib:/lib:/usr/lib" >> /home/oracle/.bash_profile
+echo "export PATH=\$ORACLE_HOME/bin:\$PATH" >> /home/oracle/.bash_profile
+echo "CLASSPATH=\$ORACLE_HOME/jlib:\$ORACLE_HOME/rdbms/jlib; export CLASSPATH export PATH" >> /home/oracle/.bash_profile
+
+chmod 644 /home/oracle/.bash_profile
+chown oracle:oinstall /home/oracle/.bash_profile
+echo "Please Run vncserver with user oracle to install oracle with vnc remote"
+su oracle
