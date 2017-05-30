@@ -14,6 +14,14 @@ IPADDR=10.14.207.252
 GATEWAY=10.14.207.254
 DNS1=10.14.207.254
 ```
+sed -i 's/ONBOOT=no/ONBOOT=yes/g' /etc/sysconfig/network-scripts/ifcfg-eth0
+sed -i 's/NM_CONTROLLED=yes/NM_CONTROLLED=no/g' /etc/sysconfig/network-scripts/ifcfg-eth0
+sed -i 's/BOOTPROTO=dhcp/BOOTPROTO=static/g' /etc/sysconfig/network-scripts/ifcfg-eth0
+echo 'IPADDR=192.168.100.100' >> /etc/sysconfig/network-scripts/ifcfg-eth0
+echo 'NETMASK=255.255.255.0' >> /etc/sysconfig/network-scripts/ifcfg-eth0
+echo 'GATEWAY=192.168.100.1' >> /etc/sysconfig/network-scripts/ifcfg-eth0
+echo 'DNS1=192.168.100.1' >> /etc/sysconfig/network-scripts/ifcfg-eth0
+
 ## Run Script
 
 ```sh

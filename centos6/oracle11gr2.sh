@@ -67,8 +67,16 @@ echo "PATH=/usr/sbin:\$PATH; export PATH" >> /home/oracle/.bash_profile
 echo "export LD_LIBRARY_PATH=\$ORACLE_HOME/lib:/lib:/usr/lib" >> /home/oracle/.bash_profile
 echo "export PATH=\$ORACLE_HOME/bin:\$PATH" >> /home/oracle/.bash_profile
 echo "CLASSPATH=\$ORACLE_HOME/jlib:\$ORACLE_HOME/rdbms/jlib; export CLASSPATH export PATH" >> /home/oracle/.bash_profile
+echo "export ORACLE_HOME_LISTNER=LISTENER" >> /home/oracle/.bash_profile
+
+
+iptables -I INPUT -p tcp --dport 1521 -j ACCEPT
+iptables -I INPUT -p tcp --dport 5901 -j ACCEPT
+iptables -I INPUT -p tcp --dport 1158 -j ACCEPT
+service iptables save
+/etc/init.d/iptables restart
 
 chmod 644 /home/oracle/.bash_profile
 chown oracle:oinstall /home/oracle/.bash_profile
-echo "Please Run vncserver with user oracle to install oracle with vnc remote"
+echo "Please Run vncserver with user oracle to install oracle with vnc remote run vncpassword and vncserver command"
 su oracle
