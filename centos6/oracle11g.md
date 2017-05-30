@@ -1,36 +1,21 @@
 # Preparation
+
+## Download and Unzip Oracle Installer
+put your oracle downloaded installer in /tmp
+
 ## Setting IP
 ```sh
-# vi /etc/sysconfig/network-scripts/ifcfg-eth0
-DEVICE=eth0
-HWADDR=36:65:32:30:64:62
-TYPE=Ethernet
-UUID=20877662-0a04-4b9e-b2e4-8432dc956acc
-ONBOOT=yes
-NM_CONTROLLED=no
-#BOOTPROTO=dhcp
-NETMASK=255.255.254.0
-IPADDR=10.14.207.252
-GATEWAY=10.14.207.254
-DNS1=10.14.207.254
+# ./ipset.sh eth0 192.168.1.100 255.255.255.0 192.168.1.1 192.168.1.1
 ```
-sed -i 's/ONBOOT=no/ONBOOT=yes/g' /etc/sysconfig/network-scripts/ifcfg-eth0
-sed -i 's/NM_CONTROLLED=yes/NM_CONTROLLED=no/g' /etc/sysconfig/network-scripts/ifcfg-eth0
-sed -i 's/BOOTPROTO=dhcp/BOOTPROTO=static/g' /etc/sysconfig/network-scripts/ifcfg-eth0
-echo 'IPADDR=192.168.100.100' >> /etc/sysconfig/network-scripts/ifcfg-eth0
-echo 'NETMASK=255.255.255.0' >> /etc/sysconfig/network-scripts/ifcfg-eth0
-echo 'GATEWAY=192.168.100.1' >> /etc/sysconfig/network-scripts/ifcfg-eth0
-echo 'DNS1=192.168.100.1' >> /etc/sysconfig/network-scripts/ifcfg-eth0
 
 ## Run Script
 
 ```sh
-# cd nopanel/centos6/
 # ./oracle11gr2.sh
 ```
+
 ## Oracle Installation
-$ unzip linux.x64_11gR2_database_1of2.zip
-$ unzip linux.x64_11gR2_database_2of2.zip
+
 Please use vnc to login and run ./runInstaller from oracle user
 
 Optionally specify email address to be informed about security issues
