@@ -87,8 +87,15 @@ echo "export ORACLE_HOME_LISTNER=LISTENER" >> /home/oracle/.bash_profile
 #/etc/init.d/iptables restart
 
 chmod 644 /home/oracle/.bash_profile
-#chown oracle:oinstall /home/oracle/.bash_profile
+chown oracle:oinstall /home/oracle/.bash_profile
 #chown oracle:oinstall /home/oracle/installOracle.sh
 #chmod a+x /home/oracle/installOracle.sh
+cd /tmp
+wget http://download.oracle.com/otn/nt/middleware/11g/wls/1036/wls1036_generic.jar?AuthParam=1496135532_dabb6d7030a2dfa1a462b46d5246d292 -O wls1036_generic.jar
+wget http://download.oracle.com/otn/linux/middleware/11g/111170/ofm_rcu_linux_11.1.1.7.0_64_disk1_1of1.zip?AuthParam=1496135710_e1c51d8717ab5c9d869061b05ff75ab8 -O ofm_rcu_linux_11.1.1.7.0_64_disk1_1of1.zip
+wget http://download.oracle.com/otn/java/jdeveloper/11.1.1.7.0/jdevstudio11117install.jar?AuthParam=1496135723_4cafa95016b12628b8bb0a2419d985a8 -O jdevstudio11117install.jar
+wget http://download.oracle.com/otn/nt/middleware/11g/111170/ofm_soa_generic_11.1.1.7.0_disk1_1of2.zip?AuthParam=1496135737_06701033a5d6ba1496976f4907d1a278 -O ofm_soa_generic_11.1.1.7.0_disk1_1of2.zip
+wget http://download.oracle.com/otn/nt/middleware/11g/111170/ofm_soa_generic_11.1.1.7.0_disk1_2of2.zip?AuthParam=1496135742_f8a6f3f8ac0f64c0dbee81dcfa7d6025 -O fm_soa_generic_11.1.1.7.0_disk1_2of2.zip
+
 echo "Please Run command : vncpassword then vncserver with user oracle"
 su oracle
