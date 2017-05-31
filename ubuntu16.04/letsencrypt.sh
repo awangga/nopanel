@@ -2,6 +2,14 @@ sudo apt-get install letsencrypt
 sudo letsencrypt certonly --webroot -w /var/www/html -d www.tukang.review
 sudo letsencrypt renew --dry-run --agree-tos
 
+echo "Add this location inside server block under default file"
+location ~ /.well-known {
+                allow all;
+                default_type "text/plain";
+                root /var/www/html;
+        }
+
+
 server {
         listen 443 ssl;
        root /var/www/apps/doc/public;
@@ -44,3 +52,7 @@ server {
             proxy_set_header Host $host;
         }
 }
+
+
+echo "Add to crontab"
+15 3 * * * letsencrypt renew --dry-run --agree-tos
