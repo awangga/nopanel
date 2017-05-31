@@ -1,11 +1,5 @@
 #/bin/sh
-
-## Unzip Oracle installer
-pushd /tmp
-unzip linux.x64_11gR2_database_1of2.zip
-unzip linux.x64_11gR2_database_2of2.zip
-popd
-
+## PLease install oracle JDK first, JDK 8 supported
 ## Create sudoers
 
 useradd admin
@@ -14,7 +8,7 @@ passwd admin
 echo '%admin   ALL=(ALL)   ALL' > /etc/sudoers.d/admin
 
 ## run vncserver
-yum -y install java-1.7.0-openjdk
+#yum -y install java-1.7.0-openjdk
 yum -y groupinstall Desktop
 yum -y install tigervnc-server
 ## Install Dependencies
@@ -78,24 +72,61 @@ echo "export LD_LIBRARY_PATH=\$ORACLE_HOME/lib:/lib:/usr/lib" >> /home/oracle/.b
 echo "export PATH=\$ORACLE_HOME/bin:\$PATH" >> /home/oracle/.bash_profile
 echo "CLASSPATH=\$ORACLE_HOME/jlib:\$ORACLE_HOME/rdbms/jlib; export CLASSPATH export PATH" >> /home/oracle/.bash_profile
 echo "export ORACLE_HOME_LISTNER=LISTENER" >> /home/oracle/.bash_profile
+echo "export CONFIG_JVM_ARGS=\"-Djava.security.egd=file:/dev/./urandom\"" >> /home/oracle/.bash_profile
+echo "export MW_HOME=/opt/app/oracle/Oracle/Middleware" >> /home/oracle/.bash_profile
+#echo "export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.141.x86_64/jre/" >> /home/oracle/.bash_profile
 
 
-#iptables -I INPUT -p tcp --dport 1521 -j ACCEPT
-#iptables -I INPUT -p tcp --dport 5901 -j ACCEPT
-#iptables -I INPUT -p tcp --dport 1158 -j ACCEPT
-#service iptables save
-#/etc/init.d/iptables restart
+
+
+echo "Create SOA Suite Installer" >>
+echo "echo \"WebLogic Instalation,Make Sure This Settings : \"" >> /home/oracle/soainstall.sh
+echo "echo \"1. change direktori to /opt/app/oracle/Oracle/Middleware, this machine no internet access\"" >> /home/oracle/soainstall.sh
+echo "echo \"2. custom installation\"" >> /home/oracle/soainstall.sh
+echo "echo \"3. install all component, except server examples and evaluation examples\"" >> /home/oracle/soainstall.sh
+echo "echo \"4. Choose Installed JDK on system\"" >> /home/oracle/soainstall.sh
+echo "echo \"5. Next\"" >> /home/oracle/soainstall.sh
+echo "echo \"6. uncheck Run Quickstart\"" >> /home/oracle/soainstall.sh
+echo "cd /tmp" >> /home/oracle/soainstall.sh
+echo "java -jar wls1036_generic.jar" >> /home/oracle/soainstall.sh
+
+echo "echo \"SOA Suite Instalation,Make Sure This Settings : \"" >> /home/oracle/soainstall.sh
+echo "echo \"1. Verify path of inventory directory: '/opt/app/oraInventory'\"" >> /home/oracle/soainstall.sh
+echo "echo \"2. run as root /opt/app/oraInventory/createCentralInventory.sh \"" >> /home/oracle/soainstall.sh
+echo "echo \"3. skip Software Update\"" >> /home/oracle/soainstall.sh
+echo "echo \"4. Oracle Middleware Home /opt/app/oracle/Oracle/Middleware\"" >> /home/oracle/soainstall.sh
+echo "echo \"5. WebLogic Server\"" >> /home/oracle/soainstall.sh
+echo "cd /tmp" >> /home/oracle/soainstall.sh
+echo "Disk1/runInstaller -jreLoc /usr/lib/jvm/jre-1.7.0-openjdk.x86_64/jre/" >> /home/oracle/soainstall.sh
+#echo "ln -s /usr/lib/jvm/java-1.7.0-openjdk-1.7.0.141.x86_64/jre/bin/ /usr/lib/jvm/java-1.7.0-openjdk-1.7.0.141.x86_64/bin" >> /home/oracle/soainstall.sh
+#echo "ln -s /usr/lib/jvm/java-1.7.0-openjdk-1.7.0.141.x86_64/jre/lib/ /usr/lib/jvm/java-1.7.0-openjdk-1.7.0.141.x86_64/lib" >> /home/oracle/soainstall.sh
+#echo "mv /usr/lib64/libnssutil3.so /usr/lib64/libnssutil3.so.0.0" >> /home/oracle/soainstall.sh
+#echo "ln -s /usr/lib64/libnssutil3.so.0.0 /usr/lib64/libnssutil3.so.0" >> /home/oracle/soainstall.sh
+#echo "ln -s /usr/lib64/libnssutil3.so.0.0 /usr/lib64/libnssutil3.so" >> /home/oracle/soainstall.sh
+
+echo "echo \"SOA Suite Configuration,Make Sure This Settings : \"" >> /home/oracle/soainstall.sh
+echo "echo \"1. Create A New Web Logic Domain\"" >> /home/oracle/soainstall.sh
+echo "echo \"2. check BPM Suite, SOA Suite, EM, WSM PM, JRF, WebLogic AWS for JAX-RPC Ext and WS Ext\"" >> /home/oracle/soainstall.sh
+echo "echo \"3. Domain Name Set, and other defaults\"" >> /home/oracle/soainstall.sh
+echo "echo \"4. set user pass for weblogic\"" >> /home/oracle/soainstall.sh
+echo "echo \"5. Choose development mode, and choose jdk\"" >> /home/oracle/soainstall.sh
+echo "echo \"6. Pick SOA MDS Schema, and set your oracle server\"" >> /home/oracle/soainstall.sh
+echo "$MW_HOME/Oracle_SOA1/common/bin/config.sh" >> /home/oracle/soainstall.sh
+
+
+iptables -I INPUT -p tcp --dport 7001 -j ACCEPT
+iptables -I INPUT -p tcp --dport 5901 -j ACCEPT
+iptables -I INPUT -p tcp --dport 8001 -j ACCEPT
+service iptables save
+/etc/init.d/iptables restart
 
 chmod 644 /home/oracle/.bash_profile
 chown oracle:oinstall /home/oracle/.bash_profile
-#chown oracle:oinstall /home/oracle/installOracle.sh
-#chmod a+x /home/oracle/installOracle.sh
-cd /tmp
-wget http://download.oracle.com/otn/nt/middleware/11g/wls/1036/wls1036_generic.jar?AuthParam=1496135532_dabb6d7030a2dfa1a462b46d5246d292 -O wls1036_generic.jar
-wget http://download.oracle.com/otn/linux/middleware/11g/111170/ofm_rcu_linux_11.1.1.7.0_64_disk1_1of1.zip?AuthParam=1496135710_e1c51d8717ab5c9d869061b05ff75ab8 -O ofm_rcu_linux_11.1.1.7.0_64_disk1_1of1.zip
-wget http://download.oracle.com/otn/java/jdeveloper/11.1.1.7.0/jdevstudio11117install.jar?AuthParam=1496135723_4cafa95016b12628b8bb0a2419d985a8 -O jdevstudio11117install.jar
-wget http://download.oracle.com/otn/nt/middleware/11g/111170/ofm_soa_generic_11.1.1.7.0_disk1_1of2.zip?AuthParam=1496135737_06701033a5d6ba1496976f4907d1a278 -O ofm_soa_generic_11.1.1.7.0_disk1_1of2.zip
-wget http://download.oracle.com/otn/nt/middleware/11g/111170/ofm_soa_generic_11.1.1.7.0_disk1_2of2.zip?AuthParam=1496135742_f8a6f3f8ac0f64c0dbee81dcfa7d6025 -O fm_soa_generic_11.1.1.7.0_disk1_2of2.zip
+chown oracle:oinstall /home/oracle/installOracle.sh
+chown oracle:oinstall /home/oracle/soainstall.sh
+chmod a+x /home/oracle/installOracle.sh
+chmod a+x /home/oracle/soainstall.sh
+
 
 echo "Please Run command : vncpassword then vncserver with user oracle"
 su oracle
