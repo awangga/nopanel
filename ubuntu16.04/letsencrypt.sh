@@ -1,3 +1,8 @@
+/Users/awangga/anaconda/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin
+
+
+
+
 sudo apt-get install letsencrypt
 sudo letsencrypt certonly --webroot -w /var/www/html -d www.tukang.review
 sudo letsencrypt renew --dry-run --agree-tos
