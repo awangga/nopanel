@@ -1,0 +1,27 @@
+server {
+    listen 80;
+    root /var/www/html/icc/public;
+
+    index index.php index.html index.htm index.nginx-debian.html;
+
+    server_name icc.stp-bandung.ac.id;
+
+	location / {
+	        try_files $uri $uri/ /index.php?_url=$uri&$args;
+	}
+	client_max_body_size 5m;
+	location ~ \.php$ {
+	        fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+	        fastcgi_index /index.php;
+
+	    include fastcgi_params;
+	    fastcgi_split_path_info       ^(.+\.php)(/.+)$;
+	    fastcgi_param PATH_INFO       $fastcgi_path_info;
+	    fastcgi_param PATH_TRANSLATED $document_root$fastcgi_path_info;
+	    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+	}
+
+	location ~ /\.ht {
+	        deny all;
+	}
+}
