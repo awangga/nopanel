@@ -1,0 +1,99 @@
+Package: apache2*
+Pin: release a=karmic
+Pin-Priority: 991
+
+Package: php5
+Pin: release a=karmic
+Pin-Priority: 991
+
+Package: libapache2-mod-php5
+Pin: release a=karmic
+Pin-Priority: 991
+
+Package: libapache2-mod-php5filter
+Pin: release a=karmic
+Pin-Priority: 991
+
+Package: php-pear
+Pin: release a=karmic
+Pin-Priority: 991
+
+Package: php5-cgi
+Pin: release a=karmic
+Pin-Priority: 991
+
+Package: php5-cli
+Pin: release a=karmic
+Pin-Priority: 991
+
+Package: php5-common
+Pin: release a=karmic
+Pin-Priority: 991
+
+Package: php5-curl
+Pin: release a=karmic
+Pin-Priority: 991
+
+Package: php5-dbg
+Pin: release a=karmic
+Pin-Priority: 991
+
+Package: php5-dev
+Pin: release a=karmic
+Pin-Priority: 991
+
+Package: php5-gd
+Pin: release a=karmic
+Pin-Priority: 991
+
+Package: php5-gmp
+Pin: release a=karmic
+Pin-Priority: 991
+
+Package: php5-mhash
+Pin: release a=karmic
+Pin-Priority: 991
+
+Package: php5-mysql
+Pin: release a=karmic
+Pin-Priority: 991
+
+Package: php5-odbc
+Pin: release a=karmic
+Pin-Priority: 991
+
+Package: php5-pgsql
+Pin: release a=karmic
+Pin-Priority: 991
+
+Package: php5-pspell
+Pin: release a=karmic
+Pin-Priority: 991
+
+Package: php5-recode
+Pin: release a=karmic
+Pin-Priority: 991
+
+Package: php5-snmp
+Pin: release a=karmic
+Pin-Priority: 991
+
+Package: php5-sqlite
+Pin: release a=karmic
+Pin-Priority: 991
+
+Package: php5-sybase
+Pin: release a=karmic
+Pin-Priority: 991
+
+Package: php5-tidy
+Pin: release a=karmic
+Pin-Priority: 991
+
+Package: php5-xmlrpc
+Pin: release a=karmic
+Pin-Priority: 991
+
+Package: php5-xsl
+Pin: release a=karmic
+Pin-Priority: 991

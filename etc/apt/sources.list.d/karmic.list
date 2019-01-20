@@ -1,0 +1,22 @@
+deb http://old-releases.ubuntu.com/ubuntu/ karmic main restricted
+deb-src http://old-releases.ubuntu.com/ubuntu/ karmic main restricted
+
+deb http://old-releases.ubuntu.com/ubuntu/ karmic-updates main restricted
+deb-src http://old-releases.ubuntu.com/ubuntu/ karmic-updates main restricted
+
+deb http://old-releases.ubuntu.com/ubuntu/ karmic universe
+deb-src http://old-releases.ubuntu.com/ubuntu/ karmic universe
+deb http://old-releases.ubuntu.com/ubuntu/ karmic-updates universe
+deb-src http://old-releases.ubuntu.com/ubuntu/ karmic-updates universe
+
+deb http://old-releases.ubuntu.com/ubuntu/ karmic multiverse
+deb-src http://old-releases.ubuntu.com/ubuntu/ karmic multiverse
+deb http://old-releases.ubuntu.com/ubuntu/ karmic-updates multiverse
+deb-src http://old-releases.ubuntu.com/ubuntu/ karmic-updates multiverse
+
+deb http://old-releases.ubuntu.com/ubuntu karmic-security main restricted
+deb-src http://old-releases.ubuntu.com/ubuntu karmic-security main restricted
+deb http://old-releases.ubuntu.com/ubuntu karmic-security universe
+deb-src http://old-releases.ubuntu.com/ubuntu karmic-security universe
+deb http://old-releases.ubuntu.com/ubuntu karmic-security multiverse
+deb-src http://old-releases.ubuntu.com/ubuntu karmic-security multiverse
