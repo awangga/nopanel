@@ -29,14 +29,26 @@ echo "update user set plugin='' where User='root';"
 echo "flush privileges;"
 echo "exit"
 
-
-sudo apt-get install php-mdb2-driver-mysql
-sudo apt-get install php-pear
-pear install MDB2
-#pear install MDB2_Driver_Mysql
-pear install MDB2_Driver_mysqli
-pear upgrade mdb2-beta mdb2_driver_mysqli-beta
 apt-get install git
+
+#if pear is down
+wget https://github.com/pear/pearweb_phars/archive/v1.9.1.tar.gz
+tar xvfz pear-1.9.1.tar.gz
+cd pear-1.9.1
+php go-pear.phar
+git clone https://github.com/pear/MDB2.git
+cd MDB2
+git checkout 28ad5c151e8d9debb3223efbedea07fec86247d2
+pear install package.xml
+pear install package_mysqli.xml
+
+#sudo apt-get install php-mdb2-driver-mysql
+#sudo apt-get install php-pear
+#pear install MDB2
+#pear install MDB2_Driver_Mysql
+#pear install MDB2_Driver_mysqli
+#pear upgrade mdb2-beta mdb2_driver_mysqli-beta
+
 
 # sudo nano /etc/apache2/sites-available/example.com
 # a2ensite example.com
