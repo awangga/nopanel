@@ -19,6 +19,7 @@ apt-get install php-pear
 apt-get install php5-curl
 apt-get install php5-dbg php5-mhash php5-mysql php5-tidy php5-xmlrpc php5-xsl php5-gd
 apt-get install php5-cgi
+apt-get install php5-dev make libpcre3-dev
 # install mysql
 apt-get install mysql-server mysql-client
 
@@ -41,6 +42,9 @@ cd MDB2
 git checkout 28ad5c151e8d9debb3223efbedea07fec86247d2
 pear install package.xml
 pear install package_mysqli.xml
+pecl install apc
+vi /etc/php5/apache2/php.ini # add extension=apc.so
+service apache2 restart
 
 #sudo apt-get install php-mdb2-driver-mysql
 #sudo apt-get install php-pear
