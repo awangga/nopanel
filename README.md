@@ -5,7 +5,7 @@ Simple Server Set Up without Panel
 
 Using git bash create yout key, you dont have to do this if you already have a key
 ```sh
-ssh-keygen -t rsa -b 4096 -C "rolly@awangga.com
+ssh-keygen -t rsa -b 4096 -C "rolly@awangga.com"
 ```
 
 send key to the server
