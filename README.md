@@ -1,7 +1,7 @@
 # nopanel
 Simple Server Set Up without Panel
 
-## SSH Wirhout Password
+## SSH Without Password
 
 Using git bash create yout key, you dont have to do this if you already have a key
 ```sh
