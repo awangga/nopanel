@@ -1,5 +1,24 @@
 # Phalcon And Mongo DB Install
 ## Phalcon
+On windows for development :
+1. Using XAMPP PHP 7.4.3
+2. Download php_psr.dll 7.4 Thread Safe (TS) x64 : https://pecl.php.net/package/psr/1.0.0/windows
+3. Download php_phalcon.dll 7.4 Thread Safe (TS) x64 : https://pecl.php.net/package/phalcon/4.0.2/windows
+4. Put php_psr.dll and php_phalcon.dll in \xampp\php\ext directory
+5. Edit php.ini search for Dynamic Extensions and put psr and phalcon extension in the end of block:
+
+```sh
+;; Dynamic Extensions ;;
+
+...
+...
+...
+
+extension=psr
+extension=phalcon
+```
+
+On Linux :
 
 ```sh
 # yum install php-devel pcre-devel gcc make
