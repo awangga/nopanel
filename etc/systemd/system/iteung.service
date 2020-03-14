@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn instance to serve ITeung
+After=network.target
+
+[Service]
+User=osdep
+Group=www-data
+WorkingDirectory=/home/osdep/ITeung
+#Environment="PATH=/home/osdep/myproject/myprojectenv/bin"
+ExecStart=/usr/bin/gunicorn3 --workers 3 --reload --bind unix:ITeung.sock -m 007 wsgi:app
+
+[Install]
+WantedBy=multi-user.target
