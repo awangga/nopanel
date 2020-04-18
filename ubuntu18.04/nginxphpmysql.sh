@@ -11,7 +11,7 @@ sudo add-apt-repository ppa:ondrej/php
 sudo apt-get update	
 
 #php 5.6
-sudo apt install php5.6-fpm php5.6-mbstring php5.6-xml php5.6-mysql php5.6-common php5.6-gd php5.6-json php5.6-cli php5.6-curl
+sudo apt install php5.6-fpm php5.6-mbstring php5.6-xml php5.6-mysql php5.6-common php5.6-gd php5.6-json php5.6-cli php5.6-curl php5.6-zip php5.6-intl php5.6-xmlrpc php5.6-soap
 sudo systemctl start php5.6-fpm
 sudo systemctl status php5.6-fpm
 sudo systemctl enable php5.6-fpm
@@ -23,7 +23,7 @@ sudo systemctl status php7.1-fpm
 sudo systemctl enable php7.1-fpm
 
 #pphp 7.4
-sudo apt install php7.4-fpm php7.4-mbstring php7.4-xml php7.4-mysql php7.4-common php7.4-gd php7.4-json php7.4-cli php7.4-curl
+sudo apt install php7.4-fpm php7.4-mbstring php7.4-xml php7.4-mysql php7.4-common php7.4-gd php7.4-json php7.4-cli php7.4-curl php7.4-zip php7.4-intl php7.4-xmlrpc php7.4-soap
 sudo systemctl start php7.4-fpm
 sudo systemctl status php7.4-fpm
 sudo systemctl enable php7.4-fpm
