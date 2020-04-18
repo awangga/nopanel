@@ -17,7 +17,7 @@ sudo systemctl status php5.6-fpm
 sudo systemctl enable php5.6-fpm
 
 #php 7.1
-sudo apt install php7.1-fpm php7.1-mbstring php7.1-xml php7.1-mysql php7.1-common php7.1-gd php7.1-json php7.1-cli php7.1-curl
+sudo apt install php7.1-fpm php7.1-mbstring php7.1-xml php7.1-mysql php7.1-common php7.1-gd php7.1-json php7.1-cli php7.1-curl php7.1-zip php7.1-intl php7.1-xmlrpc php7.1-soap
 sudo systemctl start php7.1-fpm
 sudo systemctl status php7.1-fpm
 sudo systemctl enable php7.1-fpm

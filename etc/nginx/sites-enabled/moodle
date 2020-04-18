@@ -1,0 +1,22 @@
+server {
+    server_name mila.stimlog.ac.id;
+    root /var/www/html/mila;
+    index  index.php index.html index.htm;
+
+    location / {
+    try_files $uri $uri/ =404;
+    }
+
+    location /dataroot/ {
+    internal;
+    alias /var/www/html/miladata/;
+    }
+
+    location ~ [^/]\.php(/|$) {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php7.1-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+
+}
