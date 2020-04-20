@@ -81,6 +81,16 @@ sudo systemctl reload nginx
 sudo systemctl restart nginx
 ```
 
+instalasi https:
+
+```sh
+sudo add-apt-repository universe && sudo add-apt-repository ppa:certbot/certbot
+sudo apt-get update && sudo apt-get install certbot python-certbot-nginx
+
+
+sudo certbot --nginx
+```
+
 ## Database
 config database ada di dua file :
 1. siap/modul/simpati/simpati.koneksi.php
