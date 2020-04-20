@@ -83,9 +83,9 @@ sudo systemctl restart nginx
 
 ## Database
 config database ada di dua file :
-1. stimlog/modul/simpati/simpati.koneksi.php
-2. stimlog/besan.config.php
-3. siti/ci-app/simpati/config/database.php hanya pada blok['stimlog']
+1. siap/modul/simpati/simpati.koneksi.php
+2. siap/besan.config.php
+3. ci-app/simpati/config/database.php hanya pada blok['poltekpos']
 
 ## Upgrade Codeigniter module
 Edit pada baris 257 file :
