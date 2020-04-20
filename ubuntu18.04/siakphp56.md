@@ -91,6 +91,13 @@ sudo apt-get update && sudo apt-get install certbot python-certbot-nginx
 sudo certbot --nginx
 ```
 
+Kemudian untuk pembaharuan otomatis ssl :
+
+```sh
+sudo crontab -e
+30 2 * * * certbot renew
+```
+
 ## Database
 config database ada di dua file :
 1. siap/modul/simpati/simpati.koneksi.php
