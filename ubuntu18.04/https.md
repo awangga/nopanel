@@ -19,7 +19,7 @@ Kemudian untuk pembaharuan otomatis https maka pasang crontab :
 sudo crontab -e
 ```
 
-isi dari file crontan tersebut dengan:
+isi dari file crontab tersebut dengan:
 ```sh
 30 2 * * * certbot renew
 ```
