@@ -41,5 +41,9 @@ rm $dumpfolder/$dbname.$lastweek.sql
 ```sh
 chmod a+x crondump.sh
 crontab -e
+```
+
+isi dari file crontab tersebut dengan:
+```sh
 30 2 * * * /home/stimlog/crondump.sh
 ```
