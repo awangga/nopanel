@@ -39,6 +39,34 @@ Untuk melakukan instalasi newrelic PHP settingan default pada server ketik:
 sudo newrelic-install
 ```
 
+jangan lupa untuk melakukan setting nama aplikasi atau server pada masing-masing file konfigurasi php dengan perintah :
+
+php 5.6 :
+
+```sh
+sudo nano /etc/php/5.6/fpm/conf.d/newrelic.ini
+sudo nano /etc/php/5.6/cli/conf.d/newrelic.ini
+```
+
+php 7.1 :
+
+```sh
+sudo nano /etc/php/7.1/fpm/conf.d/newrelic.ini
+sudo nano /etc/php/7.1/cli/conf.d/newrelic.ini
+```
+
+php 7.4 : 
+
+```sh
+sudo nano /etc/php/7.4/fpm/conf.d/newrelic.ini
+sudo nano /etc/php/7.4/cli/conf.d/newrelic.ini
+```
+
+ganti PHP Application pada bagian :
+
+newrelic.appname = "PHP Application" 
+
+menjadi nama yang kita sukai
 
 Kemudian jangan lupa untuk restart php-fpm :
 
