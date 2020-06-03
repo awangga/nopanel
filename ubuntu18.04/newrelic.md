@@ -66,7 +66,7 @@ ganti PHP Application pada bagian :
 
 newrelic.appname = "PHP Application" 
 
-menjadi nama yang kita sukai
+menjadi versi php dan nama server agar mudah maintenacenya, contoh: "PHP5.6 Croot Poltekpos"
 
 Kemudian jangan lupa untuk restart php-fpm :
 
