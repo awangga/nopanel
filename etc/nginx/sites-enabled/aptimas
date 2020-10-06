@@ -1,0 +1,39 @@
+server {
+	server_name  aptimas.poltekpos.ac.id;
+	
+	root   /var/www/html/aptimas;
+	index  index.php index.html index.htm;
+	client_max_body_size 999M;
+	
+	location / {
+		try_files $uri $uri/ /index.php;
+	}
+	
+	location ~ \.php$ {
+		try_files $uri =404;
+		fastcgi_split_path_info ^(.+\.php)(/.+)$;
+		fastcgi_pass   unix:/var/run/php/php7.3-fpm.sock;
+		fastcgi_index index.php;
+		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+		include fastcgi_params;
+	}
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/aptimas.poltekpos.ac.id/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/aptimas.poltekpos.ac.id/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+server {
+    if ($host = aptimas.poltekpos.ac.id) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+	listen       80;
+	server_name  aptimas.poltekpos.ac.id;
+    return 404; # managed by Certbot
+
+
+}
