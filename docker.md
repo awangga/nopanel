@@ -3,6 +3,7 @@ Docker cloud implementation in digital ocean. Simple and clear commmand. First d
 run the image with name n6. Check if docker process and login to bash. 
 ```sh
 docker pull ubuntu
+# -d run as a daemon or backgroun process, -t to allocate psedo tty
 docker run -d -t --name n6 ubuntu
 docker ps
 docker exec -it n6 bash
@@ -18,13 +19,65 @@ to Stop and start docker and look at docker resources
 docker stop n6
 docker start n6
 docker stats
+docker rm n6
 ```
 
 you may change image to different version using tag lates. or you may use your own image in dockerhub by using username/image:tag format.
+ps : if you add container, have other command like bash
 ```sh
 docker container run -d -t ubuntu:lates
 ```
 So you must start deploy your apps on your docker container, and put it on the dockerhub.
+
+## Digital Ocean Docker
+Setting for digital ocean provider. FIrst thing to do is generate personal access token.
+In the API navigation, Personal Access Tokens, Generate new token.
+
+```sh
+#create droplet
+docker-machine create --digitalocean-size "s-2vcpu-4gb" --driver digitalocean --digitalocean-access-token PERSONAL_ACCESS_TOKEN dropletname
+docker-machine ls
+#connect to droplet
+eval $(docker-machine env dropletname)
+# run docker image with -e to set environment variable
+docker run -d -p 80:8080 -e "MB_WORKERS=2" -e "MB_KEY=$MB_KEY" machinebox/facebox
+#get the droplet ip address
+docker-machine ip dropletname
+```
+
+## Build docker image
+For example flask application, default 2 file is app.py and requirements.txt.
+The key is you must create new file name it Dockerfile, and write is down inside Dockerfile :
+```sh
+FROM python:3-alpine
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+COPY . .
+
+EXPOSE 5000
+
+CMD ["python", "app.py"]
+```
+so this is mean, you using alpine docker image as base image. change direktori to /app in the image and copy and run pip install.
+open port 5000 in container, and always tun python app.py for first time. then built the app image and run it:
+```sh
+# -t means using tag
+docker build -t flask_demo:v0 .
+docker run -p 80:5000 flask_demo:v0
+```
+to push your image to repository:
+```sh
+docker login --username=awangga
+docker images
+docker tag a4b95e11a188 awangga/ok:demo
+docker push awangga/ok
+```
+
+https://www.digitalocean.com/community/meetup_kits/getting-started-with-containers-and-kubernetes-a-digitalocean-workshop-kit
 
 ## Ubuntu Server Setting
 tips: getting internet in ubuntu host for docker:
@@ -51,7 +104,7 @@ docker run -d -t -p 1616:80 --name n16 romeoz/docker-nginx-php:7.3
 docker run -d -t -p 1717:80 --name n17 romeoz/docker-nginx-php:7.3
 
 docker pull nats-streaming
-docker run -p 4219:4223 -p 8219:8223 --name n19 nats-streaming
+docker run -p 4219:4223 -p 8219:8223 --name n19 nats-streaming -p 4223 -m 8223
 docker run -p 4220:4223 -p 8220:8223 --name n20 nats-streaming
 docker run -p 4220:4223 -p 8220:8223 --name n21 nats-streaming
 
