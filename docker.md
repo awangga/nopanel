@@ -26,6 +26,42 @@ docker container run -d -t ubuntu:lates
 ```
 So you must start deploy your apps on your docker container, and put it on the dockerhub.
 
+## Ubuntu Server Setting
+tips: getting internet in ubuntu host for docker:
+nano /etc/ufw/sysctl.conf
+```sh
+#net.ipv4.ip_forward=1 # please uncomment this
+ufw allow http
+ufw allow https
+ufw disable && ufw enable
+docker pull romeoz/docker-nginx-php:7.3
+docker run -d -t -p 6060:80 --name n6 romeoz/docker-nginx-php:7.3
+docker run -d -t -p 7070:80 --name n7 romeoz/docker-nginx-php:7.3
+docker run -d -t -p 8080:80 --name n8 romeoz/docker-nginx-php:7.3
+docker run -d -t -p 9090:80 --name n9 romeoz/docker-nginx-php:7.3
+docker run -d -t -p 1010:80 --name n10 romeoz/docker-nginx-php:7.3
+
+docker exec -it n6 bash
+
+docker run -d -t -p 1212:80 --name n12 romeoz/docker-nginx-php:7.3
+docker run -d -t -p 1313:80 --name n13 romeoz/docker-nginx-php:7.3
+docker run -d -t -p 1414:80 --name n14 romeoz/docker-nginx-php:7.3
+docker run -d -t -p 1515:80 --name n15 romeoz/docker-nginx-php:7.3
+docker run -d -t -p 1616:80 --name n16 romeoz/docker-nginx-php:7.3
+docker run -d -t -p 1717:80 --name n17 romeoz/docker-nginx-php:7.3
+
+docker pull nats-streaming
+docker run -p 4219:4223 -p 8219:8223 --name n19 nats-streaming
+docker run -p 4220:4223 -p 8220:8223 --name n20 nats-streaming
+docker run -p 4220:4223 -p 8220:8223 --name n21 nats-streaming
+
+docker pull minio/minio
+docker run -p 9000:9000 --name n22 \
+  -e "MINIO_ACCESS_KEY=AKIAIOSFODNN7EXAMPLE" \
+  -e "MINIO_SECRET_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY" \
+  minio/minio server /data
+```
+
 
 ## Kubernetes
 For automatic deployment you must use k8s with yaml configuration. This benefit for load balance or high availaibility apps.
