@@ -1,15 +1,90 @@
 server {
         listen 80;
-        server_name  elearning.stimlog.ac.id;
+        server_name  member.viralbisnis.id;
 		
 		client_max_body_size 999M;
         location / {
-            proxy_pass http://192.168.1.211/vl/;
+            proxy_pass http://172.17.0.2/;
             proxy_set_header X-Real-IP  $remote_addr;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_set_header Host $host;
         }
-
-
 }
 
+server {
+        listen 80;
+        server_name  www.viralbisnis.id;
+		
+		client_max_body_size 999M;
+        location / {
+            proxy_pass http://172.17.0.3/;
+            proxy_set_header X-Real-IP  $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header Host $host;
+        }
+}
+
+server {
+        listen 80;
+        server_name  viralbisnis.id;
+		
+		client_max_body_size 999M;
+        location / {
+            proxy_pass http://172.17.0.3/;
+            proxy_set_header X-Real-IP  $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header Host $host;
+        }
+}
+
+server {
+        listen 80;
+        server_name  shop.viralbisnis.id;
+		
+		client_max_body_size 999M;
+        location / {
+            proxy_pass http://172.17.0.4/;
+            proxy_set_header X-Real-IP  $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header Host $host;
+        }
+}
+
+server {
+        listen 80;
+        server_name  owner.viralbisnis.id;
+		
+		client_max_body_size 999M;
+        location / {
+            proxy_pass http://172.17.0.5/;
+            proxy_set_header X-Real-IP  $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header Host $host;
+        }
+}
+
+server {
+        listen 80;
+        server_name  superadmin.viralbisnis.id;
+		
+		client_max_body_size 999M;
+        location / {
+            proxy_pass http://172.17.0.6/;
+            proxy_set_header X-Real-IP  $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header Host $host;
+        }
+}
+
+server {
+        listen 80;
+        server_name  admin.viralbisnis.id;
+		
+		client_max_body_size 999M;
+        location / {
+            proxy_pass http://172.17.0.7/;
+            proxy_set_header X-Real-IP  $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header Host $host;
+        }
+}

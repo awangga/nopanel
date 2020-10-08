@@ -14,7 +14,7 @@ WORKDIR /var/www
 
 EXPOSE 80
 ```
-
+mkdir docker-compose && mkdir docker-compose/nginx
 nano docker-compose/nginx/app.conf
 ```sh
 server {
@@ -42,16 +42,33 @@ server {
 nano run.sh
 ```sh
 node='n9'
+hostport='7009'
 
 docker stop $node
 sleep 5
 docker rm $node
 sleep 5
-docker build -t $node:1 .
+docker build -t $node:prod .
 sleep 5
-docker run -d -t -p 80:80 --name $node $node:prod
+docker run -d -t -p $hostport:80 --name $node $node:prod
 sleep 5
-curl localhost:80
+curl localhost:$hostport
 docker exec -it $node composer install
-docker exec -it $node php artisan key:generate
+```
+
+
+simple run
+```sh
+mkdir docker-compose && mkdir docker-compose/nginx && cp ~/run.sh . && cp ~/Dockerfile . && cp ~/app.conf ./docker-compose/nginx/ && cp .env.example .env && nano run.sh && ./run.sh && git add . && git commit -m "updates" && git push origin master
+
+```
+
+generate key
+```sh
+docker exec -it n12 php artisan key:generate
+docker exec -it n13 php artisan key:generate
+docker exec -it n14 php artisan key:generate
+docker exec -it n15 php artisan key:generate
+docker exec -it n16 php artisan key:generate
+docker exec -it n17 php artisan key:generate
 ```
