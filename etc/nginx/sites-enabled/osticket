@@ -1,0 +1,75 @@
+server {
+
+#  listen 80;
+  server_name eticket.poltekpos.ac.id;
+
+  root /var/www/html/osticket/upload;
+  index index.php index.html;
+
+  set $path_info "";
+
+  location ~ /include {
+    deny all;
+    return 403;
+  }
+
+  if ($request_uri ~ "^/api(/[^\?]+)") {
+    set $path_info $1;
+  }
+
+  location ~ ^/api/(?:tickets|tasks).*$ {
+    try_files $uri $uri/ /api/http.php?$query_string;
+  }
+
+  if ($request_uri ~ "^/scp/.*\.php(/[^\?]+)") {
+    set $path_info $1;
+  }
+
+  if ($request_uri ~ "^/.*\.php(/[^\?]+)") {
+    set $path_info $1;
+  }
+
+  location ~ ^/scp/ajax.php/.*$ {
+    try_files $uri $uri/ /scp/ajax.php?$query_string;
+  }
+
+  location ~ ^/ajax.php/.*$ {
+    try_files $uri $uri/ /ajax.php?$query_string;
+  }
+
+  location / {
+    try_files $uri $uri/ index.php;
+  }
+
+  location ~ \.php$ {
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    include fastcgi_params;
+    fastcgi_param PATH_INFO $path_info;
+    fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;
+  }
+
+    listen [::]:443 ssl ipv6only=on; # managed by Certbot
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /var/www/ssl/crt-poltekpos.pem;
+    ssl_certificate_key /var/www/ssl/privatekey-poltekpos.pem;
+#    ssl_certificate /etc/letsencrypt/live/eticket.poltekpos.ac.id/fullchain.pem; # managed by Certbot
+#    ssl_certificate_key /etc/letsencrypt/live/eticket.poltekpos.ac.id/privkey.pem; # managed by Certbot
+#    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+#    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+server {
+    if ($host = eticket.poltekpos.ac.id) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    listen 80;
+    listen [::]:80;
+
+    server_name  eticket.poltekpos.ac.id;
+    return 404; # managed by Certbot
+
+
+}
+
