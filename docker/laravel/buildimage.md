@@ -54,6 +54,7 @@ docker run -d -t -p $hostport:80 --name $node $node:prod
 sleep 5
 curl localhost:$hostport
 docker exec -it $node composer install
+docker exec -it $node php artisan key:generate
 ```
 
 
