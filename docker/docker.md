@@ -68,16 +68,107 @@ open port 5000 in container, and always tun python app.py for first time. then b
 # -t means using tag
 docker build -t flask_demo:v0 .
 docker run -p 80:5000 flask_demo:v0
+docker ps -a
 ```
-to push your image to repository:
+
+make your change to container after that commit container as new name images
+```sh
+#docker commit [CONTAINER_ID] [new_image_name]
+docker commit deddd39fa163 pythonhello-crot
+docker images
+```
+to push your image to docker hub repository:
 ```sh
 docker login --username=awangga
 docker images
 docker tag a4b95e11a188 awangga/ok:demo
 docker push awangga/ok
 ```
+to push your image to docker gitlab repository:
+```sh
+docker login registry.gitlab.com
+docker images
+docker tag a4b95e11a188 registry.gitlab.com/viralbisnis/viralbisnis:prod
+docker push registry.gitlab.com/viralbisnis/viralbisnis
+```
 
 https://www.digitalocean.com/community/meetup_kits/getting-started-with-containers-and-kubernetes-a-digitalocean-workshop-kit
+
+## Network
+setting network for static ip, get list of all ip container :
+```sh
+docker ps -q | xargs -n 1 docker inspect --format '{{ .Name }} {{range .NetworkSettings.Networks}} {{.IPAddress}}{{end}}' | sed 's#^/##';
+```
+
+To set IP Static
+```sh
+docker network create --subnet=172.18.0.0/16 apinet
+docker run --net apinet --ip 172.18.0.22 -it ubuntu bash
+```
+
+## Custom shell run
+for beginner, you can make custom bash script:
+```sh
+node='n6_1'
+hostport='7006'
+ipaddr='172.18.0.6'
+
+
+git pull origin master
+cp .env.prod .env
+sleep 5
+docker build -t $node:prod .
+sleep 5
+docker stop $node
+sleep 5
+docker rm $node
+sleep 5
+docker run -d -t --net apinet \
+--restart=unless-stopped \
+-h $node \
+--add-host minio.viralbisnis.id:172.18.0.11 \
+--add-host viralbisnis.minio.viralbisnis.id:172.18.0.11 \
+--add-host nats.viralbisnis.id:172.18.0.18 \
+-p $hostport:80 \
+--ip $ipaddr \
+--name $node \
+$node:prod
+sleep 5
+curl localhost:$hostport
+docker exec -it $node composer install
+docker exec -it $node php artisan swagger-lume:generate
+docker exec -it $node cat /etc/hosts
+```
+
+web net
+```sh
+node='n6_1'
+hostport='7006'
+ipaddr='172.18.0.6'
+
+git pull origin master
+cp .env.prod .env
+sleep 5
+docker build -t $node:prod .
+sleep 5
+docker stop $node
+sleep 5
+docker rm $node
+sleep 5
+docker run -d -t --net webnet \
+--restart=unless-stopped \
+-h $node \
+-p $hostport:80 \
+--ip $ipaddr \
+--name $node \
+$node:prod
+sleep 5
+curl localhost:$hostport
+docker exec -it $node composer install
+docker exec -it $node php artisan swagger-lume:generate
+docker exec -it $node cat /etc/hosts
+```
+
 
 ## Ubuntu Server Setting
 tips: getting internet in ubuntu host for docker:

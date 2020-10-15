@@ -1,5 +1,15 @@
 FROM nginx:alpine
 
+WORKDIR /var/www
+
+RUN apt-get install php7.4-cli
+
+# Get latest Composer
+# COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+COPY . .
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 COPY app.conf /etc/nginx/conf.d/
+
 
 EXPOSE 80

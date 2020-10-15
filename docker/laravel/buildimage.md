@@ -41,20 +41,26 @@ server {
 
 nano run.sh
 ```sh
-node='n9'
-hostport='7009'
+node='n17'
+hostport='7017'
+ipaddr='172.17.0.7'
 
+
+git pull origin master
+cp .env.prod .env
+sleep 5
+docker build -t $node:prod .
+sleep 5
 docker stop $node
 sleep 5
 docker rm $node
 sleep 5
-docker build -t $node:prod .
-sleep 5
-docker run -d -t -p $hostport:80 --name $node $node:prod
+docker run -d -t -p $hostport:80 --hostname $node --ip $ipaddr --name $node $node:prod
 sleep 5
 curl localhost:$hostport
 docker exec -it $node composer install
 docker exec -it $node php artisan key:generate
+docker exec -it $node cat /etc/hosts
 ```
 
 
