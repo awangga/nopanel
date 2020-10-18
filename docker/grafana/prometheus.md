@@ -1,4 +1,4 @@
-docker run --net apinet --ip 172.18.0.250\
+docker run \
 --volume=/:/rootfs:ro \
 --volume=/var/run:/var/run:ro \
 --volume=/sys:/sys:ro \
@@ -6,7 +6,7 @@ docker run --net apinet --ip 172.18.0.250\
 --volume=/dev/disk/:/dev/disk:ro \
 --publish=8080:8080 \
 --detach=true \
---name=cadvisor \
+--name=cadvisorweb \
 gcr.io/google-containers/cadvisor:latest 
 
 
@@ -32,7 +32,7 @@ scrape_configs:
     scrape_interval: 10s 
     metrics_path: '/metrics'
     static_configs:
-      - targets: ['172.18.0.250:8080']
+      - targets: ['172.18.0.250:8080','10.104.0.8:8080']
         labels:
           group: 'cadvisor'
 ```
