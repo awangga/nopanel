@@ -1,0 +1,11 @@
+root@API:~/go/bin# ./nats-sub -s "nats://172.18.0.18:4223" hallo & ./nats-pub -s "nats://172.18.0.18:4223" hallo world_18
+[1] 530340
+Published [hallo] : 'world_18'
+Listening on [hallo]
+root@API:~/go/bin# ./nats-pub -s "nats://172.18.0.19:4223" hallo world_19
+Published [hallo] : 'world_19'
+[#1] Received on [hallo]: 'world_19'
+root@API:~/go/bin# ./nats-pub -s "nats://172.18.0.20:4223" hallo world_20
+Published [hallo] : 'world_20'
+[#2] Received on [hallo]: 'world_20'
+
