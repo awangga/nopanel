@@ -234,3 +234,22 @@ kubectl apply -f newservice.yaml
 kubectl get services
 kubectl describe service servicenew
 ```
+
+## Clean Up Docker 
+
+Check List all Image
+```sh
+docker image ls
+```
+
+list all docker image not use
+```sh
+docker image ls -f dangling=true
+```
+
+Delete docker image 
+```sh
+docker image rm $(docker image ls -f dangling=true -q)
+docker image prune
+```
+
