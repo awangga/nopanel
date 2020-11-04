@@ -64,3 +64,8 @@ ssh into server and change permission
 ```sh
 chmod 700 .ssh; chmod 640 .ssh/authorized_keys
 ```
+
+Check Disk Usage
+```sh
+sudo du -hc --max-depth=1 /
+```
