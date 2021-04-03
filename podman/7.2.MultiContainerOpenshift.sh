@@ -27,8 +27,7 @@ oc process -f todo-template.json -p RHT_OCP4_QUAY_USER=${RHT_OCP4_QUAY_USER} | o
 oc get pods -w
 oc expose service todoapi
 oc status
-curl -w "\n" \
-http://awangga-todoapi-template.your_ocp4_wildcard_domain/todo/api/items/1
+curl -w "\n" http://todoapi-awangga-template.apps.na45.prod.nextcle.com/todo/api/items/1
 
 
 
