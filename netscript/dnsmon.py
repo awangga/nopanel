@@ -30,10 +30,15 @@ def cekdns(dnstest):
         ket=dnstest+' | Terjadi RTO pada waktu : '+datetime.now().strftime("%H:%M:%S.%f")
         with open("rtodnslog.txt","a") as logrto:
            logrto.write(ket+"'\n")
+    else:
+        print(dnstest+'aman resolved')
 
 while True:
+    print('cek google DNS')
     cekdns('8.8.8.8')
+    print('cek hyper1 DNS')
     cekdns('103.10.60.133')
+    print('cek hyper2 DNS')
     cekdns('114.129.23.33')
     sleep(1)
 
