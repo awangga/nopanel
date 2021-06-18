@@ -27,8 +27,8 @@ def cekdns(dnstest):
     records=lookupdomain(inisiasiresolver,dnstest,'A','bukalapak.com')
     if records[0] == 'RTO':
         print('RTO')
-        ket=dnstest+' | Terjadi RTO pada waktu : '+datetime.now().strftime("%H:%M:%S.%f")
-        with open("rtodnslog.txt","a") as logrto:
+        ket=datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")+" | "+dnstest+" | Terjadi Time Out Lookup Domain"
+        with open("rtodns.log","a") as logrto:
            logrto.write(ket+"'\n")
     else:
         print(dnstest+' aman resolved')
