@@ -34,6 +34,8 @@ def cekdns(dnstest):
         print(dnstest+' aman resolved')
 
 while True:
+    print('cek local DNS')
+    cekdns('192.168.1.220')
     print('cek google DNS')
     cekdns('8.8.8.8')
     print('cek hyper1 DNS')
