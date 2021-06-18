@@ -31,7 +31,7 @@ def cekdns(dnstest):
         with open("rtodnslog.txt","a") as logrto:
            logrto.write(ket+"'\n")
     else:
-        print(dnstest+'aman resolved')
+        print(dnstest+' aman resolved')
 
 while True:
     print('cek google DNS')
