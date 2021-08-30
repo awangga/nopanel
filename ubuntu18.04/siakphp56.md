@@ -114,3 +114,9 @@ ci-system/core/Common.php
 $_config[0] =& $config;
 return $_config[0];
 ```
+## Trigger
+permasalahan nanti "the user specified as a definer ('root'@'%') does not exist"
+solusi:
+1. jalankan query dengan user root
+``` SET GLOBAL log_bin_trust_function_creators = 1; ```
+3. buat ulang trigger pada table simak_besan_users. tinggal contoh trigger st_user_insert_after dan st_user_update_after yang telah ada sebelumnya.
