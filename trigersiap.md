@@ -110,42 +110,37 @@ Langkah :
 3. rename triger yang sebelumnya, kemudian buat triger baru dengan nama yg sama dengan triger sebelumnya, setelah itu masukan config dan save.
 4. pada triger st_mhs_insert_after, fires=after yang di centang hanya insert saja, masukan config berikut
 
-BEGIN
 
+        BEGIN
         IF NOT EXISTS (SELECT * FROM ws_user  WHERE username= new.mhswid) THEN
-                   INSERT INTO ws_user (username, password,type_user,nama,url_foto,npm)
-                   VALUES (
-                                      new.mhswid, 
-                                      left(new.password,10),
-                                      'MAHASISWA',
-                                      new.nama,
-                                      new.foto,
-                                      new.mhswid
-                                   ),
-                                   (
-                                      concat('1',new.mhswid), 
-                                      left(new.password,10),
-                                      'ORTU',
-                                      new.nama,
-                                      new.foto,
-                                      new.mhswid
-                                   );
+                INSERT INTO ws_user (username, password,type_user,nama,url_foto,npm)
+                VALUES (
+                        new.mhswid, 
+                        left(new.password,10),
+                        'MAHASISWA',
+                        new.nama,
+                        new.foto,
+                        new.mhswid),
+                        (concat('1',new.mhswid), 
+                        left(new.password,10),
+                        'ORTU',
+                        new.nama,
+                        new.foto,
+                        new.mhswid);
         END IF;
-
-END
+        END
 
 5. pada triger st_mhs_update_after, fires=after yang di centang hanya update saja, masukan config berikut
 
-BEGIN
 
-	IF (new.Foto<> old.Foto) OR (new.Nama <> old.Nama) THEN UPDATE  ws_user
-          SET	   url_foto= new.Foto,  nama= new.Nama			   
-		   WHERE   username= old.mhswid;
-	END IF;
+        BEGIN
+        IF (new.Foto<> old.Foto) OR (new.Nama <> old.Nama) THEN UPDATE  ws_user
+        SET url_foto= new.Foto,  nama= new.Nama WHERE   username= old.mhswid;
+        END IF;
 
-	INSERT INTO ws_user(username,PASSWORD,type_user,nama,url_foto,npm)
-	SELECT MhswID,PASSWORD,'MAHASISWA',nama,CONCAT('https://siti.stimlog.ac.id/stimlog/modul/simpati/',foto),MhswID
-	FROM   simak_mst_mahasiswa t
-	WHERE  MhswID = new.MhswID 
-	ON DUPLICATE KEY UPDATE PASSWORD = t.password;
-	END
+        INSERT INTO ws_user(username,PASSWORD,type_user,nama,url_foto,npm)
+	    SELECT MhswID,PASSWORD,'MAHASISWA',nama,CONCAT('https://siti.stimlog.ac.id/stimlog/modul/simpati/',foto),MhswID
+	    FROM   simak_mst_mahasiswa t
+	    WHERE  MhswID = new.MhswID 
+	    ON DUPLICATE KEY UPDATE PASSWORD = t.password;
+	    END
