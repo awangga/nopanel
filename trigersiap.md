@@ -112,7 +112,7 @@ Langkah :
 4. pada triger st_mhs_insert_after, fires=after yang di centang hanya insert saja, masukan config berikut
 
 BEGIN
-        IF NOT EXISTS (SELECT * FROM ws_user  WHERE username= new.mhswid) THEN
+IF NOT EXISTS (SELECT * FROM ws_user  WHERE username= new.mhswid) THEN
                    INSERT INTO ws_user (username, password,type_user,nama,url_foto,npm)
                    VALUES (
                                       new.mhswid, 
@@ -131,13 +131,13 @@ BEGIN
                                       new.mhswid
                                    );
         END IF;
-
 END
 
 5. pada triger st_mhs_update_after, fires=after yang di centang hanya update saja, masukan config berikut
 
 
 BEGIN
+
 IF (new.Foto<> old.Foto) OR (new.Nama <> old.Nama) THEN UPDATE  ws_user
           SET	   url_foto= new.Foto,  nama= new.Nama			   
 		   WHERE   username= old.mhswid;
