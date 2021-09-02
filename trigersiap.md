@@ -6,43 +6,43 @@ Langkah :
 2. hapus triger lama atau rename dulu, kemudian buat ulang triger dan config nya
 3. pada triger st_user_insert_after, fires=after, yang dicentang hanya insert, masukan config berikut
 
-BEGIN
-IF NOT EXISTS (SELECT * FROM besan_users WHERE user_name = new.user_name) THEN
-INSERT INTO `besan_users`
-			 (`user_id`,
-			  `user_name`,
-			  `user_password`,
-			  `user_email`,
-			  `user_birthdate`,
-			  `user_aim`,
-			  `user_icq`,
-			  `user_msn`,
-			  `user_sig`,
-			  `user_rights`,
-			  `user_groups`,
-			  `user_level`)
-	      VALUES    (  new.user_id,
-			   new.user_name,
-			   new.user_password,
-			   new.user_email,
-			   new.user_birthdate,
-			   new.user_aim,
-			   new.user_icq,
-			   new.user_msn,
-			   new.user_sig,
-			   new.user_rights,
-			   new.user_groups,
-			   new.user_level);
-END IF;	
-IF NOT EXISTS (SELECT * FROM simak_mst_karyawan WHERE login = new.user_name) THEN
-                   INSERT INTO simak_mst_karyawan (Login, LevelID,password)
-                   VALUES (
-                                      new.user_name, 
-                                      MID(new.user_groups,2,3),
-                                      left(new.user_password,10)
-                                   );
-END IF;
-END
+        BEGIN 
+	    IF NOT EXISTS (SELECT * FROM besan_users WHERE user_name = new.user_name) THEN
+	    INSERT INTO `besan_users`
+			    (`user_id`,
+			    `user_name`,
+			    `user_password`,
+			    `user_email`,
+			    `user_birthdate`,
+			    `user_aim`,
+			    `user_icq`,
+			    `user_msn`,
+			    `user_sig`,
+			    `user_rights`,
+			    `user_groups`,
+			    `user_level`)
+	    VALUES    (  new.user_id,
+			    new.user_name,
+			    new.user_password,
+			    new.user_email,
+			    new.user_birthdate,
+			    new.user_aim,
+			    new.user_icq,
+			    new.user_msn,
+			    new.user_sig,
+			    new.user_rights,
+			    new.user_groups,
+			    new.user_level);
+	    END IF;	
+        IF NOT EXISTS (SELECT * FROM simak_mst_karyawan WHERE login = new.user_name) THEN
+                    INSERT INTO simak_mst_karyawan (Login, LevelID,password)
+                    VALUES (
+                                        new.user_name, 
+                                        MID(new.user_groups,2,3),
+                                        left(new.user_password,10)
+                                    );
+        END IF; 
+        END
 
 4 pada triger st_user_update_after, fires=after, yang dicentang hanya update, masukan config berikut
 
