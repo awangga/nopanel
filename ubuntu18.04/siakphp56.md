@@ -101,8 +101,9 @@ sudo crontab -e
 ## Database
 config database ada di dua file :
 1. siap/modul/simpati/simpati.koneksi.php
-2. siap/besan.config.php
-3. ci-app/simpati/config/database.php hanya pada blok['poltekpos']
+2. siap/modul/simpati/simpati.koneksi.import.php
+3. siap/besan.config.php
+4. ci-app/simpati/config/database.php hanya pada blok['poltekpos']
 
 ## Upgrade Codeigniter module
 Edit pada baris 257 file :
