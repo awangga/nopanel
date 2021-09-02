@@ -47,12 +47,9 @@ Langkah :
 
 4 pada triger st_user_update_after, fires=after, yang dicentang hanya update, masukan config berikut
 
-	BEGIN
-    
-	DECLARE	ls_group VARCHAR(5);
-	
+	BEGIN   
+	DECLARE	ls_group VARCHAR(5);	
 	IF (new.user_name <> old.user_name) OR (new.user_password <> old.user_password) OR (new.user_groups <> old.user_groups) OR (new.user_status <> old.user_status)  THEN
-	
 		
 		SET 	ls_group = MID(new.user_groups,2,3);
 			
@@ -63,7 +60,6 @@ Langkah :
 			user_status   = new.user_status	
 		WHERE	user_name     = old.user_name;
 	    
-
 		IF ls_group = '221' THEN
 		
 		   UPDATE  simak_mst_mahasiswa
@@ -96,10 +92,8 @@ Langkah :
 		             WHERE   Login = old.user_name;
 		
 		      END IF;
-	
 		
 	                    END IF;
-
 	                     UPDATE  ws_user
 		   SET	   username= new.user_name,
 			   Password= LEFT(new.user_password,10)
@@ -116,7 +110,8 @@ Langkah :
 2. klik kanan pada tabel simak_mst_mahasiswa pilih design tabel, pilih triger
 3. rename triger yang sebelumnya, kemudian buat triger baru dengan nama yg sama dengan triger sebelumnya, setelah itu masukan config dan save.
 4. pada triger st_mhs_insert_after, fires=after yang di centang hanya insert saja, masukan config berikut
-	BEGIN
+
+BEGIN
         IF NOT EXISTS (SELECT * FROM ws_user  WHERE username= new.mhswid) THEN
                    INSERT INTO ws_user (username, password,type_user,nama,url_foto,npm)
                    VALUES (
@@ -141,7 +136,8 @@ END
 
 5. pada triger st_mhs_update_after, fires=after yang di centang hanya update saja, masukan config berikut
 
-	BEGIN
+
+BEGIN
 IF (new.Foto<> old.Foto) OR (new.Nama <> old.Nama) THEN UPDATE  ws_user
           SET	   url_foto= new.Foto,  nama= new.Nama			   
 		   WHERE   username= old.mhswid;
