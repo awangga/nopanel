@@ -145,7 +145,7 @@ BEGIN
 	END IF;
 
 	INSERT INTO ws_user(username,PASSWORD,type_user,nama,url_foto,npm)
-	SELECT MhswID,PASSWORD,'MAHASISWA',nama,CONCAT('https://simpati.biz/stimlog/modul/simpati/',foto),MhswID
+	SELECT MhswID,PASSWORD,'MAHASISWA',nama,CONCAT('https://siti.stimlog.ac.id/stimlog/modul/simpati/',foto),MhswID
 	FROM   simak_mst_mahasiswa t
 	WHERE  MhswID = new.MhswID 
 	ON DUPLICATE KEY UPDATE PASSWORD = t.password;
