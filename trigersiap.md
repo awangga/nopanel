@@ -5,11 +5,10 @@ Langkah :
 1. buka navicat pilih database siti atau siap cari tabel simak_besan_user klik kanan Design Table pilih triger
 2. hapus triger lama atau rename dulu, kemudian buat ulang triger dan config nya
 3. pada triger st_user_insert_after, fires=after, yang dicentang hanya insert, masukan config berikut
-	BEGIN
-    
-	IF NOT EXISTS (SELECT * FROM besan_users WHERE user_name = new.user_name) THEN
-	   
-	      INSERT INTO `besan_users`
+
+BEGIN
+IF NOT EXISTS (SELECT * FROM besan_users WHERE user_name = new.user_name) THEN
+INSERT INTO `besan_users`
 			 (`user_id`,
 			  `user_name`,
 			  `user_password`,
@@ -34,16 +33,16 @@ Langkah :
 			   new.user_rights,
 			   new.user_groups,
 			   new.user_level);
-	END IF;	
-        IF NOT EXISTS (SELECT * FROM simak_mst_karyawan WHERE login = new.user_name) THEN
+END IF;	
+IF NOT EXISTS (SELECT * FROM simak_mst_karyawan WHERE login = new.user_name) THEN
                    INSERT INTO simak_mst_karyawan (Login, LevelID,password)
                    VALUES (
                                       new.user_name, 
                                       MID(new.user_groups,2,3),
                                       left(new.user_password,10)
                                    );
-        END IF;
-    END
+END IF;
+END
 
 4 pada triger st_user_update_after, fires=after, yang dicentang hanya update, masukan config berikut
 
@@ -86,9 +85,9 @@ Langkah :
 		       ELSE	
 		
 		            UPDATE  simak_mst_karyawan
-		              SET	          Login = new.user_name,
-			                             PASSWORD = LEFT(new.user_password,10),
-                                                                                    LevelID = MID(new.user_groups,2,3)
+		              SET Login = new.user_name,
+			           PASSWORD = LEFT(new.user_password,10),
+                   LevelID = MID(new.user_groups,2,3)
 		             WHERE   Login = old.user_name;
 		
 		      END IF;
