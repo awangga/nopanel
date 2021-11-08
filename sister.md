@@ -130,3 +130,5 @@
         deny all;
     }
     }
+
+###8. database, install postgresql versi 9.5, pastikan telah jalan lalu copy seluruh folder yang ada pada /var/lib/postgres/9.5/main ke folder tempat menyimpan db postgres pada server (default dari image docker /var/lib/postgres/data)
