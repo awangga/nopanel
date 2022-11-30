@@ -20,3 +20,21 @@ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 $ git config --global user.name "John Doe"
 $ git config --global user.email johndoe@example.com
 ```
+
+## Enabling SSH connections over HTTPS
+
+```sh
+$ nano ~/.ssh/config
+```
+
+```sh
+Host github.com
+  Hostname ssh.github.com
+  Port 443
+  User git
+
+Host gitlab.com
+  Hostname altssh.gitlab.com
+  User git
+  Port 443
+```
