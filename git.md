@@ -38,3 +38,20 @@ Host gitlab.com
   User git
   Port 443
 ```
+
+## Forking repository and keep update from source repo
+just one time add upstream from source of fork repo
+
+```sh
+git remote add upstream https://github.com/sisteminformasigeografis/geojson.git
+```
+
+before pull request and working in your repo, always do
+
+```sh
+git fetch upstream
+git checkout main
+git merge upstream/main
+```
+
+After that you may pull request.
