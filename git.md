@@ -20,10 +20,3 @@ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 $ git config --global user.name "John Doe"
 $ git config --global user.email johndoe@example.com
 ```
-
-## Get SSH Key 
-to get ssh key in your computer, and put in your github or gitlab ssh key setting.
-
-```sh
-cat .ssh/id_rsa.pub
-```
