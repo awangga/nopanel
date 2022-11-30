@@ -46,7 +46,7 @@ Please click fork from web interface, after that clone your repo in your desktop
 git clone git@github.com:youruserrepo/geojson.git
 ```
 
-git bash into your repo folder, just one time add upstream from source of fork repo
+git bash into your repo folder, just one time add upstream from source of fork repo. Use HTTPS in clone tab from source repo.
 
 ```sh
 git remote add upstream https://github.com/sisteminformasigeografis/geojson.git
