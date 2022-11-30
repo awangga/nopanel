@@ -40,7 +40,13 @@ Host gitlab.com
 ```
 
 ## Forking repository and keep update from source repo
-just one time add upstream from source of fork repo
+Please click fork from web interface, after that clone your repo in your desktop. Select SSH in clone tab.
+
+```sh
+git clone git@github.com:youruserrepo/geojson.git
+```
+
+git bash into your repo folder, just one time add upstream from source of fork repo
 
 ```sh
 git remote add upstream https://github.com/sisteminformasigeografis/geojson.git
