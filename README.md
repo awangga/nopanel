@@ -2,7 +2,7 @@
 DevOps Tools and Documentation
 
 ## SSH Key
-Please make sure your server or desktop has SSH key. To check it please do this command
+If ur desktop using windows, download and install [git-scm](https://git-scm.com/downloads) first. Please make sure your server or desktop has SSH key. To check it please do this command(in windows use git bash here).
 
 ```sh
 cat ~/.ssh/id_rsa.pub
