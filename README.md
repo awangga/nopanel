@@ -32,8 +32,8 @@ cd /var/www/html/siap
 git init
 git commit -m "first commit"
 git remote add origin git@github.com:awangga/crot.git
-git pull origin master --allow-unrelated-histories
-git push origin master
+git pull origin main --allow-unrelated-histories
+git push origin main
 ```
 
 ## MariaDB Database migration
