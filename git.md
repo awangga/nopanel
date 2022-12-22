@@ -6,7 +6,7 @@ to get ssh key in your computer, and put in your github or gitlab ssh key settin
 ```sh
 cat ~/.ssh/id_rsa.pub
 ```
-if there is not exist you must generate ssh key in next section
+if there is no key appears, plese generate the key also set global config of git in next section and please add the public key to your github profile.
 
 ## Generate RSA Key
 Just One time for first instalation of git scm, 
@@ -23,6 +23,8 @@ $ git config --global user.email johndoe@example.com
 ```
 
 ## Enabling SSH connections over HTTPS
+
+Just in case if your wifi or lan blocking port 22
 
 ```sh
 $ nano ~/.ssh/config

@@ -1,9 +1,10 @@
 # nopanel
-Simple Server Set Up without Panel, easy deployment and easy migration.
-Please make sure your server has SSH key. To check it please do this command
+DevOps Tools and Documentation
+
+## GIT-SCM
+Please make sure your server or desktop has SSH key. To check it please do this command
 
 ```sh
-sudo su
 cat ~/.ssh/id_rsa.pub
 ```
 
@@ -15,6 +16,8 @@ git config --global user.email "rolly@awang.ga"
 git config --global user.name "Rolly Maulana Awangga"
 cat ~/.ssh/id_rsa.pub
 ```
+
+[Detail Tutorial using git](git.md)
 
 ## Connect Source Code to Git
 Please create git repo first and copy ssh uri, for example :
