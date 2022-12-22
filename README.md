@@ -1,8 +1,8 @@
 # nopanel
-DevOps Tools and Documentation
+DevOps Tools and Documentation. If your desktop using windows, download and install [git-scm](https://git-scm.com/downloads). Use terminal or git bash for the next section.
 
 ## SSH Key
-If ur desktop using windows, download and install [git-scm](https://git-scm.com/downloads) first. Please make sure your server or desktop has SSH key. To check it please do this command(in windows use git bash here).
+Please make sure your server or desktop has SSH key. To check it please do this command :
 
 ```sh
 cat ~/.ssh/id_rsa.pub
