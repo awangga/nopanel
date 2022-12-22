@@ -1,7 +1,7 @@
 # nopanel
 DevOps Tools and Documentation
 
-## GIT-SCM
+## SSH Key
 Please make sure your server or desktop has SSH key. To check it please do this command
 
 ```sh
