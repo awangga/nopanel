@@ -19,6 +19,44 @@ cat ~/.ssh/id_rsa.pub
 
 [Detail Tutorial using git](git.md)
 
+## Using Google Colab with Drive and Git Repository
+
+Mounting drive and generate ssh
+
+```sh
+import os
+from google.colab import drive
+drive.mount('/content/drive')
+folder = '/content/drive/My Drive/SK2/fix/siabre' 
+
+savedir=folder
+os.chdir(savedir)  #change dir
+!pwd
+```
+generate ssh key, add github.com host, and backup key to current folder for next future use
+
+```sh
+!ssh-keygen -t rsa -b 4096 -C "rolly@awang.ga"
+!git config --global user.name "Rolly Maulana Awangga"
+!git config --global user.email rolly@awang.ga
+!ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+!cat ~/.ssh/id_rsa.pub
+!cp -R /root/.ssh/ ./ssh/
+```
+
+for next use just
+
+```sh
+!cp -R ./ssh/ /root/.ssh/
+```
+
+clone and change dir
+
+```sh
+!git clone url
+os.chdir('/content/drive/My Drive/SK2/fix/siabre')
+```
+
 ## Connect Source Code to Git
 Please create git repo first and copy ssh uri, for example :
 
