@@ -23,7 +23,7 @@ func TestWacipher(t *testing.T) {
     require.Len(t, rnd, n)
 	fmt.Println("rnd : ", rnd)
 
-	wh := GetAppSubDomain(rnd + "." + base64.StdEncoding.EncodeToString([]byte("https://www.gombel.com/js/sapi.asp")))
+	wh := GetAppSubDomain("https://www.gombel.com/js/sapi.asp")
 	require.Equal(t, "www", wh)
     fmt.Println("wh : ", wh)
 }
