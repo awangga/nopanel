@@ -7,24 +7,24 @@ Make file repo_test.go
 package watoken
 
 import (
-	"encoding/base64"
-	"fmt"
-	"testing"
+    "encoding/base64"
+    "fmt"
+    "testing"
 
-	"github.com/stretchr/testify/require"
+    "github.com/stretchr/testify/require"
 )
 
 func TestWacipher(t *testing.T) {
-	tokenstring, err := EncodeforSeconds(userid, privateKey, 60)
+    tokenstring, err := EncodeforSeconds(userid, privateKey, 60)
     require.NoError(t, err)
 
-	n := 100
-	rnd := RandomString(n)
+    n := 100
+    rnd := RandomString(n)
     require.Len(t, rnd, n)
-	fmt.Println("rnd : ", rnd)
+    fmt.Println("rnd : ", rnd)
 
-	wh := GetAppSubDomain("https://www.gombel.com/js/sapi.asp")
-	require.Equal(t, "www", wh)
+    wh := GetAppSubDomain("https://www.gombel.com/js/sapi.asp")
+    require.Equal(t, "www", wh)
     fmt.Println("wh : ", wh)
 }
 ```
