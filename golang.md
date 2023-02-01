@@ -36,6 +36,7 @@ Set Environtment variabel:
 GOPROXY=proxy.golang.org
 
 ```sh
+git tag
 git tag v0.0.1
 git push origin --tags
 go list -m github.com/ORG/REPO@v0.0.1
