@@ -1,5 +1,12 @@
 # Golang Dev Guide
 
+Installation
+```sh
+$ sudo add-apt-repository ppa:longsleep/golang-backports
+$ sudo apt update
+$ sudo apt install golang-go
+```
+
 ## Testing The Function
 Make file repo_test.go
 
