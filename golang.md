@@ -1,5 +1,9 @@
 # Golang Dev Guide
 
+Setup timezone
+```sh
+sudo dpkg-reconfigure tzdata
+```
 Installation
 ```sh
 $ sudo add-apt-repository ppa:longsleep/golang-backports
