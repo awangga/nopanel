@@ -1,8 +1,14 @@
 # Golang Dev Guide
-
+Setup repo and tools
+```sh
+sudo apt update
+sudo apt install python3-pip
+sudo pip instal gdown
+```
 Setup timezone
 ```sh
 sudo dpkg-reconfigure tzdata
+date
 ```
 Installation
 ```sh
