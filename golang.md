@@ -1,10 +1,5 @@
 # Golang Dev Guide
-Setup repo and tools
-```sh
-sudo apt update
-sudo apt install python3-pip
-sudo pip instal gdown
-```
+
 Setup timezone
 ```sh
 sudo dpkg-reconfigure tzdata
@@ -12,9 +7,15 @@ date
 ```
 Installation
 ```sh
-$ sudo add-apt-repository ppa:longsleep/golang-backports
-$ sudo apt update
-$ sudo apt install golang-go
+sudo add-apt-repository ppa:longsleep/golang-backports
+sudo apt update
+sudo apt install golang-go
+```
+Install Supporting Tools
+```sh
+sudo apt install unzip
+sudo apt install python3-pip
+sudo pip instal gdown
 ```
 
 ## Testing The Function
