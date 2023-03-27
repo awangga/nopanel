@@ -15,7 +15,7 @@ Install Supporting Tools
 ```sh
 sudo apt install unzip
 sudo apt install python3-pip
-sudo pip instal gdown
+sudo pip install gdown
 ```
 
 ## Testing The Function
