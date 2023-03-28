@@ -35,7 +35,3 @@ kemudian centang Mark as read dan Forward it to: Pilih email tujuan yang akan ki
 
 ![image](https://user-images.githubusercontent.com/11188109/228114994-e7923ab2-df46-4df6-99f3-5d6a96459473.png)
 
-
-
-
-![image](https://user-images.githubusercontent.com/11188109/228115284-06bd667d-9125-4197-8e3b-00bdb34eb186.png)
