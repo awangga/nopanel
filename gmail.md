@@ -27,6 +27,10 @@ Masukkan kode konfirmasi dari pemilik email penerima forward, klik verify.
 
 ![image](https://user-images.githubusercontent.com/11188109/228116540-b9835e21-281f-4875-951e-abe2997f78ca.png)
 
+Maka alamat email akan muncul di daftar forward
+
+![image](https://user-images.githubusercontent.com/11188109/228116779-83275c7a-3952-4ee3-a0bf-c89ab53dddf2.png)
+
 
 ## Set Auto Forward
 
