@@ -19,6 +19,14 @@ Muncul Pop up kita klik Proceed
 
 ![image](https://user-images.githubusercontent.com/11188109/228116164-cf641c6e-d6dc-46ff-9d3f-7cc751cb900a.png)
 
+Muncul Pop Up informasi untuk kita minta nomor konfirmasi ke pemilik email tujuan yang akan kita forwardkan emailnya. Klik Ok.
+
+![image](https://user-images.githubusercontent.com/11188109/228116394-bd3ecfb6-f21b-46c1-bdf9-45bcea92506b.png)
+
+Masukkan kode konfirmasi dari pemilik email penerima forward, klik verify.
+
+![image](https://user-images.githubusercontent.com/11188109/228116540-b9835e21-281f-4875-951e-abe2997f78ca.png)
+
 
 ## Set Auto Forward
 
