@@ -140,5 +140,5 @@ tmux attach #
 ```
 
 Navigation :
-Ctrl+B in same time
+Ctrl+B in same time, then :
 1. Page Up : to scrol up
