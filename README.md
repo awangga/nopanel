@@ -110,3 +110,31 @@ Check Disk Usage
 ```sh
 sudo du -hc --max-depth=1 /
 ```
+
+## Cloud Setup
+
+Setup timezone
+```sh
+sudo dpkg-reconfigure tzdata
+date
+```
+Go Installation
+```sh
+sudo add-apt-repository ppa:longsleep/golang-backports
+sudo apt update
+sudo apt install golang-go
+```
+Install Google Drive Connection and tools
+```sh
+sudo apt install unzip tmux
+sudo apt install python3-pip
+sudo pip install gdown
+```
+
+Update and Maintenance
+```sh
+gdown uid --folder
+tmux
+tmux ls
+tmux attach #
+```
