@@ -138,3 +138,7 @@ tmux
 tmux ls
 tmux attach #
 ```
+
+Navigation :
+Ctrl+B in same time
+1. Page Up : to scrol up
