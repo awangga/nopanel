@@ -17,7 +17,7 @@ edit fly.toml data
 
 ```sh
 flyctl volumes create wamyid_data --size=1
-fly machine run . --remote-only
+fly machine run . --file-local /go/app/api=api
 ```
 
 https://fly.io/docs/machines/
