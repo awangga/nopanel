@@ -4,6 +4,7 @@ Install
 curl -L https://fly.io/install.sh | sh
 export FLYCTL_INSTALL="/home/awangga/.fly"
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
+fly auth login
 ```
 
 Connect SSH Server:
