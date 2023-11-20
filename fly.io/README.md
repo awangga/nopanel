@@ -3,6 +3,11 @@ Connect SSH Server:
 ```sh
 /root/.fly/bin/fly ssh console -s -a appname
 ```
+## Port Forward
+to forward port from new port using socat, for example forward 2096 to 5432
+```sh
+socat -dddd TCP4-LISTEN:2096,reuseaddr,fork TCP4:127.0.0.1:5432
+```
 
 ## Cloudflare DDNS Dynamic IP
 
