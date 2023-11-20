@@ -1,7 +1,7 @@
 # Machine 
 Create Dockerfile then 
 ```sh
-fly machine run . --name my-special-Machine
+fly machine run . --remote-only
 ```
 
 https://fly.io/docs/machines/
