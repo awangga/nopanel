@@ -1,7 +1,22 @@
 # Machine 
-Create Dockerfile then 
+Create Dockerfile 
+```dockerfile
+FROM alpine:3.18
+WORKDIR /go/app
+COPY api .
+RUN apk add --no-cache bash tzdata
+ENV TZ=Asia/Jakarta
+EXPOSE 8080
+ENTRYPOINT ["./api"]
+```
+then 
 ```sh
-flyctl volumes create wa_data --size=1
+flyctl launch
+```
+edit fly.toml data
+
+```sh
+flyctl volumes create wamyid_data --size=1
 fly machine run . --remote-only
 ```
 
