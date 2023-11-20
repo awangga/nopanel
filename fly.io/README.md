@@ -20,7 +20,7 @@ CLOUDFLARE_API_KEY=tokenfromrequestapi
 
 ## Define the domain and record ID you want to update
 DOMAIN=32bitkeyfromdomaindashboard
-NAME=subdomain.tld.id
+NAME=subdomain.tld.name
 
 ## Get Record ID sub domain to update using this curl request
 #curl -s https://api.cloudflare.com/client/v4/zones/$DOMAIN/dns_records \
