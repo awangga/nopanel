@@ -8,7 +8,7 @@ Create PostgreSQL server with appname :
 /root/.fly/bin/flyctl postgres restart -a appname
 ```
 
-Tunneling to PostgreSQL via proxy, scipt:
+Tunneling to PostgreSQL via proxy, db.sh script:
 
 ```sh
 #!/bin/sh
