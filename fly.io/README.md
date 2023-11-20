@@ -11,6 +11,11 @@ socat -dddd TCP4-LISTEN:2096,reuseaddr,fork TCP4:127.0.0.1:5432
 
 ## Cloudflare DDNS Dynamic IP
 
+First install jq:
+```sh
+apt install jq
+```
+
 Create script ip.sh to update IPV6 :
 ```sh
 #!/bin/bash
