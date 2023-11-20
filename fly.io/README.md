@@ -1,4 +1,11 @@
 # Fly.io Script
+Install
+```sh
+curl -L https://fly.io/install.sh | sh
+export FLYCTL_INSTALL="/home/awangga/.fly"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
+```
+
 Connect SSH Server:
 ```sh
 /root/.fly/bin/fly ssh console -s -a appname
