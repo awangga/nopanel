@@ -28,8 +28,9 @@ flyctl scale count 1 -a wamyid
 edit fly.toml data
 
 ```sh
-flyctl volumes create wamyid_data --size=1
-fly machine run . --file-local /go/app/api=api
+fly secrets set MONGOSTRING=
+fly secrets set PUBLICKEY=
+fly secrets set PRIVATEKEY=
 
 ```
 
