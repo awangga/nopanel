@@ -1,17 +1,27 @@
-# Machine 
-Create Dockerfile 
-```dockerfile
-FROM alpine:3.18
-WORKDIR /go/app
-COPY api .
-RUN apk add --no-cache bash tzdata
-ENV TZ=Asia/Jakarta
-EXPOSE 8080
-ENTRYPOINT ["./api"]
+# Machine
+Run launch for the first time creating app
+```sh
+flyctl launch
+```
+Edit fly.toml file 
+```toml
+app = "wamyid"
+primary_region = "sin"
+
+[build]
+  builder = "paketobuildpacks/builder:base"
+  buildpacks = ["gcr.io/paketo-buildpacks/go"]
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = false
+  auto_start_machines = true
+  min_machines_running = 1
+  processes = ["app"]
 ```
 then 
 ```sh
-flyctl launch
 flyctl deploy --ha=false && flyctl scale count 1 -y
 flyctl scale count 1 -a wamyid
 ```
