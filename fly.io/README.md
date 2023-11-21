@@ -10,7 +10,25 @@ fly auth login
 ```sh
 fly tokens create deploy -x 999999h
 ```
-![image](https://github.com/awangga/nopanel/assets/11188109/84e3da90-4ff3-4945-8277-3df6c5cd3d03)
+![image](https://github.com/awangga/nopanel/assets/11188109/84e3da90-4ff3-4945-8277-3df6c5cd3d03)  
+create file .github/workflows/fly.yml :
+```yml
+name: Fly Deploy
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    name: Deploy app
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: flyctl deploy --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+```
 
 
 ## SSH
