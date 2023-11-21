@@ -21,3 +21,5 @@ fly machine run . --file-local /go/app/api=api
 ```
 
 https://fly.io/docs/machines/
+
+https://www.callicoder.com/docker-golang-image-container-example/
