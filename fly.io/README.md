@@ -21,6 +21,7 @@ socat -dddd TCP4-LISTEN:2096,reuseaddr,fork TCP4:127.0.0.1:5432
 
 First install jq:
 ```sh
+curl text.ipv6.wtfismyip.com
 apt install jq
 ```
 
