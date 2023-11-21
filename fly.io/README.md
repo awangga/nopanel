@@ -16,6 +16,12 @@ to forward port from new port using socat, for example forward 2096 to 5432
 ```sh
 socat -dddd TCP4-LISTEN:2096,reuseaddr,fork TCP4:127.0.0.1:5432
 ```
+## SSL Custom domain
+run
+```sh
+fly certs add fly.wa.my.id
+fly certs show fly.wa.my.id
+```
 
 ## Cloudflare DDNS Dynamic IP
 
