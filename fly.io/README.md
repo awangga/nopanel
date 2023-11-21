@@ -6,7 +6,14 @@ export FLYCTL_INSTALL="/home/awangga/.fly"
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
 fly auth login
 ```
+## CI/CD Github
+```sh
+fly tokens create deploy -x 999999h
+```
+![image](https://github.com/awangga/nopanel/assets/11188109/84e3da90-4ff3-4945-8277-3df6c5cd3d03)
 
+
+## SSH
 Connect SSH Server:
 ```sh
 /root/.fly/bin/fly ssh console -s -a appname
