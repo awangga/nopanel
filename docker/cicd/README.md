@@ -147,6 +147,23 @@ deploy:
 ## Setting Deploy key
 1. Tambahkan deploy token pada menu Repository > deploy tokens
 ![Alt text](image-44.png)
-
 - Setelah semuanya sudah disetting push semua file ke repository, dan akses IP yang tadi sudah disimpan pada docker compose
-
+2. Setting Domain
+![Alt text](image-49.png)
+3. Pastikan anda sudah login dengan menggunakan email khusus
+![Alt text](image-50.png)
+4. CNAME Itu mengcopy a record dari domain yang lain
+5. menuju kegitbash lalu ketik ssh seperti pada gambar pastikan mengarah keport dan url yang benar
+![Alt text](image-52.png)
+6. Silahkan ketik seperti pada gambar ini
+![Alt text](image-53.png)
+7. Copy untuk settingan kimtembim ke project baru 
+![Alt text](image-54.png)
+8. Setelah itu sudo nano nama project
+![Alt text](image-55.png)
+9. Kemudian silahkan checknginx dulu, dan direstart
+![Alt text](image-56.png)
+10. Menambahkan Settingan conf digitlab dan pastikan untuk url dan port nya itu benar sesuai dengan yang dipilih diexcel awal
+![Alt text](image-57.png)
+11. Setelah itu anda dapat mengakses url sesuai dengan yang dibuat dari cloudflare
+![Alt text](image-58.png)
