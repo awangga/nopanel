@@ -66,3 +66,11 @@
 13. Kemudian buat EXPOSE untuk port yang akan digunakan dan CMD diisi oleh nama file hasil build
 ![dockerfile](image-31.png)
 14. PUSH semua file yang ada langsung ke repository anda
+
+
+## Setting CI/CD
+1. Buka gitlab, dan masuk ke menu setting CI/CD
+![CI/CD](image-32.png)
+2. Pilih Menu Runner
+![runner](image-33.png)
+3. 
