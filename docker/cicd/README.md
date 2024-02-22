@@ -73,4 +73,80 @@
 ![CI/CD](image-32.png)
 2. Pilih Menu Runner
 ![runner](image-33.png)
-3. 
+3. Clik New Project runner
+![create new project](image-34.png)
+4. ceklis run untag jobs
+![run untag](image-35.png)
+5. Ceklis lock to current project
+![lock current project](image-36.png)
+6. Masuk ke git bash dan server docker
+![halaman runner](image-38.png)
+7. Register runner
+![reg](image-37.png)
+8. Kemudian lakukan enter sebanyak 2 kali dan pilih shell
+![Alt text](image-39.png)
+9. Kembali ke runner page, dan pastikan runner sudah muncul dan seperti pada gambar berikut
+![Alt text](image-40.png)
+10. Buat Docker compose, ubah container sesuai dengan nama project anda 
+![Alt text](image-41.png)
+11. Ubah IP sesuai dengan IP kosong
+![Alt text](image-43.png)
+12. Pada file DOckerfile tambahkan dumb init
+![Alt text](image-45.png)
+
+### Gitlab CI
+1. Konfigurasikan gitlab ci seperti pada gambar berikut
+```yml
+
+#Setting environment variable runner
+variables:
+  GIT_DEPTH: 1
+
+#Tahapan build
+stages:
+  - build
+  - deploy
+
+
+#job untuk build
+build-docker:
+  #Hanya running di branch main
+  only:
+    - main
+  #tahapan build
+  stage: build
+  #Perintah yang dijalankan untuk build
+  script:
+    - docker build -t $CI_REGISTRY_IMAGE:prod-latest -f Dockerfile .
+    - docker login -u $CI_DEPLOY_USER -p $CI_DEPLOY_PASSWORD $CI_REGISTRY
+    - docker push $CI_REGISTRY_IMAGE:prod-latest
+  #konfigurasi ketika gagal
+  retry:
+    #maksimum retry
+    max: 2
+    #kondisi ketika retry
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
+
+#job untuk deploy
+deploy:
+  #tahapan
+  stage: deploy
+  #hanya menjalankan branch main
+  only:
+    - main
+    #Perintah yang dijalankan untuk deploy
+  script:
+    - docker login -u $CI_DEPLOY_USER -p $CI_DEPLOY_PASSWORD $CI_REGISTRY
+    - docker pull $CI_REGISTRY_IMAGE:prod-latest
+    - docker-compose -f docker-compose.yml up -d
+    - docker image prune -f
+```
+
+## Setting Deploy key
+1. Tambahkan deploy token pada menu Repository > deploy tokens
+![Alt text](image-44.png)
+
+- Setelah semuanya sudah disetting push semua file ke repository, dan akses IP yang tadi sudah disimpan pada docker compose
+
