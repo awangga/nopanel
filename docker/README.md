@@ -1,4 +1,4 @@
-# Docker
+# Docker Shell Command
 Docker cloud implementation in digital ocean. Simple and clear commmand. First download ubuntu image from docker hub, 
 run the image with name n6. Check if docker process and login to bash. 
 ```sh
