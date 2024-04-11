@@ -10,8 +10,6 @@ Instant Tunnel
 cloudflared tunnel --url 192.168.1.222:443
 ```
 
-https://developers.cloudflare.com/cloudflare-one/connections/connect-apps
-
 Logged In Tunnel
 ```powershell
 cloudflared tunnel login
