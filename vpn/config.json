@@ -1,0 +1,23 @@
+{
+  "inbounds": [{
+    "port": 8080,
+    "protocol": "vmess",
+    "settings": {
+      "clients": [
+        {
+          "id": "08a5d7ec-45d7-4928-9bd6-d9bd97c00cde"
+        }
+      ]
+    },
+       "streamSettings":{
+         "network": "ws",
+            "wsSettings": {
+                "path": "/lawang"
+          }
+        }
+  }],
+  "outbounds": [{
+    "protocol": "freedom",
+    "settings": {}
+  }]
+}
