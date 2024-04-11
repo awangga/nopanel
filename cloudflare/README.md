@@ -1,11 +1,12 @@
 # Cloudflare
-
+Installation
+```powershell
+winget install --id Cloudflare.cloudflared
+```
 ## Tunnel
 
 Instant Tunnel
-
 ```powershell
-winget install --id Cloudflare.cloudflared
 cloudflared tunnel --url 192.168.1.222:443
 ```
 
