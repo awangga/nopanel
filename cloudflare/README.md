@@ -27,6 +27,5 @@ credentials-file: C:\Users\LENOVO\.cloudflared\7cbb68b2-07ec-414a-bf60-2666aeeaa
 ```
 run again
 ```powershell
-cloudflared tunnel route dns docker docker.ulbi.ac.id
 cloudflared tunnel run docker
 ```
