@@ -11,8 +11,10 @@ Easy Set Up VPN Server and Client
 5. If you have Public IP you might use nginx with proxy pass feature config:
    ```conf
    server {
-        listen 443;
+        listen 443 ssl;
         server_name  sub.domain.com;
+        ssl_certificate     www.example.com.crt;
+        ssl_certificate_key www.example.com.key;
 
         client_max_body_size 100M;
         location / {# if you have any website service
