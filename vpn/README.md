@@ -17,14 +17,14 @@ Easy Set Up VPN Server and Client
         ssl_certificate_key www.example.com.key;
 
         client_max_body_size 100M;
-        location / {# if you have any website service
+        location / {# remove this block, if you do not have any website service
             proxy_pass http://127.0.0.1:3000;
             proxy_set_header X-Real-IP  $remote_addr;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_set_header Host $host;
         }
 
-        location /ws/ {#if you have any websocket service
+        location /ws/ {# remove this block, if you do not have any WebSocket service
         proxy_set_header   X-Forwarded-For $remote_addr;
         proxy_http_version 1.1;
         proxy_set_header   Host $http_host;
@@ -46,7 +46,7 @@ Easy Set Up VPN Server and Client
               # Show real IP in v2ray access.log
               proxy_set_header X-Real-IP $remote_addr;
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            }
+       }
    }
    ```
 
