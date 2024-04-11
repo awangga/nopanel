@@ -8,16 +8,20 @@ Easy Set Up VPN Server and Client
 2. Download into the xray folder and set [config.json](config.json) file
 3. Run xray or xray.exe inside folder xray
 4. If you don't have IP Public, use with [cloudflare tunnel script](run.bat) or just run: cloudflared tunnel run id
+5. If you have Public IP you might use nginx with proxy pass feature config:
+   ```conf
+   
+   ```
 
 ## Client
 
 The easy way to connect to a VPN by using [Nekoray](https://github.com/MatsuriDayo/nekoray)
 
 Please set:
-* Port : 443
-* UUID : 08a5d7ec-45d7-4928-9bd6-d9bd97c00cde
-* Host and Address : your cloudflared tunneled domain
-* Path : /lawang
+* Port: 443
+* UUID: 08a5d7ec-45d7-4928-9bd6-d9bd97c00cde
+* Host and Address: your cloudflared tunneled domain or nginx vhost sub domain
+* Path: /lawang
 
 ![image](https://github.com/netpedia/netpedia.github.io/assets/11188109/0c22d5f4-b1f3-4a77-a610-b54c56d38ea5)
 
