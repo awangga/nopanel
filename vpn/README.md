@@ -10,7 +10,42 @@ Easy Set Up VPN Server and Client
 4. If you don't have IP Public, use with [cloudflare tunnel script](run.bat) or just run: cloudflared tunnel run id
 5. If you have Public IP you might use nginx with proxy pass feature config:
    ```conf
-   
+   server {
+        listen 443;
+        server_name  sub.domain.com;
+
+        client_max_body_size 100M;
+        location / {# if you have any website service
+            proxy_pass http://127.0.0.1:3000;
+            proxy_set_header X-Real-IP  $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header Host $host;
+        }
+
+        location /ws/ {#if you have any websocket service
+        proxy_set_header   X-Forwarded-For $remote_addr;
+        proxy_http_version 1.1;
+        proxy_set_header   Host $http_host;
+        proxy_set_header Upgrade websocket;
+        proxy_set_header Connection Upgrade;
+        proxy_pass         http://127.0.0.1:4000;
+        }
+
+        location /lawang {#vpn path
+              if ($http_upgrade != "websocket") {
+                  return 404;
+              }
+              proxy_redirect off;
+              proxy_pass http://127.0.0.1:8080;
+              proxy_http_version 1.1;
+              proxy_set_header Upgrade $http_upgrade;
+              proxy_set_header Connection "upgrade";
+              proxy_set_header Host $http_host;
+              # Show real IP in v2ray access.log
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            }
+   }
    ```
 
 ## Client
