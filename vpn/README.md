@@ -14,8 +14,9 @@ Easy Set Up VPN Server and Client
 The easy way to connect to a VPN by using [Nekoray](https://github.com/MatsuriDayo/nekoray)
 
 Please set:
+* Port : 443
 * UUID : 08a5d7ec-45d7-4928-9bd6-d9bd97c00cde
-* Host : your cloudflared tunneled domain
+* Host and Address : your cloudflared tunneled domain
 * Path : /lawang
 
 ![image](https://github.com/netpedia/netpedia.github.io/assets/11188109/0c22d5f4-b1f3-4a77-a610-b54c56d38ea5)
