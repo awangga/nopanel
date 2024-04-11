@@ -14,6 +14,10 @@ Easy Set Up VPN Server and Client
 The easy way to connect to a VPN by using Nekoray
 [Nekoray](https://github.com/MatsuriDayo/nekoray)
 
+Please set:
+UUID : 
+Path : /lawang
+
 ![image](https://github.com/netpedia/netpedia.github.io/assets/11188109/0c22d5f4-b1f3-4a77-a610-b54c56d38ea5)
 
 ![image](https://user-images.githubusercontent.com/11188109/235293800-39022689-3926-4f4e-9de2-669a797bf994.png)
