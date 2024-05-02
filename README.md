@@ -19,6 +19,15 @@ cat ~/.ssh/id_rsa.pub
 
 [Detail Tutorial using git](git.md)
 
+## How to release a tag version in git
+
+Open your git bash, change directory into your repo folders then:  
+```sh
+git tag                                 	#check current version
+git tag v0.0.3                          	#set tag version
+git push origin --tags                  	#push tag version to repo
+```
+
 ## Using Google Colab with Drive and Git Repository
 
 Mounting drive and generate ssh
