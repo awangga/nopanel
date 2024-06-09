@@ -27,6 +27,7 @@ use yourDatabase
 
 db.yourCollection.getIndexes()
 ```
+![image](https://github.com/awangga/nopanel/assets/11188109/400b3d79-b557-4002-80a3-762a8c48e528)  
 
 ### Kode Golang
 Buat dahulu field yang berbasiskan waktu, contoh field CreatedAt ditambahkan pada Struct Document:
