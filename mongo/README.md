@@ -1,7 +1,8 @@
 # MongoDB
 
 ## Membuat TTL Collection
-Membuat document pada collection otomatis terhapus
+Menggunakan TTL indexes di MongoDB membutuhkan sebuah field dengan tipe tanggal (Date) untuk menentukan waktu kadaluwarsa. Sayangnya, TTL indexes tidak dapat digunakan langsung pada field yang bukan tipe Date. Jadi, Anda tidak dapat secara langsung menggunakan field seperti userid (jika itu bukan tipe Date) sebagai dasar untuk TTL index.
+
 ### Membuka Mongoshell
 Pertama tambahkan dahulu json kedalam collection:
 ```json
