@@ -18,7 +18,7 @@ use yourDatabase
 
 db.yourCollection.createIndex(
    { "createdAt": 1 },
-   { expireAfterSeconds: 3600 } // 3600 seconds = 1 hour
+   { expireAfterSeconds: 300 } // 300 seconds = 5 menit
 )
 ```
 Cek hasilnya
