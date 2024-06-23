@@ -7,7 +7,7 @@ Easy Set Up VPN Server and Client
 1. Download [latest X-Ray Core](https://github.com/XTLS/Xray-core/releases) or just use [Docker Image](https://github.com/xtls/Xray-core/pkgs/container/xray-core)
 2. Download into the xray folder and set [config.json](config.json) file
 3. Run xray or xray.exe inside folder xray
-4. If you don't have IP Public, use with [cloudflare tunnel script](run.bat) or just run: cloudflared tunnel run id
+4. If you don't have IP Public, use with [cloudflare tunnel script](run.bat) or just run: [cloudflared](https://github.com/cloudflare/cloudflared/releases) tunnel run id
 5. If you have Public IP you might use nginx with proxy pass feature config:
    ```conf
    server {
