@@ -12,6 +12,19 @@ Pertama tambahkan dahulu json kedalam collection:
   "createdAt": ISODate("2024-06-09T00:00:00Z")
 }
 ```
+atau
+```json
+{
+  "_id": {
+    "$oid": "60c72b2f4f1a4e3a7c8b4567"
+  },
+  "username": "user1",
+  "createdAt": {
+    "$date": "2024-06-09T00:00:00Z"
+  }
+}
+
+```
 buka mongoshell jalankan:
 ```sh
 use yourDatabase
