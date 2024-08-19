@@ -42,6 +42,13 @@ db.yourCollection.getIndexes()
 ```
 ![image](https://github.com/awangga/nopanel/assets/11188109/400b3d79-b557-4002-80a3-762a8c48e528)  
 
+Jika ingin melakukan update detiknya maka lakukan drop dulu dan buat lagi:
+
+```sh
+db.collection.dropIndex("createdAt_1");
+db.collection.createIndex({ createdAt: 1 }, { expireAfterSeconds: 300 });
+```
+
 ### Kode Golang
 Buat dahulu field yang berbasiskan waktu, contoh field CreatedAt ditambahkan pada Struct Document:
 ```go
