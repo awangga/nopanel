@@ -1,6 +1,10 @@
 # MongoDB
 
 ## Membuat TTL Collection
+
+![image](https://github.com/user-attachments/assets/91337041-0e8f-46f1-aaf7-f8cfb0c345c8)
+
+
 Menggunakan TTL indexes di MongoDB membutuhkan sebuah field dengan tipe tanggal (Date) untuk menentukan waktu kadaluwarsa. Sayangnya, TTL indexes tidak dapat digunakan langsung pada field yang bukan tipe Date. Jadi, Anda tidak dapat secara langsung menggunakan field seperti userid (jika itu bukan tipe Date) sebagai dasar untuk TTL index.
 
 ### Membuka Mongoshell
