@@ -1,0 +1,17 @@
+services:
+  app:
+    container_name: corewebapp   # Nama container untuk kemudahan identifikasi
+    build:
+      context: .
+    ports:
+      - "8000:8000"                # Mengekspos port 80 di host ke port 80 di container
+      - "6001:6001"
+    env_file:
+      - .env  # Memuat variabel dari file .env
+    restart: unless-stopped    # Opsi restart otomatis jika container mati
+    networks:
+      - intranet
+
+networks:
+  intranet:
+    driver: bridge             # Menggunakan jaringan bridge default untuk koneksi antar-container
