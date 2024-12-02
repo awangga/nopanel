@@ -1,14 +1,15 @@
 # Custom robots.txt
 
-Gunakan custom robots.txt untuk mengkostumasi sub menu di hasil pencarian
+https://www.example.com/robots.txt
 
+Gunakan custom robots.txt untuk mengkostumasi sub menu di hasil pencarian:  
 ```txt
 User-agent: *
 Allow: /
 Sitemap: https://raw.githubusercontent.com/awangga/blogger/main/sitemap/bukupedia.co.id/sitemap.xml
 ```
 
-isi sitemap.xml
+isi sitemap.xml:  
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset
