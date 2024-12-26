@@ -1,5 +1,10 @@
 # ARM Compile
 
+```sh
+sudo apt update
+sudo apt install build-essential automake autoconf libcurl4-openssl-dev libssl-dev zlib1g-dev
+```
+
 ## ARM32
 
 YesScript using cpuminer-multi
@@ -11,9 +16,6 @@ Features        : half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt 
 Run this command
 ```sh
 lscpu
-sudo apt update
-sudo apt install libcurl4-openssl-dev
-sudo apt install libssl-dev
 make clean
 ```
 
@@ -35,6 +37,26 @@ CFLAGS="-march=armv8-a+crypto+neon -O3" ./configure
 
 
 
-./configure CFLAGS="-O3 -march=native" LDFLAGS="-lcurl -lssl -lcrypto -lz"
+./configure CFLAGS="-O3 -march=native+neon" LDFLAGS="-lcurl -lssl -lcrypto -lz"
 make
 ```
+
+---
+
+### **1. Jalankan `./configure` dengan CFLAGS dan LDFLAGS**
+Gunakan perintah berikut:
+```bash
+./configure CFLAGS="-O3 -march=native+neon" LDFLAGS="-lcurl -lssl -lcrypto -lz"
+```
+
+- **`CFLAGS="-O3 -march=native+neon"`**:
+  - `-O3`: Optimasi tingkat tinggi untuk kinerja maksimum.
+  - `-march=native+neon`: Menggunakan semua fitur yang didukung oleh CPU Anda, termasuk NEON.
+
+- **`LDFLAGS="-lcurl -lssl -lcrypto -lz"`**:
+  - `-lcurl`: Menghubungkan pustaka **libcurl**.
+  - `-lssl`: Menghubungkan pustaka **OpenSSL**.
+  - `-lcrypto`: Menghubungkan pustaka kriptografi.
+  - `-lz`: Menghubungkan pustaka **zlib** untuk kompresi.
+
+---
