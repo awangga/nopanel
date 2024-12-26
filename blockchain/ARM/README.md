@@ -26,25 +26,13 @@ make clean
 Configure and make
 
 ```sh
+export CFLAGS="-O3 -march=native+neon"
+export LDFLAGS="-lcurl -lssl -lcrypto -lz -ljansson"
 autoreconf -fiv
 ./autogen.sh
-./configure CFLAGS="-O3"
-make
-
-
-CFLAGS="-march=native" ./autogen.sh
-./configure CFLAGS="-O3"
-make
-
-CFLAGS="-march=native+neon -O3" ./configure
-
-./configure CFLAGS="-O3 -march=native+neon" LDFLAGS="-lcurl -lssl -lcrypto -lz"
-make
-
-
-./configure CFLAGS="-O3 -march=native" LDFLAGS="-lcurl -lssl -lcrypto -lz -ljansson"
+./configure
 make V=1
-
+make clean
 ```
 
 ---
