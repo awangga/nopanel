@@ -10,6 +10,10 @@ sudo apt install build-essential automake autoconf libcurl4-openssl-dev libssl-d
 YesScript using cpuminer-multi
 
 ```sh
+git clone https://github.com/tpruvot/cpuminer-multi.git
+cd cpuminer-multi
+
+
 $ cat /proc/cpuinfo
 Features        : half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm
 ```
@@ -19,11 +23,9 @@ lscpu
 make clean
 ```
 
+Configure and make
+
 ```sh
-git clone https://github.com/tpruvot/cpuminer-multi.git
-cd cpuminer-multi
-
-
 ./autogen.sh
 ./configure CFLAGS="-O3"
 make
@@ -33,9 +35,7 @@ CFLAGS="-march=native" ./autogen.sh
 ./configure CFLAGS="-O3"
 make
 
-CFLAGS="-march=armv8-a+crypto+neon -O3" ./configure
-
-
+CFLAGS="-march=native+neon -O3" ./configure
 
 ./configure CFLAGS="-O3 -march=native+neon" LDFLAGS="-lcurl -lssl -lcrypto -lz"
 make
