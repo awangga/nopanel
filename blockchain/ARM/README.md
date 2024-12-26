@@ -26,6 +26,7 @@ make clean
 Configure and make
 
 ```sh
+autoreconf -fiv
 ./autogen.sh
 ./configure CFLAGS="-O3"
 make
