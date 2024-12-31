@@ -1,9 +1,25 @@
 # ARM Compile
-
+Debian based
 ```sh
 sudo apt update
 sudo apt install build-essential automake autoconf libcurl4-openssl-dev libssl-dev zlib1g-dev libjansson-dev
 ```
+
+freebsd based
+```sh
+pkg update
+pkg upgrade
+pkg install git clang make automake autoconf curl openssl zlib libjansson
+```
+
+clone dan compile
+
+```sh
+git clone --depth 1 https://github.com/JayDDee/cpuminer-opt.git
+cd cpuminer-opt
+./build.sh
+```
+
 
 ## ARM32
 
