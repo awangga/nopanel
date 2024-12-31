@@ -15,9 +15,10 @@ pkg install git clang make automake autoconf curl openssl zlib libjansson
 clone dan compile
 
 ```sh
-git clone --depth 1 https://github.com/JayDDee/cpuminer-opt.git
+git clone --depth 1 https://github.com/awangga/cpuminer-opt.git
 cd cpuminer-opt
 ./build.sh
+./cpuminer
 ```
 
 
