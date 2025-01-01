@@ -2,7 +2,7 @@
 Debian based
 ```sh
 sudo apt update
-sudo apt install build-essential automake autoconf libcurl4-openssl-dev libssl-dev zlib1g-dev libjansson-dev
+sudo apt install build-essential automake autoconf libcurl4-openssl-dev libssl-dev zlib1g-dev libjansson-dev libgmp-dev
 ```
 
 freebsd based
