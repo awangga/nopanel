@@ -9,10 +9,14 @@ sudo swapon /swapfile
 echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 ```
 
-Install dan running x11vnc
+Instalasi
 
 ```sh
 sudo apt install -y xorg x11vnc xvfb openbox
+```
+
+running x11vnc
+```sh
 ps aux | grep Xvfb
 kill -9
 sudo rm -f /tmp/.X0-lock
