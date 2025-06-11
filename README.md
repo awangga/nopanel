@@ -5,15 +5,23 @@ DevOps Tools and Documentation. If your desktop using windows, download and inst
 Please make sure your server or desktop has SSH key. To check it please do this command :
 
 ```sh
-cat ~/.ssh/id_rsa.pub
+cat ~/.ssh/id_ed25519.pub
 ```
 
 if there is no key appears, plese generate the key also set global config of git and please add the public key to your github profile.
 
 ```sh
-ssh-keygen -t rsa -b 4096 -C "rolly@awang.ga"
-git config --global user.email "rolly@awang.ga"
+ssh-keygen -t ed25519 -C "awangga@gmail.com"
+```
+
+```sh
+git config --global user.email "awangga@gmail.com"
 git config --global user.name "Rolly Maulana Awangga"
+```
+
+Old RSA Legacy Systems:
+```sh
+ssh-keygen -t rsa -b 4096 -C "awangga@gmail.com"
 cat ~/.ssh/id_rsa.pub
 ```
 
