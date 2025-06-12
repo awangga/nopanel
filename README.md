@@ -25,6 +25,15 @@ ssh-keygen -t rsa -b 4096 -C "awangga@gmail.com"
 cat ~/.ssh/id_rsa.pub
 ```
 
+## tmux
+Set tmux tmp dir
+
+```sh
+# Set tmux socket di direktori current
+export TMUX_TMPDIR=$(pwd)
+tmux
+```
+
 [Detail Tutorial using git](git.md)
 
 ## How to release a tag version in git
