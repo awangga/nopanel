@@ -29,8 +29,13 @@ cat ~/.ssh/id_rsa.pub
 Set tmux tmp dir
 
 ```sh
-# Set tmux socket di direktori current
-export TMUX_TMPDIR=$(pwd)
+# Buat folder tmuxtmp di current directory
+mkdir -p $(pwd)/tmuxtmp
+
+# Set tmux tmpdir ke folder tersebut
+export TMUX_TMPDIR=$(pwd)/tmuxtmp
+
+# Jalankan tmux
 tmux
 ```
 
