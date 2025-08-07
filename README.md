@@ -1,6 +1,12 @@
 # nopanel
 DevOps Tools and Documentation. If your desktop using windows, download and install [git-scm](https://git-scm.com/downloads). Use terminal or git bash for the next section.
 
+```sh
+powerprofilesctl set performance
+powerprofilesctl set balanced
+```
+
+
 ## SSH Key
 Please make sure your server or desktop has SSH key. To check it please do this command :
 
