@@ -57,6 +57,75 @@ Nmap done: 1 IP address (1 host up) scanned in 143.49 seconds
 awangga@awangga-MacBookPro:~$ 
 ```
 
+Nah pas banget mas Rolly 👍
+
+Kalau laptop kamu dijadikan **gateway + DHCP server** untuk AP di VLAN 100, maka AP akan “lari” ke laptop kamu buat CAPWAP discovery. Jadi cara capture dengan `tcpdump` memang seperti yang kamu tulis, tinggal sedikit tambahan supaya lebih lengkap:
+
+---
+
+## 🔹 1. Interface VLAN 100
+
+Kalau interface kamu sudah bikin VLAN:
+
+```bash
+sudo ip link add link enp2s0f0 name enp2s0f0.100 type vlan id 100
+sudo ip addr add 172.16.1.1/24 dev enp2s0f0.100
+sudo ip link set enp2s0f0.100 up
+```
+
+dan DHCP server (misalnya `isc-dhcp-server`) sudah listen di `enp2s0f0.100`, berarti AP akan dapat IP via DHCP dari laptop kamu.
+
+---
+
+## 🔹 2. Perintah tcpdump
+
+Ya, perintah kamu sudah pas:
+
+```bash
+sudo tcpdump -i enp2s0f0.100 udp port 5246 -w capwap.pcap
+```
+
+Artinya:
+
+* **-i enp2s0f0.100** → capture khusus interface VLAN 100
+* **udp port 5246** → filter hanya CAPWAP control traffic
+* **-w capwap.pcap** → simpan ke file untuk analisis Wireshark
+
+Kalau mau lihat live di terminal (hexdump + ringkas):
+
+```bash
+sudo tcpdump -i enp2s0f0.100 -nnvv udp port 5246
+```
+
+Kalau sekalian capture juga CAPWAP data channel:
+
+```bash
+sudo tcpdump -i enp2s0f0.100 udp port 5246 or udp port 5247 -w capwap.pcap
+```
+
+---
+
+## 🔹 3. Analisis di Wireshark
+
+Nanti buka `capwap.pcap`:
+
+* Filter: `capwap`
+* Cari **Discovery Request / Response**
+* Cari **Join Request / Response**
+* Lihat **WLAN Config TLV** → biasanya ada SSID, encryption, VLAN.
+
+---
+
+📌 **Kesimpulan:**
+✅ Perintah kamu sudah benar untuk kondisi laptop jadi DHCP server VLAN 100.
+✅ Kalau mau lebih lengkap, tambahin `or udp port 5247` biar dapat control + data.
+✅ Setelah itu analisis file `capwap.pcap` di Wireshark → itulah kunci untuk bikin fake CAPWAP di Go.
+
+---
+
+👉 Mau saya kasih contoh **Wireshark field yang biasanya berisi SSID & security** supaya kamu tahu harus cari di TLV mana saat analisis `capwap.pcap`?
+
+
 
 ## DHCP Server
 
