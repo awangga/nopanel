@@ -1,3 +1,63 @@
+#VLAN-100
+
+```sh
+awangga@awangga-MacBookPro:~$ ssh -o HostKeyAlgorithms=+ssh-rsa admin@10.0.0.1
+admin@10.0.0.1's password: 
+Wireless>                                                                                                                    
+  add              Configure system params                                                                                   
+  arping           Network arping                                                                                            
+  clean            Clean logs on flash                                                                                       
+  debug            Debugging functions (see also 'undebug')                                                                  
+  del              Configure system params                                                                                   
+  end              End current mode and change to enable mode.                                                               
+  exec             Execute jobs                                                                                              
+  exit             Exit current mode and down to previous mode                                                               
+  factory          Reset config                                                                                              
+  free             Display amount of free and used memory in this system                                                     
+  no               Negate a command or set its defaults                                                                      
+  password         Change password for admin                                                                                 
+  ping             Network ping                                                                                              
+  ps               Report a snapshot of the current processes                                                                
+  reboot           Reboot system                                                                                             
+  reconnect        Disconnect from AC and connect again                                                                      
+  scp              Special Containment Procedures                                                                            
+  set              Configure system params                                                                                   
+  show             Show running system information                                                                           
+  speedtest        Speed test                                                                                                
+  ssh              Start SSH connection                                                                                      
+  tcpdump          Dumpping packet infomation                                                                                
+  telnet           Start telnet connection                                                                                   
+  terminal         Set terminal line parameters                                                                              
+  timeout          Configure terminal timeout                                                                                
+  top              Display Linux tasks                                                                                       
+  traceroute       Network trace route                                                                                       
+  troubleshooting  Tar all logs of /data to /tmp                                                                             
+  upgrade          Upgrade system software                                                                                   
+Wireless> exit                                                                                                               
+Connection to 10.0.0.1 closed.                                                                                               
+awangga@awangga-MacBookPro:~$ nmap -sV 10.0.0.1
+Starting Nmap 7.80 ( https://nmap.org ) at 2025-09-10 07:53 WIB
+Nmap scan report for _gateway (10.0.0.1)
+Host is up (0.017s latency).
+Not shown: 995 closed ports
+PORT     STATE SERVICE    VERSION
+22/tcp   open  ssh        Dropbear sshd (protocol 2.0)
+23/tcp   open  telnet     BusyBox telnetd
+53/tcp   open  domain?
+2601/tcp open  tcpwrapped
+9000/tcp open  http       lighttpd 1.4.54
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port53-TCP:V=7.80%I=7%D=9/10%Time=68C0CC28%P=x86_64-pc-linux-gnu%r(DNSV
+SF:ersionBindReqTCP,20,"\0\x1e\0\x06\x81\x84\0\x01\0\0\0\0\0\0\x07version\
+SF:x04bind\0\0\x10\0\x03");
+Service Info: Host: OpenWrt; OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 143.49 seconds
+awangga@awangga-MacBookPro:~$ 
+```
+
+
 ## DHCP Server
 
 Wah ini seru 😎. Jadi skenarionya:
