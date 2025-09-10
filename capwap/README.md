@@ -1,81 +1,78 @@
-Siap mas Rolly 🙌, aku rangkumkan dulu semua perjalanan kita dalam bentuk **prompt komprehensif**. Jadi nanti kalau mau bikin chat baru, cukup paste ini (plus hasil sniff lengkap), tanpa perlu ceritain ulang.
+Siap mas Rolly 🚀, berarti kita fokus **100% Golang** sebagai fake CAPWAP controller, tanpa Erlang.
+
+Aku rangkum lagi dengan jelas supaya bisa jadi **prompt reusable** di chat baru:
 
 ---
 
-# 🔹 Prompt Ringkasan Proyek CAPWAP LiteOn
+# 🔹 Prompt Golang Fake CAPWAP Controller
 
 Saya sedang melakukan **reverse engineering CAPWAP** pada Access Point LiteOn (seri WPX8324-BT).
 
-* **Kondisi AP:** hanya bisa dikontrol via cloud, tidak ada web UI untuk ganti SSID.
-* **Tujuan:** bikin **fake CAPWAP controller** (dengan Go/Erlang) supaya AP bisa join dan menerima konfigurasi SSID & password dari controller lokal.
+* **Tujuan:** membuat **fake CAPWAP controller dengan Go**, supaya AP bisa join dan broadcast SSID/password sesuai konfigurasi custom (tanpa cloud).
 
-## 🔹 Langkah yang sudah dilakukan
+## 🔹 Fakta yang sudah diketahui
 
-1. **Laptop sebagai gateway & DHCP server** pada VLAN 100.
+* AP connect via **CAPWAP UDP/5246 (control)** dan **UDP/5247 (data)**.
+* Flow standar CAPWAP (RFC 5415/5416):
 
-   * AP mendapatkan IP dari DHCP laptop.
-   * Lalu AP mencoba connect ke cloud via CAPWAP.
+  1. Discovery Request (1)
+  2. Discovery Response (2)
+  3. Join Request (3)
+  4. Join Response (4)
+  5. Config Status Request (5)
+  6. Config Status Response (6)
+  7. Configuration Update Request (7) → berisi SSID, VLAN, WPA2-PSK
+  8. Configuration Update Response (8)
+* Dari pcap pertama, AP mengirim sampai Join Request, tapi belum ada Join Response dari controller cloud.
 
-2. **Sniffing CAPWAP traffic** dengan tcpdump:
+## 🔹 Yang ingin dibuat
 
-   ```bash
-   sudo tcpdump -i enp2s0f0.100 udp port 5246 or udp port 5247 -w capwap.pcap
-   ```
+1. **Fake CAPWAP Controller dengan Go** yang:
 
-   * Port **5246** = control (Discovery, Join, Config).
-   * Port **5247** = data.
+   * Menerima packet dari AP di UDP/5246.
+   * Parse CAPWAP header (msg\_type, seq).
+   * Jika msg\_type=1 (Discovery Request) → balas msg\_type=2 (Discovery Response).
+   * Jika msg\_type=3 (Join Request) → balas msg\_type=4 (Join Response, sukses).
+   * Jika msg\_type=5 (Config Status Request) → balas msg\_type=6 (Config Status Response).
+   * Kirim msg\_type=7 (Configuration Update Request) dengan SSID + WPA2 password custom.
+   * Terima msg\_type=8 (Config Update Response) dari AP.
 
-3. **Analisis awal pcap:**
+2. **Template hex payloads** (2,4,6,7) yang bisa di-embed langsung ke Go.
 
-   * AP (`172.16.1.100`) mengirim **Discovery Request** ke broadcast & beberapa IP cloud.
-   * Cloud (`103.119.146.x`) membalas **Discovery Response**.
-   * AP mengirim **Join Request (msg\_type=3)**.
-   * **Tidak ada Join Response** dari cloud di pcap pertama → sehingga AP tidak lanjut ke Config/SSID.
+   * Untuk (2) Discovery Response → bisa replay hasil sniff cloud.
+   * Untuk (4,6) Join/Config Status Response → cukup minimal dummy (ResultCode=0).
+   * Untuk (7) Config Update → perlu TLV **WLAN Configuration** isi SSID + WPA2-PSK password.
 
-4. **Parser CAPWAP header dibuat dengan Go**: bisa mengenali msg\_type (1=Discovery, 2=Discovery Response, 3=Join Request, 4=Join Response, 5=Config Status Req, 6=Config Status Resp, 7=Config Update Req, 8=Config Update Resp).
+3. **Kode Go sederhana** untuk menjalankan server:
 
-5. **Template Response minimal** sudah disiapkan:
-
-   * **Join Response (msg\_type=4)** → berisi Result Code=0 (success) + AC Descriptor dummy.
-   * **Config Status Response (msg\_type=6)** → balasan sukses untuk Config Status Request.
-
-6. **SSID/password** tidak muncul di Join Response.
-
-   * Menurut RFC 5416, **SSID & security dikirim via Configuration Update Request (msg\_type=7)** dari AC → AP.
-   * Pcap pertama tidak berisi msg\_type=7, karena AP tidak menerima Join Response → tidak lanjut ke fase Config.
-
----
-
-## 🔹 Apa yang diperlukan
-
-1. **Sniff ulang traffic CAPWAP lengkap** sampai AP benar-benar broadcast SSID dari cloud (agar kita dapat msg\_type=7 Configuration Update Request).
-2. Dari pcap itu, **ekstrak WLAN Configuration TLV** yang berisi SSID & security (WPA2/WPA3 passphrase).
-3. Bangun **fake controller (Go/Erlang)** yang melakukan:
-
-   * Balas Discovery Request → Discovery Response (sniff replay).
-   * Balas Join Request → Join Response (template).
-   * Balas Config Status Request → Config Status Response (template).
-   * Kirim Config Update Request (msg\_type=7) dengan **SSID & password custom**.
-   * Terima Config Update Response (msg\_type=8) dari AP.
-4. Pastikan AP mulai broadcast SSID sesuai config dari fake controller.
+   * Listen UDP/5246.
+   * Parse incoming CAPWAP header.
+   * Pilih respon sesuai msg\_type.
+   * Kirim payload hex ke AP.
 
 ---
 
-## 🔹 Prompt
+# 🔹 Prompt
 
-> Saya punya file pcap hasil sniff lengkap CAPWAP AP LiteOn.
-> Tolong analisis:
+> Saya punya file pcap CAPWAP dari AP LiteOn.
+> Tolong bantu saya dengan:
 >
-> * Temukan paket **Configuration Update Request (msg\_type=7)**.
-> * Decode TLV di dalamnya (khususnya WLAN Configuration TLV → SSID, VLAN, security, password).
-> * Tunjukkan struktur hex + field yang bisa saya embed ke fake CAPWAP controller (Go).
-> * Jika tidak ada msg\_type=7, bantu saya buat **template Configuration Update Request** yang valid (isi SSID & WPA2-PSK password yang saya tentukan).
-> * Buatkan juga contoh kode Go sederhana untuk mengirim response (2,4,6) dan config update (7) secara otomatis berdasarkan sniff atau template.
+> 1. Temukan paket msg\_type=7 (Configuration Update Request) kalau ada.
+> 2. Decode WLAN Configuration TLV (SSID, VLAN, WPA2 password).
+> 3. Jika tidak ada, buatkan saya **template hex Configuration Update Request** berisi SSID & password custom.
+> 4. Buatkan skeleton kode Go server CAPWAP:
+>
+>    * Handle msg\_type=1 → balas 2
+>    * Handle msg\_type=3 → balas 4
+>    * Handle msg\_type=5 → balas 6
+>    * Setelah 6, kirim 7 (Config Update) dengan SSID/password saya
+>    * Log jika menerima msg\_type=8
+> 5. Pastikan semua hex payload bisa langsung diembed ke kode Go.
 
 ---
 
-📌 Dengan prompt ini + pcap lengkap, kamu tinggal buka chat baru, paste prompt + upload file `.pcap`, dan aku (ChatGPT) bisa langsung bantu decode SSID/password atau generate hex TLV untuk config custom.
+📌 Dengan prompt ini + file pcap terbaru (sniff lengkap sampai AP broadcast SSID), kamu bisa langsung jalankan fake CAPWAP controller full-Go.
 
 ---
 
-👉 Mau sekalian saya bikinkan juga skeleton **Go fake controller penuh** (Discovery → Join → Config Status → Config Update) biar nanti kamu tinggal isi hex dari hasil sniff?
+👉 Mau aku langsung bikinkan **skeleton Go server** yang lengkap (tinggal ganti hex payloads)?
