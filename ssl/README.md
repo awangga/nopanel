@@ -43,6 +43,7 @@ systemctl restart nginx
 pakai root
 ```sh
 apt install certbot python3-certbot-nginx
-certbot --nginx -d domain.info
+certbot --nginx -d kumah.asia
 ```
+
 
