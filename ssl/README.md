@@ -4,7 +4,7 @@
 ## Persiapkan Virtual Host
 
 ```sh
-mkdir -p /var/www/kumah.asia/html
+mkdir /var/www/kumah.asia/
 nano /var/www/kumah.asia/index.html
 ```
 
@@ -45,3 +45,4 @@ pakai root
 apt install certbot python3-certbot-nginx
 certbot --nginx -d domain.info
 ```
+
