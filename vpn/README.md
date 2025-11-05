@@ -1,6 +1,22 @@
 # Set Up VPN Server and Client
 
-Easy Set Up VPN Server and Client
+Easy Set Up VPN Server and Client, Ubuntu 24.04:
+
+```sh
+# 1. Ambil key yang sesuai nama di sources.list
+curl -fsSL https://pkg.cloudflare.com/cloudflare-main.gpg \
+  | sudo tee /usr/share/keyrings/cloudflare-main.gpg >/dev/null
+
+# 2. Tulis ulang repo-nya pakai codename Ubuntu kamu (noble)
+echo "deb [signed-by=/usr/share/keyrings/cloudflare-main.gpg] https://pkg.cloudflare.com/cloudflared noble main" \
+  | sudo tee /etc/apt/sources.list.d/cloudflared.list
+
+# 3. Update & install
+sudo apt update
+sudo apt install cloudflared
+# 4. Install XTLS
+bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install
+```
 
 ## Server
 
