@@ -22,6 +22,9 @@ ssh-keygen -t ed25519 -C "awangga@gmail.com"
 
 ```sh
 git config --global user.email "awangga@gmail.com"
+```
+
+```sh
 git config --global user.name "Rolly Maulana Awangga"
 ```
 
