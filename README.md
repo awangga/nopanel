@@ -34,7 +34,9 @@ ssh-keygen -t rsa -b 4096 -C "awangga@gmail.com"
 cat ~/.ssh/id_rsa.pub
 ```
 
-Script without global config
+Script without global config:
+1. ./auto_push.sh "Pesan commit saya di sini"
+2. .\auto_push.ps1 -CommitMessage "Pesan commit saya di sini"
 ```sh
 #!/bin/bash
 
