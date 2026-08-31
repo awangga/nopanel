@@ -35,8 +35,8 @@ cat ~/.ssh/id_rsa.pub
 ```
 
 Script without global config:
-1. ./auto_push.sh "Pesan commit saya di sini"
-2. .\auto_push.ps1 -CommitMessage "Pesan commit saya di sini"
+1. `./auto_push.sh "Pesan commit saya di sini"`
+2. `.\auto_push.ps1 -CommitMessage "Pesan commit saya di sini"`
 ```sh
 #!/bin/bash
 
