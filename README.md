@@ -34,6 +34,118 @@ ssh-keygen -t rsa -b 4096 -C "awangga@gmail.com"
 cat ~/.ssh/id_rsa.pub
 ```
 
+Script without global config
+```sh
+#!/bin/bash
+
+# Pastikan script dijalankan dengan pesan commit
+if [ -z "$1" ]; then
+  echo "Cara penggunaan: $0 \"Pesan commit Anda\""
+  exit 1
+fi
+
+COMMIT_MSG="$1"
+ENV_FILE=~/awangga/.env
+TARGET_REPO="luhungnusantara/pos.git"
+TARGET_BRANCH="main"
+
+echo "Memulai proses commit..."
+
+# 1. Melakukan Commit
+git -c user.name="Rolly Maulana Awangga" -c user.email="rolly@awang.ga" commit -q -F - <<< "$COMMIT_MSG"
+
+if [ $? -eq 0 ]; then
+  git log -1 --format='%h : %s'
+else
+  echo "Commit gagal. Pastikan ada file yang sudah di-add (staged) atau cek status git Anda."
+  exit 1
+fi
+
+# 2. Mengambil Token
+if [ ! -f "$ENV_FILE" ]; then
+  echo "Gagal: File $ENV_FILE tidak ditemukan!"
+  exit 1
+fi
+
+TOKEN=$(grep -E '^\s*GHPAT' "$ENV_FILE" | head -1 | sed 's/.*=//' | tr -d '"'"'"' | tr -d '\r')
+
+if [ -z "$TOKEN" ]; then
+  echo "Gagal: Token GHPAT tidak ditemukan di $ENV_FILE!"
+  exit 1
+fi
+
+# 3. Melakukan Push
+REPO_URL="https://${TOKEN}@github.com/${TARGET_REPO}"
+echo "Melakukan push ke $TARGET_REPO branch $TARGET_BRANCH..."
+
+git push "$REPO_URL" "$TARGET_BRANCH"
+
+echo "Proses selesai!"
+```
+
+```ps1
+param (
+    [Parameter(Mandatory=$true, HelpMessage="Masukkan pesan commit")]
+    [string]$CommitMessage
+)
+
+$envFile = Join-Path $HOME "awangga\.env"
+$targetRepo = "luhungnusantara/pos.git"
+$targetBranch = "main"
+
+Write-Host "Memulai proses commit..." -ForegroundColor Cyan
+
+# 1. Melakukan Commit
+# Membuat file sementara untuk pesan commit agar aman dari karakter khusus
+$tempFile = [System.IO.Path]::GetTempFileName()
+Set-Content -Path $tempFile -Value $CommitMessage -Encoding UTF8
+
+git -c user.name="Rolly Maulana Awangga" -c user.email="rolly@awang.ga" commit -q -F $tempFile
+$commitStatus = $LASTEXITCODE
+
+Remove-Item $tempFile -ErrorAction SilentlyContinue
+
+if ($commitStatus -eq 0) {
+    git log -1 --format='%h : %s'
+} else {
+    Write-Host "Commit gagal. Pastikan ada file yang sudah di-add (staged)." -ForegroundColor Red
+    exit
+}
+
+# 2. Mengambil Token
+if (-Not (Test-Path $envFile)) {
+    Write-Host "Gagal: File $envFile tidak ditemukan!" -ForegroundColor Red
+    exit
+}
+
+$token = $null
+$lines = Get-Content $envFile
+foreach ($line in $lines) {
+    if ($line -match '^\s*GHPAT\s*=\s*(.*)') {
+        # Membersihkan tanda kutip dan spasi/carriage return
+        $token = $matches[1] -replace '["'']', '' -replace '\r', '' -replace '^\s+|\s+$', ''
+        break
+    }
+}
+
+if ([string]::IsNullOrWhiteSpace($token)) {
+    Write-Host "Gagal: Token GHPAT tidak ditemukan di $envFile!" -ForegroundColor Red
+    exit
+}
+
+# 3. Melakukan Push
+$repoUrl = "https://$token@github.com/$targetRepo"
+Write-Host "Melakukan push ke $targetRepo branch $targetBranch..." -ForegroundColor Cyan
+
+git push $repoUrl $targetBranch
+
+if ($LASTEXITCODE -eq 0) {
+    Write-Host "Proses selesai!" -ForegroundColor Green
+} else {
+    Write-Host "Push gagal. Silakan periksa koneksi atau token Anda." -ForegroundColor Red
+}
+```
+
 ## tmux
 Set tmux tmp dir
 
